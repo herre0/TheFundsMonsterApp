@@ -24,12 +24,28 @@ public class FonAppApplication {
                 new Runnable() {
                     public void run() {
                         try {
-                           fonDetayServis.iceriAktar();
-                        }catch(Exception ex) {
+                            fonDetayServis.iceriAktar();
+                            System.out.println("Gunluk update tamamlandi!");
+                        } catch (Exception ex) {
                             ex.printStackTrace();
                         }
                     }
-                }, 12, 12, TimeUnit.HOURS);
+                }, 1, 12, TimeUnit.HOURS);
+
+        final ScheduledFuture<?> taskHandle1 = scheduler.scheduleAtFixedRate(
+                new Runnable() {
+                    public void run() {
+                        try {
+                            if(fonDetayServis.kacaklariYakala()){
+                                System.out.println("kacak yakalandi !!");
+                                fonDetayServis.iceriAktar();
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }, 1, 1, TimeUnit.HOURS);
+
     }
 
 }

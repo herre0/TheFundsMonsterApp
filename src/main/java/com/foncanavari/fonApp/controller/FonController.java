@@ -1,6 +1,7 @@
 package com.foncanavari.fonApp.controller;
 
 import com.foncanavari.fonApp.model.Fon;
+import com.foncanavari.fonApp.model.FonDetay;
 import com.foncanavari.fonApp.repository.FonRepository;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -68,6 +69,12 @@ public class FonController {
         return true;
     }
 
+    @GetMapping("/category")
+    @CrossOrigin
+    public List<Fon> getFonListByCategory(@RequestParam(value="c") String category) {
+        return fonRepository.findFonlarByCategory(category);
+    }
+
     private void fonKategoriUpdate() {
         List<Fon> fonlar = fonRepository.findAll();
         RestTemplate rest = new RestTemplate();
@@ -85,7 +92,7 @@ public class FonController {
             json = json.replace("]", "");
             fon = fonRepository.findByKodu(fonlar.get(i).getKodu());
             fon.setCategory(new JsonParser().parse(json).getAsJsonObject().get("FonTuru").getAsString());
-            fonRepository.save(fon);
+           // fonRepository.save(fon);
         }
     }
 
