@@ -17,11 +17,12 @@ public class FonDetay {
     String fon_ad;
     String fon_kod;
     String category;
-    Double sharpe_ratio=0D; // bu iksii daha sonra yapılabilir mesela ?
-    Double standart_sapma=0D;
+    String sharpe_ratio=""; // bu iksii daha sonra yapılabilir mesela ?
+    String standart_sapma="";
     String gunluk_artis="";
     String haftalik_artis="";
     String aylik_artis="";
+    String uc_aylik_artis="";
     String alti_aylik_artis="";
     String yillik_artis="";
     String uc_yillik_artis="";
@@ -30,6 +31,7 @@ public class FonDetay {
     String _2019=""; // https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/AES/1/2019-01-01/2019-12-31
     String _2020="";//hesaplanmicak veya yilbasindan itibaren diye serve edilebilri
     String g_tarih="";
+    Boolean sharpe_guncel=false;
     // <- json dan geliyor ->
     String toplam_deger="";
     String birim_deger="";

@@ -2,19 +2,21 @@ package com.foncanavari.fonApp.controller;
 
 import com.foncanavari.fonApp.model.Fon;
 import com.foncanavari.fonApp.model.FonDetay;
+import com.foncanavari.fonApp.model.Traffic;
+import com.foncanavari.fonApp.repository.FonDetayRepository;
 import com.foncanavari.fonApp.repository.FonRepository;
-import com.google.gson.JsonObject;
+import com.foncanavari.fonApp.repository.TrafficRepository;
+import com.foncanavari.fonApp.servis.FonDetayServis;
 import com.google.gson.JsonParser;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,10 @@ public class FonController {
 
     @Autowired
     FonRepository fonRepository;
+    @Autowired
+    FonDetayRepository fonDetayRepository;
+    @Autowired
+    TrafficRepository trafficRepository;
 
     @GetMapping
     @CrossOrigin
@@ -54,9 +60,7 @@ public class FonController {
 
         fon_updated.setAdi(fon.getAdi());
         fon_updated.setKodu(fon.getKodu());
-        fon_updated.setAgirlik(fon.getAgirlik());
         fon_updated.setCategory(fon.getCategory());
-        fon_updated.setFavori(fon.getFavori());
         fonRepository.save(fon_updated);
 
         return true;
@@ -95,5 +99,42 @@ public class FonController {
            // fonRepository.save(fon);
         }
     }
+
+
+    @GetMapping("/eniyi")
+    @CrossOrigin
+    public List<?> GetEnIyiler(@RequestParam(value = "tip") String date_tip) {
+        List<?> eniyilerList = new ArrayList<>();
+        switch (date_tip) {
+            case "day": eniyilerList = fonDetayRepository.getEniyilerFonGunluk();
+                break;
+            case "week": eniyilerList = fonDetayRepository.getEniyilerFonHaftalik();
+                break;
+            case "month": eniyilerList = fonDetayRepository.getEniyilerFonAylik();
+                break;
+            case "sixmonths": eniyilerList = fonDetayRepository.getEniyilerFonAltiAylik();
+                break;
+            case "year": eniyilerList = fonDetayRepository.getEniyilerFonYillik();
+                break;
+        }
+
+        return eniyilerList;
+    }
+
+    @GetMapping("/yenile")
+    @CrossOrigin
+    public void IpKaydet(@RequestParam(value = "sip") String ip) {
+        Traffic traffic = trafficRepository.findTrafficByIpAdress(ip);
+
+        if(traffic == null) {
+            traffic = new Traffic();
+            traffic.setIp_adress(ip);
+        }
+
+        traffic.setGiris_sayisi(traffic.getGiris_sayisi() + 1);
+        traffic.setTarih(FonDetayServis.tarihSaatHesapla());
+
+        trafficRepository.save(traffic);
+   }
 
 }

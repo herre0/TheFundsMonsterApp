@@ -1,11 +1,9 @@
 package com.foncanavari.fonApp.controller;
 
-import com.foncanavari.fonApp.model.Fon;
-import com.foncanavari.fonApp.model.FonDetay;
-import com.foncanavari.fonApp.model.LineChart;
-import com.foncanavari.fonApp.model.PieChart;
+import com.foncanavari.fonApp.model.*;
 import com.foncanavari.fonApp.repository.FonDetayRepository;
 import com.foncanavari.fonApp.repository.FonRepository;
+import com.foncanavari.fonApp.repository.UserRepository;
 import com.foncanavari.fonApp.servis.FonDetayServis;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -16,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +34,8 @@ public class FonDetayController {
     FonDetayRepository fonDetayRepository;
     @Autowired
     FonRepository fonRepository;
+    @Autowired
+    UserRepository userRepository;
 
 
     @GetMapping("/{kod}")
@@ -45,67 +46,150 @@ public class FonDetayController {
 
     @GetMapping("/alem")
     @CrossOrigin
-    public Page<FonDetay> getDetayList() {
-        return fonDetayRepository.findAll(PageRequest.of(0,20));
+    public List<FonDetay> getDetayList() {
+        return fonDetayRepository.getDetaylarForKarsilastir();
     }
 
     @GetMapping("/search")
     @CrossOrigin
-    public List<FonDetay> getDetayListSearch(@RequestParam(value="s") String search) {
+    public List<FonDetay> getDetayListSearch(@RequestParam(value = "s") String search) {
         return fonDetayRepository.findAllLike(search);
     }
 
     @GetMapping
     @CrossOrigin
-    public List<Fon> getFonListSearch(@RequestParam(value="s") String search) {
+    public List<Fon> getFonListSearch(@RequestParam(value = "s") String search) {
         return fonRepository.findAllLike(search);
     }
 
     @GetMapping("/category")
     @CrossOrigin
-    public List<FonDetay> getDetayListByCategory(@RequestParam(value="c") String search) {
+    public List<FonDetay> getDetayListByCategory(@RequestParam(value = "c") String search) {
         return fonDetayRepository.findByCategory(search);
+    }
+
+    @GetMapping("/fav")
+    @CrossOrigin
+    public List<FonDetay> getFavoriFonDetayListByUser(@RequestParam(value = "u") String username) {
+        User user = userRepository.findUserByUsername(username);
+        List<Fon> favori_fonlar = user.getFavori_fonlar();
+        List<FonDetay> favori_fondetaylar = new ArrayList<>();
+
+        for (int i = 0; i < favori_fonlar.size(); i++) {
+            favori_fondetaylar.add(fonDetayRepository.getByKod(favori_fonlar.get(i).getKodu()));
+        }
+
+        return favori_fondetaylar;
     }
 
     @GetMapping("/pie")
     @CrossOrigin
-    public List<PieChart> getDataforPieChart(@RequestParam(value="pie") String kod) {
+    public List<PieChart> getDataforPieChart(@RequestParam(value = "pie") String kod) {
         FonDetay fondetay = fonDetayRepository.getByKod(kod);
-        if(fondetay == null)
+        if (fondetay == null)
             return null;
-        List<PieChart> pie_list = new ArrayList<PieChart>();
-        if(!fondetay.getYab_hisse_senedi().equals("0.00")) pie_list.add(new PieChart("Yabancı Hisse Senedi",Double.valueOf(fondetay.getYab_hisse_senedi())));
-        if(!fondetay.getHisse_senedi().equals("0.00")) pie_list.add(new PieChart("Hisse Senedi",Double.valueOf(fondetay.getHisse_senedi())));
-        if(!fondetay.getDevlet_tahvili().equals("0.00")) pie_list.add(new PieChart("Devlet Tahvili",Double.valueOf(fondetay.getDevlet_tahvili())));
-        if(!fondetay.getBanka_bonosu().equals("0.00")) pie_list.add(new PieChart("Banka Bonosu",Double.valueOf(fondetay.getBanka_bonosu())));
-        if(!fondetay.getEurobond().equals("0.00")) pie_list.add(new PieChart("Eurobond",Double.valueOf(fondetay.getEurobond())));
-        if(!fondetay.getKiymetli_maden().equals("0.00")) pie_list.add(new PieChart("Kıymetli Maden",Double.valueOf(fondetay.getKiymetli_maden())));
-        if(!fondetay.getDiger().equals("0.00")) pie_list.add(new PieChart("Diğer",Double.valueOf(fondetay.getDiger())));
-        if(!fondetay.getDoviz_odemeli_bono().equals("0.00")) pie_list.add(new PieChart("Döviz Ödemeli Bono",Double.valueOf(fondetay.getDoviz_odemeli_bono())));
-        if(!fondetay.getDoviz_odemeli_tahvil().equals("0.00")) pie_list.add(new PieChart("Döviz Ödemeli Tahvil",Double.valueOf(fondetay.getDoviz_odemeli_tahvil())));
-        if(!fondetay.getFinansman_bonosu().equals("0.00")) pie_list.add(new PieChart("Finansman Bonosu",Double.valueOf(fondetay.getFinansman_bonosu())));
-        if(!fondetay.getFon_katilma_belgesi().equals("0.00")) pie_list.add(new PieChart("Fon Katılma Belgesi",Double.valueOf(fondetay.getFon_katilma_belgesi())));
-        if(!fondetay.getGayrimenkul_sertifikasi().equals("0.00")) pie_list.add(new PieChart("Gayrimenkul Sertifikası",Double.valueOf(fondetay.getGayrimenkul_sertifikasi())));
-        if(!fondetay.getHazine_bonosu().equals("0.00")) pie_list.add(new PieChart("Hazine Bonosu",Double.valueOf(fondetay.getHazine_bonosu())));
-        if(!fondetay.getKamu_dis_borclanma_araci().equals("0.00")) pie_list.add(new PieChart("Kamu Dış Borçlanma Aracı",Double.valueOf(fondetay.getKamu_dis_borclanma_araci())));
-        if(!fondetay.getKamu_kira_sertifikası().equals("0.00")) pie_list.add(new PieChart("Kamu Kira Sertifikası",Double.valueOf(fondetay.getKamu_kira_sertifikası())));
-        if(!fondetay.getKatilim_hesabi().equals("0.00")) pie_list.add(new PieChart("Katılım Hesabı",Double.valueOf(fondetay.getKatilim_hesabi())));
-        if(!fondetay.getOzel_kira_sertifikasi().equals("0.00")) pie_list.add(new PieChart("Özel Sektör Kira Sertifikası",Double.valueOf(fondetay.getOzel_kira_sertifikasi())));
-        if(!fondetay.getOzel_sektor_tahvil().equals("0.00")) pie_list.add(new PieChart("Özel Sektör Tahvili",Double.valueOf(fondetay.getOzel_sektor_tahvil())));
-        if(!fondetay.getTers_repo().equals("0.00")) pie_list.add(new PieChart("Ters Repo",Double.valueOf(fondetay.getTers_repo())));
-        if(!fondetay.getTpp().equals("0.00")) pie_list.add(new PieChart("TPP",Double.valueOf(fondetay.getTpp())));
-        if(!fondetay.getTurev_araci().equals("0.00")) pie_list.add(new PieChart("Türev Aracı",Double.valueOf(fondetay.getTurev_araci())));
-        if(!fondetay.getVarlik_menkul_kiymet().equals("0.00")) pie_list.add(new PieChart("Varlığa Dayalı Menkul Kıymet",Double.valueOf(fondetay.getVarlik_menkul_kiymet())));
-        if(!fondetay.getVadeli_mevduat().equals("0.00")) pie_list.add(new PieChart("Vadeli Mevduat",Double.valueOf(fondetay.getVadeli_mevduat())));
-        if(!fondetay.getYab_borclanma_araci().equals("0.00")) pie_list.add(new PieChart("Yabancı Borçlanma Aracı",Double.valueOf(fondetay.getYab_borclanma_araci())));
-        if(!fondetay.getYab_menkul_kiymet().equals("0.00")) pie_list.add(new PieChart("Yabanci Menkul Kıymet",Double.valueOf(fondetay.getYab_menkul_kiymet())));
-        return pie_list;
+
+        return FonDetayServis.PieChartDetay(fondetay);
     }
 
     @GetMapping("/line")
     @CrossOrigin
-    public List<LineChart> getDataforLineChart(@RequestParam(value="kod") String kod,@RequestParam(value="date") String datetip) {
-        return FonDetayServis.LineChartData(datetip,kod);
+    public List<LineChart> getDataforLineChart(@RequestParam(value = "kod") String kod, @RequestParam(value = "date") String datetip) {
+        return FonDetayServis.LineChartData(datetip, kod);
+    }
+
+    @GetMapping("/sort")
+    @CrossOrigin
+    public List<FonDetay> getSortedData(@RequestParam(value = "col") String column, @RequestParam(value = "order") String order, @RequestParam(value = "cat") String category, @RequestParam(value = "us") String username) {
+        List<FonDetay> sortedDetayList = new ArrayList<>();
+        if (category.equals("")) {
+            if (column.equals("2017") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2017TUM();
+            else if (column.equals("2017") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2017TUM();
+            else if (column.equals("2018") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2018TUM();
+            else if (column.equals("2018") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2018TUM();
+            else if (column.equals("2019") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2019TUM();
+            else if (column.equals("2019") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2019TUM();
+            else if (column.equals("son1ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofAylikArtisTUM();
+            else if (column.equals("son1ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofAylikArtisTUM();
+            else if (column.equals("sapma") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofSapmaTUM();
+            else if (column.equals("sapma") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofSapmaTUM();
+            else if (column.equals("sharpe") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofSharpeTUM();
+            else if (column.equals("sharpe") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofSharpeTUM();
+            else
+                sortedDetayList = fonDetayRepository.getAscSortedListofAylikArtisTUM();
+        } else if (category.equals("Favori Fonlarım")) {
+            User user = userRepository.findUserByUsername(username);
+            List<Fon> fonlar = user.getFavori_fonlar();
+            List<String> fon_kodlar = new ArrayList<>();
+            for (Fon fon : fonlar)
+                fon_kodlar.add(fon.getKodu());
+
+            if (column.equals("2017") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2017FAV(fon_kodlar);
+            else if (column.equals("2017") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2017FAV(fon_kodlar);
+            else if (column.equals("2018") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2018FAV(fon_kodlar);
+            else if (column.equals("2018") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2018FAV(fon_kodlar);
+            else if (column.equals("2019") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2019FAV(fon_kodlar);
+            else if (column.equals("2019") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2019FAV(fon_kodlar);
+            else if (column.equals("son1ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofAylikArtisFAV(fon_kodlar);
+            else if (column.equals("son1ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofAylikArtisFAV(fon_kodlar);
+            else if (column.equals("sapma") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofSapmaFAV(fon_kodlar);
+            else if (column.equals("sapma") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofSapmaFAV(fon_kodlar);
+            else if (column.equals("sharpe") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofSharpeFAV(fon_kodlar);
+            else if (column.equals("sharpe") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofSharpeFAV(fon_kodlar);
+
+        } else {
+            if (column.equals("2017") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2017(category);
+            else if (column.equals("2017") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2017(category);
+            else if (column.equals("2018") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2018(category);
+            else if (column.equals("2018") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2018(category);
+            else if (column.equals("2019") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2019(category);
+            else if (column.equals("2019") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2019(category);
+            else if (column.equals("son1ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofAylikArtis(category);
+            else if (column.equals("son1ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofAylikArtis(category);
+            else if (column.equals("sapma") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofSapma(category);
+            else if (column.equals("sapma") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofSapma(category);
+            else if (column.equals("sharpe") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofSharpe(category);
+            else if (column.equals("sharpe") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofSharpe(category);
+        }
+
+
+        return sortedDetayList;
     }
 
 }

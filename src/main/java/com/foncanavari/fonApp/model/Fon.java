@@ -20,10 +20,8 @@ public class Fon {
     @Column(name = "ad")
     String adi;
     String category;
-    Boolean favori=false;
     String gunluk_artis;
     String fiyat;
-    String agirlik; // portfoy icin kondu
 }
 
 

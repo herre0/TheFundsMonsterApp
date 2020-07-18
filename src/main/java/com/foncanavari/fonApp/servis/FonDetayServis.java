@@ -1,10 +1,7 @@
 package com.foncanavari.fonApp.servis;
 
-import com.foncanavari.fonApp.model.Fon;
-import com.foncanavari.fonApp.model.FonDetay;
-import com.foncanavari.fonApp.model.LineChart;
-import com.foncanavari.fonApp.repository.FonDetayRepository;
-import com.foncanavari.fonApp.repository.FonRepository;
+import com.foncanavari.fonApp.model.*;
+import com.foncanavari.fonApp.repository.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -16,6 +13,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import javax.sound.sampled.Line;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +29,11 @@ public class FonDetayServis {
     FonDetayRepository fonDetayRepository;
     @Autowired
     FonRepository fonRepository;
+    @Autowired
+    PortfoyRepository portfoyRepository;
+    @Autowired
+    PortfonRepository portfonRepository;
+
 
     public Boolean kacaklariYakala() {
         List<FonDetay> fonds = fonDetayRepository.findAll();
@@ -49,24 +53,16 @@ public class FonDetayServis {
         List<Fon> fonlar = fonRepository.findAll();
         RestTemplate rest = new RestTemplate();
         String bugun, fonkod, url, json;
-        int count;
-        FonDetay fn_eklenirse = new FonDetay();
-        FonDetay fonDetay;
         for (int i = 0; i < fonlar.size(); i++) {
             fonkod = fonlar.get(i).getKodu();
-            /*if (StringUtils.isEmpty(fonDetayRepository.getByKod(fonkod))) {
-                fn_eklenirse.setFon_ad(fonlar.get(i).getAdi());
-                fn_eklenirse.setFon_kod(fonlar.get(i).getKodu());
-                fn_eklenirse.setCategory(fonlar.get(i).getCategory());
-                fonDetayRepository.save(fn_eklenirse);
-            }*/
+
             if (fonDetayRepository.getUpdatedDate(fonkod).equals(tarihHesapla("day", 0))) {
                 continue;
             }
             bugun = tarihHesapla("day", 0);
             url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + bugun + "/" + bugun;
             json = rest.getForObject(url, String.class);
-            if(json == null)
+            if (json == null)
                 continue;
             /*count = 0;
             while (true) { gunluk veri bossa gec ugrasma zaten gunluk ?
@@ -84,14 +80,34 @@ public class FonDetayServis {
             if (count > 3) continue;*/
             json = json.replace("[", "");
             json = json.replace("]", "");
+            Double fiyat = new JsonParser().parse(json).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
+            if (fiyat == 0D)
+                continue;
             JsonObject json_obje = new JsonParser().parse(json).getAsJsonObject();
-            fonDetay = atamaYap(json_obje);
+            FonDetay fonDetay = atamaYap(json_obje);
             Fon fon = fonRepository.findByKodu(fonDetay.getFon_kod());
             fon.setFiyat(fonDetay.getBirim_deger());
             fon.setGunluk_artis(fonDetay.getGunluk_artis());
+
             fonRepository.save(fon);
             fonDetayRepository.save(fonDetay);
-           // System.out.println(i + ". " + fon.getKodu() + " basariyla guncellendi !!");
+            //portfoyHesapla(fon);
+            System.out.println(i + ". " + fon.getKodu() + " guncellendi !!");
+        }
+    }
+
+    public void portfoyHesapla(Fon fon) {
+        fon = fonRepository.findByKodu("TCD");
+
+        List<PortFon> portfonlar = portfonRepository.findAllByFonkod(fon.getKodu());
+        Portfoy portfoy = new Portfoy();
+        for (PortFon p : portfonlar) {
+            portfoy = portfoyRepository.findPortfoyByPortfonId(p.getId());
+
+
+            p.setBirim_fiyati(Double.valueOf(fon.getFiyat()));
+            p.setDegeri(Double.valueOf(fon.getFiyat()) * p.getAdet());
+            p.setGunluk_getiri_yuzde(Double.valueOf(fon.getGunluk_artis()));
         }
     }
 
@@ -133,13 +149,20 @@ public class FonDetayServis {
         k = k.replace("[", "");
         k = k.replace("]", "");
 
-        Double yeniFiyat = new JsonParser().parse(r).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
-        Double eskiFiyat = new JsonParser().parse(k).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
+        Double yeniFiyat0 = new JsonParser().parse(r).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
+        Double eskiFiyat0 = new JsonParser().parse(k).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
 
-        String yuzde = ((yeniFiyat - eskiFiyat) / eskiFiyat) * 100 + "000";
-        if (yuzde.equals("0.0000") || yuzde.equals("In") || yuzde.equals("ln"))
-            return "";
-        return yuzde.substring(0, yuzde.indexOf(".") + 3);
+        BigDecimal yeniFiyat = new BigDecimal(yeniFiyat0);
+        BigDecimal eskiFiyat = new BigDecimal(eskiFiyat0);
+
+        if (eskiFiyat0.equals(0D) || yeniFiyat0.equals(eskiFiyat0))
+            return "0.00";
+
+        String yuzde = (((yeniFiyat.subtract(eskiFiyat)).divide(eskiFiyat, MathContext.DECIMAL32)).multiply(new BigDecimal("100"))) + "000";//todo double da E basamaklı olunca bölmeyi doğru yapmıyo
+        if (yuzde.equals("0.0000"))
+            return "0.00";
+
+        return yuzde.substring(0, yuzde.indexOf(".") + 3);//todo burası 5 ti 3 yaptım canlı için
     }
 
     public static String birgunGeri(String date) throws ParseException {
@@ -168,6 +191,15 @@ public class FonDetayServis {
                 cal.add(Calendar.YEAR, index);
                 break;
         }
+
+        return dateformat.format(cal.getTime());
+    }
+
+    public static String tarihSaatHesapla() {
+        DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+        Date currentDate = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentDate);
 
         return dateformat.format(cal.getTime());
     }
@@ -204,27 +236,30 @@ public class FonDetayServis {
         fon.setYab_hisse_senedi(json.get("YabanciHisseSenedi").getAsString());
         fon.setYab_menkul_kiymet(json.get("YabanciMenkulKiymet").getAsString());
         fon.setG_tarih(tarihHesapla("day", 0));
+        //fon.setStandart_sapma(standartSapmaHesapla(fon.getFon_kod()));
         // -- Hesaplamalar --
         String gunluk_artis = fiyatArtisHesapla("", tarihHesapla("day", -1), fon.getFon_kod());
         String haftalik_artis = fiyatArtisHesapla("", tarihHesapla("day", -7), fon.getFon_kod());
         String aylik_artis = fiyatArtisHesapla("", tarihHesapla("month", -1), fon.getFon_kod());
+        String uc_aylik_artis = fiyatArtisHesapla("", tarihHesapla("month", -3), fon.getFon_kod());
         String alti_aylik_artis = fiyatArtisHesapla("", tarihHesapla("month", -6), fon.getFon_kod());
         String yillik_artis = fiyatArtisHesapla("", tarihHesapla("year", -1), fon.getFon_kod());
         String uc_yillik_artis = fiyatArtisHesapla("", tarihHesapla("year", -3), fon.getFon_kod());
         String _2020_artis = fiyatArtisHesapla("", "2020-01-01", fon.getFon_kod());
-        if (!gunluk_artis.equals("")) fon.setGunluk_artis(gunluk_artis);
-        if (!haftalik_artis.equals("")) fon.setHaftalik_artis(haftalik_artis);
-        if (!aylik_artis.equals("")) fon.setAylik_artis(aylik_artis);
-        if (!alti_aylik_artis.equals("")) fon.setAlti_aylik_artis(alti_aylik_artis);
-        if (!yillik_artis.equals("")) fon.setYillik_artis(yillik_artis);
-        if (!uc_yillik_artis.equals("")) fon.setUc_yillik_artis(uc_yillik_artis);
+        if (!gunluk_artis.equals("0.00")) fon.setGunluk_artis(gunluk_artis);
+        if (!haftalik_artis.equals("0.00")) fon.setHaftalik_artis(haftalik_artis);
+        if (!aylik_artis.equals("0.00")) fon.setAylik_artis(aylik_artis);
+        if (!uc_aylik_artis.equals("0.00")) fon.setUc_aylik_artis(uc_aylik_artis);
+        if (!alti_aylik_artis.equals("0.00")) fon.setAlti_aylik_artis(alti_aylik_artis);
+        if (!yillik_artis.equals("0.00")) fon.setYillik_artis(yillik_artis);
+        if (!uc_yillik_artis.equals("0.00")) fon.setUc_yillik_artis(uc_yillik_artis);
         if (StringUtils.isEmpty(fon.get_2017()))
             fon.set_2017(fiyatArtisHesapla("2017-12-31", "2017-01-01", fon.getFon_kod()));
         if (StringUtils.isEmpty(fon.get_2018()))
             fon.set_2018(fiyatArtisHesapla("2018-12-31", "2018-01-01", fon.getFon_kod()));
         if (StringUtils.isEmpty(fon.get_2019()))
             fon.set_2019(fiyatArtisHesapla("2019-12-31", "2019-01-01", fon.getFon_kod()));
-        if (!_2020_artis.equals("")) fon.set_2020(_2020_artis);
+        if (!_2020_artis.equals("0.00")) fon.set_2020(_2020_artis);
 
 
         return fon;
@@ -234,17 +269,29 @@ public class FonDetayServis {
         RestTemplate rest = new RestTemplate();
         List<LineChart> chartList = new ArrayList<LineChart>();
         String bugun = tarihHesapla("day", 0);
-        String gecmis_tarih;
-        if (datetip.equals("year")) gecmis_tarih = tarihHesapla("year", -1);
-        else gecmis_tarih = tarihHesapla("month", -1);
-
+        String gecmis_tarih = "";
+        switch (datetip) {
+            case "year":
+                gecmis_tarih = tarihHesapla("year", -1);
+                break;
+            case "month":
+                gecmis_tarih = tarihHesapla("month", -1);
+                break;
+            case "week":
+                gecmis_tarih = tarihHesapla("day", -7);
+                break;
+            case "sixmonths":
+                gecmis_tarih = tarihHesapla("month", -6);
+                break;
+            case "threemonths":
+                gecmis_tarih = tarihHesapla("month", -3);
+                break;
+            case "threeyears":
+                gecmis_tarih = tarihHesapla("year", -3);
+                break;
+        }
         String url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + gecmis_tarih + "/" + bugun;
         String json = rest.getForObject(url, String.class);
-        //json = json.replace("[", "");
-        //json = json.replace("]", "");
-
-        //JsonArray degerler = new JsonParser().parse(json).getAsJsonObject().get("BirimPayDegeri").getAsJsonArray();
-        //JsonArray tarihler = new JsonParser().parse(json).getAsJsonObject().get("BirimPayDegeri").getAsJsonArray();
         JsonArray veri = new JsonParser().parse(json).getAsJsonArray();
 
         for (int i = 0; i < veri.size(); i++) {
@@ -252,60 +299,107 @@ public class FonDetayServis {
         }
 
         return chartList;
-
     }
 
-    // todo 2. versiyonda isleme alınacaktır!
-    public void sapmavesharpeHesapla(String fonkod) throws ParseException {
-        fonkod = "IPV";
-        int count = 0; // IPV 0.73 IPV 0.327 verdi yuzde/100gun
-        RestTemplate rest = new RestTemplate();
-        List<Double> fiyatlar = new ArrayList<Double>();
-        String json;
-      /*  for (int i = 1; i<= 100;i++) {
-            String tarih = tarihHesapla("day", -i);
-            String url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + tarih + "/" + tarih;
-            json = rest.getForObject(url, String.class);
-            count = 0;
-            while (true) {
-                count++;
-                if (json == null) {
-                    tarih = birgunGeri(tarih);
-                    url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + tarih + "/" + tarih;
-                    json = rest.getForObject(url, String.class);
-                }
-                if (json != null)
-                    break;
-                if (count > 3)
+    public static List<PieChart> PieChartDetay(FonDetay fondetay) {
+        List<PieChart> pie_list = new ArrayList<PieChart>();
+        if (!fondetay.getYab_hisse_senedi().equals("0.00"))
+            pie_list.add(new PieChart("Yabancı Hisse Senedi", Double.valueOf(fondetay.getYab_hisse_senedi())));
+        if (!fondetay.getHisse_senedi().equals("0.00"))
+            pie_list.add(new PieChart("Hisse Senedi", Double.valueOf(fondetay.getHisse_senedi())));
+        if (!fondetay.getDevlet_tahvili().equals("0.00"))
+            pie_list.add(new PieChart("Devlet Tahvili", Double.valueOf(fondetay.getDevlet_tahvili())));
+        if (!fondetay.getBanka_bonosu().equals("0.00"))
+            pie_list.add(new PieChart("Banka Bonosu", Double.valueOf(fondetay.getBanka_bonosu())));
+        if (!fondetay.getEurobond().equals("0.00"))
+            pie_list.add(new PieChart("Eurobond", Double.valueOf(fondetay.getEurobond())));
+        if (!fondetay.getKiymetli_maden().equals("0.00"))
+            pie_list.add(new PieChart("Kıymetli Maden", Double.valueOf(fondetay.getKiymetli_maden())));
+        if (!fondetay.getDiger().equals("0.00"))
+            pie_list.add(new PieChart("Diğer", Double.valueOf(fondetay.getDiger())));
+        if (!fondetay.getDoviz_odemeli_bono().equals("0.00"))
+            pie_list.add(new PieChart("Döviz Ödemeli Bono", Double.valueOf(fondetay.getDoviz_odemeli_bono())));
+        if (!fondetay.getDoviz_odemeli_tahvil().equals("0.00"))
+            pie_list.add(new PieChart("Döviz Ödemeli Tahvil", Double.valueOf(fondetay.getDoviz_odemeli_tahvil())));
+        if (!fondetay.getFinansman_bonosu().equals("0.00"))
+            pie_list.add(new PieChart("Finansman Bonosu", Double.valueOf(fondetay.getFinansman_bonosu())));
+        if (!fondetay.getFon_katilma_belgesi().equals("0.00"))
+            pie_list.add(new PieChart("Fon Katılma Belgesi", Double.valueOf(fondetay.getFon_katilma_belgesi())));
+        if (!fondetay.getGayrimenkul_sertifikasi().equals("0.00"))
+            pie_list.add(new PieChart("Gayrimenkul Sertifikası", Double.valueOf(fondetay.getGayrimenkul_sertifikasi())));
+        if (!fondetay.getHazine_bonosu().equals("0.00"))
+            pie_list.add(new PieChart("Hazine Bonosu", Double.valueOf(fondetay.getHazine_bonosu())));
+        if (!fondetay.getKamu_dis_borclanma_araci().equals("0.00"))
+            pie_list.add(new PieChart("Kamu Dış Borçlanma Aracı", Double.valueOf(fondetay.getKamu_dis_borclanma_araci())));
+        if (!fondetay.getKamu_kira_sertifikası().equals("0.00"))
+            pie_list.add(new PieChart("Kamu Kira Sertifikası", Double.valueOf(fondetay.getKamu_kira_sertifikası())));
+        if (!fondetay.getKatilim_hesabi().equals("0.00"))
+            pie_list.add(new PieChart("Katılım Hesabı", Double.valueOf(fondetay.getKatilim_hesabi())));
+        if (!fondetay.getOzel_kira_sertifikasi().equals("0.00"))
+            pie_list.add(new PieChart("Özel Sektör Kira Sertifikası", Double.valueOf(fondetay.getOzel_kira_sertifikasi())));
+        if (!fondetay.getOzel_sektor_tahvil().equals("0.00"))
+            pie_list.add(new PieChart("Özel Sektör Tahvili", Double.valueOf(fondetay.getOzel_sektor_tahvil())));
+        if (!fondetay.getTers_repo().equals("0.00"))
+            pie_list.add(new PieChart("Ters Repo", Double.valueOf(fondetay.getTers_repo())));
+        if (!fondetay.getTpp().equals("0.00")) pie_list.add(new PieChart("TPP", Double.valueOf(fondetay.getTpp())));
+        if (!fondetay.getTurev_araci().equals("0.00"))
+            pie_list.add(new PieChart("Türev Aracı", Double.valueOf(fondetay.getTurev_araci())));
+        if (!fondetay.getVarlik_menkul_kiymet().equals("0.00"))
+            pie_list.add(new PieChart("Varlığa Dayalı Menkul Kıymet", Double.valueOf(fondetay.getVarlik_menkul_kiymet())));
+        if (!fondetay.getVadeli_mevduat().equals("0.00"))
+            pie_list.add(new PieChart("Vadeli Mevduat", Double.valueOf(fondetay.getVadeli_mevduat())));
+        if (!fondetay.getYab_borclanma_araci().equals("0.00"))
+            pie_list.add(new PieChart("Yabancı Borçlanma Aracı", Double.valueOf(fondetay.getYab_borclanma_araci())));
+        if (!fondetay.getYab_menkul_kiymet().equals("0.00"))
+            pie_list.add(new PieChart("Yabanci Menkul Kıymet", Double.valueOf(fondetay.getYab_menkul_kiymet())));
+        return pie_list;
+    }
+
+    public void iceriSapmaveSharpeAktar() throws ParseException {
+        List<FonDetay> fonlar = fonDetayRepository.findAll();
+        String artis_yuzdesi, fonkod, s_sapma, sharpe;
+        Double ort, toplam, farkinkareleri;
+        int size;
+        for (FonDetay fondetay : fonlar) {
+            toplam = 0D;
+            farkinkareleri = 0D;
+            List<Double> fiyatlar = new ArrayList<Double>();
+            fonkod = fondetay.getFon_kod();
+            if (!fondetay.getSharpe_guncel())
+                continue;
+
+            for (int i = 1; i < 47; i++) {
+                artis_yuzdesi = fiyatArtisHesapla(tarihHesapla("day", -((i) - 1)), tarihHesapla("day", -(i)), fonkod);
+                if (artis_yuzdesi != "0.00")
+                    fiyatlar.add(Double.valueOf(artis_yuzdesi));
+
+                if (fiyatlar.size() >= 30)
                     break;
             }
-            if(count > 3) continue;
-            json = json.replace("[", "");
-            json = json.replace("]", "");
-            JsonObject json_obje = new JsonParser().parse(json).getAsJsonObject();
-            fiyatlar.add(json_obje.get("BirimPayDegeri").getAsDouble());
+            size = fiyatlar.size();
+            for (int i = 0; i < size; i++) {
+                toplam += fiyatlar.get(i);
+            }
+            ort = toplam / size;
+            for (int i = 0; i < size; i++) {
+                farkinkareleri += Math.pow(fiyatlar.get(i) - ort, 2);
+            }
+            farkinkareleri = Double.valueOf((String.valueOf(farkinkareleri) + "000").substring(0, 6));
 
-        }*///todo burası onceden yapilmisti, fiyat bazli hesaplıyor halbuki assadaki gibi yuzde bazli olmalıydı silinebilir.
-        String artis_yuzdesi;
-        for (int i = 0; i < 100; i++) {
-            artis_yuzdesi = fiyatArtisHesapla(tarihHesapla("day", -(i)), tarihHesapla("day", -((i) - 1)), fonkod);
-            if (artis_yuzdesi != "")
-                fiyatlar.add(Double.valueOf(artis_yuzdesi));
-        } // todo bu haliyle son 100 gunun standart sapmasını veriyor. 360 gun icin 5 dk suruyor fon basina
-        // todo boyle olunca son 100 gunu alıp felan yapılabilir
+            s_sapma = String.valueOf(Math.sqrt(farkinkareleri / (size - 1)) + "00").substring(0, 4);
+            sharpe = String.valueOf((ort - 0.018) / Double.valueOf(s_sapma) + "00");
 
-        Double ort, toplam = 0D, farkinkareleri = 0D;
-        int size = fiyatlar.size();
-        for (int i = 0; i < size; i++) {
-            toplam += fiyatlar.get(i);
+            fondetay.setStandart_sapma(s_sapma);
+            fondetay.setSharpe_ratio(sharpe.substring(0, sharpe.indexOf(".") + 3));
+            fondetay.setSharpe_guncel(false);
+            fonDetayRepository.save(fondetay);
+            System.out.println(fondetay.getFon_kod() + " guncellendi!!" + " s.sapma: " + s_sapma + " sharpe:" + fondetay.getSharpe_ratio());
         }
-        ort = toplam / size;
-        for (int i = 0; i < size; i++) {
-            farkinkareleri += Math.pow(fiyatlar.get(i) - ort, 2);
-        }
-        String s_sapma = String.valueOf(farkinkareleri / (size - 1)).substring(0, 5);
-        System.out.println(s_sapma);
     }
 
-
+//    MINE              FONBL
+// sua 0.08 - 0.41 || 0.16 - 0.50
+// aes 2.51 - 0.23 || 3.66 - -0.07
+// AFT 1.53 - 0.41 || 2.14 - 0.10
+// TCD 1.43 - 0.24 || 1.90 - 0.15
 }

@@ -75299,16 +75299,29 @@ function monkeyPatchChartJsTooltip() {
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/adminpage/admin.component.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/adminpage/admin.component.html ***!
-  \********************************************************************************************/
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/eniyiler/eniyiler.component.html":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/eniyiler/eniyiler.component.html ***!
+  \***************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\nADMIN\n\n  <div class=\" row\">\n    <div class=\" col-lg-8 col-md-12\">\n      <div class=\" card\">\n        <div class=\" card-header\">\n          <div class=\"row\">\n        Bu sayfada olması gerekenler\n        <ul>\n        <li>Admin menusu</li>\n        <li>site ayarları icin form</li>\n        <li>toplam site view sayısı</li>\n        <li>günlük bazda json insert edildi mi db ye(deilse mail)</li>\n        <li>Json insert olayı dinamik yapılabilir(json url, tekrarlama zamanı ve islem(delete,insert)</li>\n        <li></li>\n        <li></li>\n      </ul>\n        </div>\n        </div>\n        <div class=\" card-body\">\n         \n        </div>\n      </div>\n    </div>\n    <div class=\" col-lg-4 col-md-12\">\n      \n    \n  </div>\n  </div>\n\n \n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<br>\n<br>\n<div class=\"row\">\n  <div class=\"card card-nav-tabs card-plain\" style=\"margin-bottom:0px !important; margin-right: 15px;\">\n    <div class=\"card-header card-header-danger\">\n      <div class=\"nav-tabs-navigation\">\n        <div class=\"nav-tabs-wrapper\">\n          <ul class=\"nav nav-tabs\">\n\n            <li class=\"nav-item\">\n              <a class=\"nav-link active\" (click)=\"ParametreDegis('day')\" style=\"cursor:pointer;\" [ngClass]=\"{'active':clicked_day===true}\">Gün</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" (click)=\"ParametreDegis('week')\" style=\"cursor:pointer;\" [ngClass]=\"{'active':clicked_week===true}\">Hafta</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" (click)=\"ParametreDegis('month')\" style=\"cursor:pointer;\" [ngClass]=\"{'active':clicked_month===true}\">Ay</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" (click)=\"ParametreDegis('sixmonths')\" style=\"cursor:pointer;\" [ngClass]=\"{'active':clicked_sixmonths===true}\">6 Ay</a>\n            </li>\n           <li class=\"nav-item\">\n              <a class=\"nav-link\" (click)=\"ParametreDegis('year')\" style=\"cursor:pointer;\" [ngClass]=\"{'active':clicked_year===true}\">Yıl</a>\n            </li>\n          </ul>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\" card\" style=\"margin-right: 15px;\">\n    <div class=\" card-header\">\n      <div class=\"text-center\" style=\"color: #525f7f\">\n         En Çok Artanlar\n      </div>\n\n    </div>\n    <div class=\" card-body \">\n      <div class=\"row\">\n        <table class=\"table\"> \n     \n          <tbody>\n            <tr *ngFor=\"let item of eniyiFonList\">\n              <td><a [routerLink]=\"['/detay/'+item[2]]\" >{{item[2]}}</a></td>\n              <td>{{item[1]}}</td>\n              <td class=\"text-right\">\n                <i *ngIf=\"isPos(item[0])\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\"> %{{item[0]}} </i>\n                <i *ngIf=\"!isPos(item[0])\" class=\"tim-icons icon-minimal-down \"style=\"color:#ec250d;\"> %{{item[0]}} </i>\n\n              </td>\n            </tr>\n\n\n\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/performans/performans.component.html":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/performans/performans.component.html ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n  <table class=\"table\" style=\"margin-right: 15px;\">   \n    <thead class=\"text-left\" >Fon Kategori Performansları</thead>        \n    <tbody>\n\n      <tr *ngFor=\"let item of categoryartis\">\n        <td style=\"    padding: 7px 7px !important;\">{{item[1]}}</td>\n        <td style=\"    padding: 7px 7px !important;\">\n          <i *ngIf=\"isPos(item[2])\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\"> %{{item[2]}} </i>\n           <i *ngIf=\"!isPos(item[2])\" class=\"tim-icons icon-minimal-down \"style=\"color:#ec250d;\"> %{{item[2]}} </i>\n        </td>\n      </tr>\n     \n    </tbody>\n  </table>\n</div>");
 
 /***/ }),
 
@@ -75321,7 +75334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div class=\" row\">\n    <div class=\" col-lg-8 col-md-12\">\n      <div class=\" card\">\n        <div class=\" card-header\">\n          \n            \n           <h4  class=\" title text-center\"> GÜNLÜK ARTIŞLAR</h4>\n          \n          \n          <div class=\"row\">\n          <div class=\"col-md-6\">\n            <form autocomplete=\"off\" class=\"form-inline ml-auto\">\n              <div class=\"form-group no-border\">\n                <input (keyup)=\"Search()\" name=\"search\" [(ngModel)]=\"searchtext\" type=\"text\" class=\"form-control\" placeholder=\"Arama\">\n              </div>\n              <button type=\"submit\" class=\"btn btn-link btn-icon btn-round\">\n                <i class=\"tim-icons icon-zoom-split\"></i>\n              </button>\n            </form>\n          </div>\n         \n          <div class=\"col-md-4\">\n            <select (change)=\"getirByCategory($event)\" style=\"margin-top: 5px; border:none; background-color: #242c45;\" class=\"form-control\">\n              <option value=\"\">Tüm Yatırım Fonları</option>\n              <option value=\"Borçlanma Araçları Fonları\">Borçlanma Araçları Fonları</option>\n              <option value=\"Fon Sepeti Fonları\">Fon Sepeti Fonları</option>\n              <option value=\"Hisse Senedi Fonları\">Hisse Senedi Fonları</option>\n              <option value=\"Karma ve Değişken Fonlar\">Karma ve Değişken Fonlar</option>\n              <option value=\"Katılım Fonları\">Katılım Fonları</option>               \n              <option value=\"Kıymetli Madenler Fonları\">Kıymetli Madenler Fonları</option>\n              <option value=\"Para Piyasası Fonları\">Para Piyasası Fonları</option>\n            </select>\n          </div>\n        </div>\n        </div>\n        <div class=\" card-body\">\n          <div style=\"overflow-x: initial; overflow-y: initial;\" class=\"table-responsive\">  \n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>Kod</th>\n                <th>Ad</th>\n                <th>Fiyat</th>\n              </tr>\n            </thead>\n            <tbody>\n              <!--<a href=\"#\"(click)=\"favEkle(item.kodu)\" [style]=\"isFav(item.kodu) >{{item.kodu}}</a>\"-->\n              <tr *ngFor=\"let item of fonlar\"><!--title=\"Favorilere Ekle\"-->\n              <td>{{item.kodu}}</td>\n                <td><div style=\"max-height: 3.0em; overflow:hidden;\"> <a [routerLink]=\"['/detay/'+item.kodu]\" >{{item.adi}}</a></div></td>\n                <td>{{item.fiyat}}\n                   <i *ngIf=\"isPos(item.gunluk_artis)\" class=\"tim-icons icon-minimal-up \"  style=\"color:#07B319;\"> %{{item.gunluk_artis}} </i>\n                   <i *ngIf=\"!isPos(item.gunluk_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\"> %{{item.gunluk_artis}} </i>\n                </td>\n              </tr>\n              <!-- <i class=\"tim-icons icon-minimal-down text-danger\"> -->\n            </tbody>\n          </table>\n        </div>\n        </div>\n      </div>\n    </div>\n    <div class=\" col-lg-4 col-md-12\">\n  \n        <div class=\"row\">\n          <table class=\"table\">   \n            <thead class=\"text-left\" >Fon Kategori Performansları</thead>        \n            <tbody>\n\n              <tr *ngFor=\"let item of categoryartis\">\n                <td><!--<a [routerLink]=\"['/karsilastir/' + item[1]]\" >-->{{item[1]}}</td>\n                <td>\n                  <i *ngIf=\"isPos(item[2])\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\"> %{{item[2]}} </i>\n                   <i *ngIf=\"!isPos(item[2])\" class=\"tim-icons icon-minimal-down \"style=\"color:#ec250d;\"> %{{item[2]}} </i>\n                </td>\n              </tr>\n             \n            </tbody>\n          </table>\n    </div>\n    <!-- <div class=\"row\">\n      <div class=\"card\">\n      <div class=\"card-header\">Genel piyasa bilgileri</div>\n      <div class=\"card-body\">\n\n      <table class=\"table\">   \n        <tbody>\n\n          \n           <i class=\"tim-icons icon-minimal-down text-danger\"> \n        </tbody>\n      </table>\n</div>\n</div>\n</div> -->\n  </div>\n  </div>\n\n \n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div class=\" row\">\n    <div class=\" col-lg-8 col-md-12\" style=\"padding-left: 0px;\">\n      <div class=\" card\">\n        <div class=\" card-header\">\n          \n            \n           <h4  class=\" title text-center\"> GÜNLÜK ARTIŞLAR</h4>\n          \n          \n          <div class=\"row\">\n          <div class=\"col-md-6\">\n            <form autocomplete=\"off\" class=\"form-inline ml-auto\">\n              <div class=\"form-group no-border\">\n                <input (keyup)=\"Search()\" name=\"search\" [(ngModel)]=\"searchtext\" type=\"text\" class=\"form-control\" placeholder=\"Arama\">\n              </div>\n              <button type=\"submit\" class=\"btn btn-link btn-icon btn-round\">\n                <i class=\"tim-icons icon-zoom-split\"></i>\n              </button>\n            </form>\n          </div>\n         \n          <div class=\"col-md-4\">\n            <select (change)=\"getirByCategory($event)\" style=\"margin-top: 5px; border:none; background-color: #242c45;\" class=\"form-control\">\n              <option value=\"\">Tüm Yatırım Fonları</option>\n              <option value=\"Borçlanma Araçları Fonları\">Borçlanma Araçları Fonları</option>\n              <option value=\"Fon Sepeti Fonları\">Fon Sepeti Fonları</option>\n              <option value=\"Hisse Senedi Fonları\">Hisse Senedi Fonları</option>\n              <option value=\"Karma ve Değişken Fonlar\">Karma ve Değişken Fonlar</option>\n              <option value=\"Katılım Fonları\">Katılım Fonları</option>               \n              <option value=\"Kıymetli Madenler Fonları\">Kıymetli Madenler Fonları</option>\n              <option value=\"Para Piyasası Fonları\">Para Piyasası Fonları</option>\n            </select>\n          </div>\n        </div>\n        </div>\n        <div class=\" card-body\">\n          <div style=\"overflow-x: initial; overflow-y: initial;\" class=\"table-responsive\">  \n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>Kod</th>\n                <th>Ad</th>\n                <th>Fiyat</th>\n              </tr>\n            </thead>\n            <tbody>\n              <!--<a href=\"#\"(click)=\"favEkle(item.kodu)\" [style]=\"isFav(item.kodu) >{{item.kodu}}</a>\"-->\n              <tr *ngFor=\"let item of fonlar\"><!--title=\"Favorilere Ekle\"-->\n              <td>{{item.kodu}}</td>\n                <td><div style=\"max-height: 3.0em; overflow:hidden;\"> <a [routerLink]=\"['/detay/'+item.kodu]\" >{{item.adi}}</a></div></td>\n                <td>{{item.fiyat}}\n                   <i *ngIf=\"isPos(item.gunluk_artis)\" class=\"tim-icons icon-minimal-up \"  style=\"color:#07B319;\"> %{{item.gunluk_artis}} </i>\n                   <i *ngIf=\"!isPos(item.gunluk_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\"> %{{item.gunluk_artis}} </i>\n                </td>\n              </tr>\n              <!-- <i class=\"tim-icons icon-minimal-down text-danger\"> -->\n            </tbody>\n          </table>\n        </div>\n        </div>\n      </div>\n    </div>\n    <div class=\" col-lg-4 col-md-12\">\n  \n        <kategori-performans></kategori-performans>\n        <eniyiler></eniyiler>\n    <!-- <div class=\"row\">\n      <div class=\"card\">\n      <div class=\"card-header\">Genel piyasa bilgileri</div>\n      <div class=\"card-body\">\n\n      <table class=\"table\">   \n        <tbody>\n\n          \n           <i class=\"tim-icons icon-minimal-down text-danger\"> \n        </tbody>\n      </table>\n</div>\n</div>\n</div> -->\n  </div>\n  </div>\n\n \n\n\n\n</div>");
 
 /***/ }),
 
@@ -75334,7 +75347,33 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n  \n  <div style=\"margin-left: -15px !important;\">\n    <div class=\" card\">\n      <div class=\" card-header\">\n        <h3 class=\" title text-center\">{{fon?.kodu}}\n\n          <!-- <i *ngIf=\"!fon?.favori\" class=\"tim-icons icon-heart-2\" style=\"color:#ec250d\"></i>\n          <i *ngIf=\"fon?.favori\" class=\"tim-icons icon-heart-2 \"></i> -->\n\n        </h3>\n        <h4 class=\" text-center\">\n          {{fon?.adi}}\n        </h4>\n      </div>\n      <div class=\" card-body \">\n        <div class=\"row\">\n          <div class=\" col-md-2 col-sm-2  col-4\">\n\n            <h5>Fiyat</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{fon?.fiyat}} TL</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2  col-4\">\n            <h5>Günlük Getiri</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">% {{fon?.gunluk_artis}}</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5 style=\"max-height: 1.1em; overflow: hidden;\">Yatırımcı Sayısı</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{fondetay?.yatirimci_sayisi}}</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5  style=\"max-height: 1.3em; overflow: hidden;\">Fon Toplam Değeri</h5>\n            <ul class=\" list-inline\">\n              <li style=\"max-height: 1.1em; overflow: hidden;\" class=\" list-inline-item\">{{fondetay?.toplam_deger}} TL</li>\n            </ul>\n          </div>\n\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5>Pay Sayisi</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{fondetay?.pay_sayisi}}</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5>Kategori</h5>\n            <ul class=\" list-inline\">\n              <li style=\"max-height: 3.0em; overflow: hidden;\" class=\" list-inline-item\">{{fon?.category}}</li>\n            </ul>\n          </div>\n        </div>\n\n      </div>\n    </div>\n    </div>\n  \n  <div class=\"row\">\n    <div style=\"padding-left: 0px !important;\" class=\"col-md-8 col-sm-8 col-12\">\n      <div class=\"card\">\n        <div class=\" card-header\">\n          <div class=\" row\">\n            <div class=\" col-md-12 text-right\">\n              <div class=\" btn-group btn-group-toggle\" data-toggle=\"buttons\">\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm  btn-danger btn-simple\" (click)=\"clicked=true;clicked1=false; herre();\"\n                  [ngClass]=\"{'active':clicked===true}\">\n                  <input checked=\"checked\" name=\"options\" type=\"radio\" />\n\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    Aylık\n                  </span>\n                  <span  class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\">Ay </i>\n                  </span>\n                </label>\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\" (click)=\"clicked=false;clicked1=true; herre();\"\n                  [ngClass]=\"{'active':clicked1===true}\">\n                  <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    Yıllık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\"> Yıl</i>\n                  </span>\n                </label>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"card-body\">\n          <div style=\"height: 250px;\">\n            <canvas baseChart [data]=\"lineChartData\" [labels]=\"lineChartLabels\" [chartType]=\"lineChartType\"\n              [colors]=\"lineChartColor\" [options]=\"linechartOptions\"></canvas>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div style=\" padding-left: 0px !important;  \" class=\"col-md-4 col-sm-4 col-12\">\n      <div class=\"card\">\n        <div class=\"card-body\">\n          <div style=\"height: 295px;\">\n            <canvas baseChart [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\n              [colors]=\"pieChartColors\" [options]=\"chartOptions\"></canvas>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div style=\"margin-left: -15px !important;\">\n  <div class=\"card\">\n\n    <div class=\"card-body\">\n      <div class=\"row\">\n        <div class=\"col-md-3 col-sm-3  col-6 text-center\">\n          <h5>Son 1 Hafta</h5>\n          <ul class=\" list-unstyled\">\n            <li>% {{fondetay?.haftalik_artis}}</li>\n          </ul>\n        </div>\n        <div class=\"col-md-3 col-sm-3  col-6 text-center\">\n          <h5>Son 1 Ay</h5>\n          <ul class=\" list-unstyled\">\n            <li>% {{fondetay?.aylik_artis}}</li>\n          </ul>\n        </div>\n        <div class=\"col-md-3 col-sm-3  col-6 text-center\">\n          <h5>Son 6 Ay</h5>\n          <ul class=\" list-unstyled\">\n            <li>% {{fondetay?.alti_aylik_artis}}</li>\n          </ul>\n        </div>\n        <div class=\"col-md-3 col-sm-3  col-6 text-center\">\n          <h5>Son 1 Yıl</h5>\n          <ul class=\" list-unstyled\">\n            <li>% {{fondetay?.yillik_artis}}</li>\n          </ul>\n        </div>\n      </div>\n    </div>\n    </div>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n  <div style=\"margin-left: -15px !important;\">\n    <div class=\" card\">\n      <div class=\" card-header\">\n        <h3 class=\" title text-center\">{{fon?.kodu}}\n\n\n          <i *ngIf=\"isFav && isLoggedIn\" (click)=\"favIslem()\" class=\"tim-icons icon-heart-2\"\n            style=\"color:#ec250d; cursor:pointer;\"></i>\n          <i *ngIf=\"!isFav && isLoggedIn\" (click)=\"favIslem()\" class=\"tim-icons icon-heart-2\"\n            style=\" cursor:pointer;\"></i>\n\n        </h3>\n        <h4 class=\" text-center\">\n          {{fon?.adi}}\n        </h4>\n      </div>\n      <div class=\" card-body \">\n        <div class=\"row\">\n          <div class=\" col-md-2 col-sm-2  col-4\">\n\n            <h5>Fiyat</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{fon?.fiyat}} TL</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2  col-4\">\n            <h5>Günlük Getiri</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">\n                <i *ngIf=\"isPos(fondetay?.gunluk_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                  %{{fondetay?.gunluk_artis}} </i>\n                <i *ngIf=\"!isPos(fondetay?.gunluk_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                  %{{fondetay?.gunluk_artis}} </i>\n\n              </li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5 style=\"max-height: 1.3em; overflow: hidden;\">Yatırımcı Sayısı</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{transform(fondetay?.yatirimci_sayisi)}}</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5 style=\"max-height: 1.3em; overflow: hidden;\">Fon Toplam Değeri</h5>\n            <ul class=\" list-inline\">\n              <li style=\"max-height: 1.1em; overflow: hidden;\" class=\" list-inline-item\">\n                {{transform(fondetay?.toplam_deger)}} TL</li>\n            </ul>\n          </div>\n\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5>Pay Sayısı</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{transform(fondetay?.pay_sayisi)}}</li>\n            </ul>\n          </div>\n          <div class=\" col-md-2 col-sm-2 col-4\">\n            <h5>Kategori</h5>\n            <ul class=\" list-inline\">\n              <li style=\"max-height: 3.0em; overflow: hidden;\" class=\" list-inline-item\">{{fon?.category}}</li>\n            </ul>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div style=\"padding-left: 0px !important;\" class=\"col-md-12 col-sm-12 col-12\">\n      <div class=\"card\">\n        <div class=\" card-header\">\n\n          <div class=\" row\">\n            <div class=\" col-md-12 text-right\">\n              <div class=\" btn-group btn-group-toggle\" data-toggle=\"buttons\">\n\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\"\n                  (click)=\"clicked=false;clicked1=false;week_clicked=true;six_clicked=false;threem_clicked=false;threey_clicked=false; herre();\"\n                  [ngClass]=\"{'active':week_clicked===true}\">\n                  <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    Haftalık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\"> Hafta</i>\n                  </span>\n                </label>\n\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm  btn-danger btn-simple\"\n                  (click)=\"clicked=true;clicked1=false;week_clicked=false;six_clicked=false;threem_clicked=false;threey_clicked=false; herre();\"\n                  [ngClass]=\"{'active':clicked===true}\">\n                  <input checked=\"checked\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    Aylık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\">Ay </i>\n                  </span>\n                </label>\n\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\"\n                  (click)=\"clicked=false;clicked1=false;week_clicked=false;six_clicked=false;threem_clicked=true;threey_clicked=false; herre();\"\n                  [ngClass]=\"{'active':threem_clicked===true}\">\n                  <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    3 Aylık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\"> 3 Ay</i>\n                  </span>\n                </label>\n                \n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\"\n                  (click)=\"clicked=false;clicked1=false;week_clicked=false;six_clicked=true;threem_clicked=false;threey_clicked=false; herre();\"\n                  [ngClass]=\"{'active':six_clicked===true}\">\n                  <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    6 Aylık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\"> 6 Ay</i>\n                  </span>\n                </label>\n\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\"\n                  (click)=\"clicked=false;clicked1=true;week_clicked=false;six_clicked=false;threem_clicked=false;threey_clicked=false; herre();\"\n                  [ngClass]=\"{'active':clicked1===true}\">\n                  <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    Yıllık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\"> Yıl</i>\n                  </span>\n                </label>\n\n                <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\"\n                  (click)=\"clicked=false;clicked1=false;week_clicked=false;six_clicked=false;threem_clicked=false;threey_clicked=true; herre();\"\n                  [ngClass]=\"{'active':threey_clicked===true}\">\n                  <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                  <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                    3 Yıllık\n                  </span>\n                  <span class=\" d-block d-sm-none\">\n                    <i class=\" tim-icons\"> 3 Yıl</i>\n                  </span>\n                </label>\n\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"card-body\">\n          <div style=\"height: 250px;\">\n            <canvas baseChart [data]=\"lineChartData\" [labels]=\"lineChartLabels\" [chartType]=\"lineChartType\"\n              [colors]=\"lineChartColor\" [options]=\"linechartOptions\"></canvas>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"row\">\n    <div style=\"margin-left: -15px !important; margin-right: 15px !important; padding-right: 0px;\" class=\"col-md-6 col-sm-6 col-12\">\n      <table class=\"table\">\n        <thead class=\"text-left\">Fon Getirileri</thead>\n        <tbody class=\"text-center\">\n\n          <tr>\n            <td>Son 1 Hafta</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?.haftalik_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?.haftalik_artis}} </i>\n              <i *ngIf=\"!isPos(fondetay?.haftalik_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?.haftalik_artis}} </i>\n            </td>\n          </tr>\n          <tr>\n            <td>Son 1 Ay</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?.aylik_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?.aylik_artis}} </i>\n              <i *ngIf=\"!isPos(fondetay?.aylik_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?.aylik_artis}} </i>\n            </td>\n          </tr>\n          <tr>\n            <td>Son 3 Ay</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?.uc_aylik_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?.uc_aylik_artis}} </i>\n              <i *ngIf=\"!isPos(fondetay?.uc_aylik_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?.uc_aylik_artis}} </i>\n            </td>\n          </tr>\n          <tr>\n            <td>Son 6 Ay</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?.alti_aylik_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?.alti_aylik_artis}} </i>\n              <i *ngIf=\"!isPos(fondetay?.alti_aylik_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?.alti_aylik_artis}} </i>\n            </td>\n          </tr>\n          <tr>\n            <td>Yılbaşı</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?._2020)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?._2020}} </i>\n              <i *ngIf=\"!isPos(fondetay?._2020)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?._2020}} </i>\n            </td>\n          </tr>\n          <tr>\n            <td>Son 1 Yıl</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?.yillik_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?.yillik_artis}} </i>\n              <i *ngIf=\"!isPos(fondetay?.yillik_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?.yillik_artis}} </i>\n            </td>\n          </tr>\n          <tr>\n            <td>Son 3 Yıl</td>\n            <td class=\"text-left\">\n              <i *ngIf=\"isPos(fondetay?.uc_yillik_artis)\" class=\"tim-icons icon-minimal-up\" style=\"color:#07B319;\">\n                %{{fondetay?.uc_yillik_artis}} </i>\n              <i *ngIf=\"!isPos(fondetay?.uc_yillik_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\">\n                %{{fondetay?.uc_yillik_artis}} </i>\n            </td>\n          </tr>\n\n\n\n\n        </tbody>\n      </table>\n\n    </div>\n\n    <div style=\"margin-left: -15px !important; padding-right: 0px;\" class=\"col-md-6 col-sm-6 col-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <div class=\"row\">\n            <div style=\" background-color: transparent !important;\" class=\" card card-chart\">\n              <div class=\"  text-center\">\n                Fon Dağılımı\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"card-body\">\n          <div style=\"height: 295px;\">\n            <canvas baseChart [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\n              [colors]=\"pieChartColors\" [options]=\"chartOptions\"></canvas>\n          </div>\n        </div>\n      </div>\n      <div class=\"text-muted text-right\" style=\"padding-bottom: 0px;\">Son Güncellenme:\n        {{fondetay?.g_tarih?.toString().split(\"-\").reverse().join(\"/\")}}</div>\n\n    </div>\n  </div>\n\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/favori/favori.component.html":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/favori/favori.component.html ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div class=\" row\">\n    <div class=\" col-lg-8 col-md-12\" style=\"padding-left: 0px;\">\n      <div  *ngIf=\"isLoggedIn\" class=\" card\">\n        <div class=\" card-header text-center\">\n            \n            <h3>Favorilerim</h3>\n          </div>\n        <div class=\" card-body\">\n          <div style=\"overflow-x: initial; overflow-y: initial;\" class=\"table-responsive\">  \n            <table class=\"table\">\n              <thead>\n                <tr>\n                  <th>Kod</th>\n                  <th>Ad</th>\n                  <th>Fiyat</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let item of fonlar\">\n                <td style=\"    padding: 0px 0px !important;\">{{item.kodu}}</td>\n                  <td style=\"    padding: 5px 5px !important;\"><div style=\"max-height: 3.0em; overflow:hidden;\"> <a [routerLink]=\"['/detay/'+item.kodu]\" >{{item.adi}}</a></div></td>\n                  <td style=\"    padding: 0px 0px !important;\">{{item.fiyat}}\n                     <i *ngIf=\"isPos(item.gunluk_artis)\" class=\"tim-icons icon-minimal-up \"  style=\"color:#07B319;\"> %{{item.gunluk_artis}} </i>\n                     <i *ngIf=\"!isPos(item.gunluk_artis)\" class=\"tim-icons icon-minimal-down \" style=\"color:#ec250d;\"> %{{item.gunluk_artis}} </i>\n                  </td>\n                  <td style=\"    padding: 0px 0px !important;\">\n                    <button (click)=\"favCikar(item.kodu)\" class=\"btn btn-link btn-icon\">\n                      <i class=\"tim-icons icon-simple-delete\"></i>\n                    </button>\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n        </div>\n      </div>\n      <div *ngIf=\"!isLoggedIn\" class=\" card\">\n        <div class=\" card-header text-center\">\n            \n            \n          </div>\n        <div class=\" card-body\">\n          <h3>Bu sayfayı görüntüleyebilmek için lütfen <a style=\"color:green;\" href [routerLink]=\"['/giris']\">Giriş Yapınız.</a></h3>\n        </div>\n      </div>\n    </div>\n    <div  *ngIf=\"isLoggedIn\"  class=\" col-lg-4 col-md-12\">\n      \n    <kategori-performans></kategori-performans>\n    <eniyiler></eniyiler>\n  </div>\n  </div>\n\n \n\n\n\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/giris/giris.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/giris/giris.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div class=\" row\">\n    <div class=\"col-md-3\"></div>\n    <div class=\"col-md-6\"  style=\"padding-left: 0px;\">\n      <div class=\"card\">\n        <div class=\"card-header text-center\">\n          <h3 *ngIf=\"!isLoggedIn\">Giriş Yap</h3>\n          <h3 *ngIf=\"isLoggedIn\">Giriş Yapıldı.</h3>\n        </div>\n        <div class=\"card-body\">\n\n          <form *ngIf=\"!isLoggedIn\" autocomplete=\"off\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n              <label for=\"username\">E-Posta</label>\n              <input  [(ngModel)]=\"user.username\" type=\"email\" name=\"username\" id=\"username\" style=\"border: 0.2px solid #2b3553;\" class=\"form-control\" \n                placeholder=\"E-postanızı giriniz\">\n            </div>\n            \n            <div class=\"form-group\">\n              <label for=\"sifre\">Şifre</label>\n              <input [(ngModel)]=\"user.pass\" type=\"password\" name=\"sifre\" id=\"sifre\" style=\"border: 0.2px solid #2b3553;\" class=\"form-control\"  placeholder=\"Şifre giriniz\">\n            </div>\n           \n\n            <button style=\"padding:10px 20px; margin:10px; float:left; font-size: 12px;\" type=\"submit\"\n              class=\"btn btn-default\">Giriş Yap</button>\n              <div style=\" text-align:right;\" ><a [routerLink]=\"['/kayit']\" style=\"font-size: 12px; color:#ec250d;\" class=\"btn btn-link\" >Kayıt ol</a></div>\n\n            <div style=\" color:black;\" class=\"text-left\" [hidden]=\"!hata_goster\">{{hata_mesaji}}</div>\n            \n          </form>\n          \n          \n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-3\"></div>\n  </div>\n\n\n\n\n\n</div>");
 
 /***/ }),
 
@@ -75347,7 +75386,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div style=\"margin-left:-15px;\">\n    <div class=\" card\">\n      <div class=\" card-header\">\n        <h4 class=\" title text-center\"> FON PERFORMANSLARI</h4>\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-6 col-12\">\n            <form autocomplete=\"off\" class=\" form-inline\">\n              <div class=\"form-group no-border\">\n                <input (keyup)=\"Search()\" name=\"search\" [(ngModel)]=\"searchtext\" type=\"text\" class=\"form-control\"\n                  placeholder=\"Arama\">\n              </div>\n              <button type=\"submit\" class=\"btn btn-link btn-icon btn-round\">\n                <i class=\"tim-icons icon-zoom-split\"> </i>\n              </button>\n            </form>\n          </div>\n\n          <div class=\"col-md-3 col-sm-6 col-12\">\n            <select (change)=\"getirByCategory($event)\" style=\"margin-top: 5px; border:none; background-color: #242c45;\"\n              class=\"form-control\">\n              <option value=\"\">Tüm Yatırım Fonları</option>\n              <option value=\"Borçlanma Araçları Fonları\">Borçlanma Araçları Fonları</option>\n              <option value=\"Fon Sepeti Fonları\">Fon Sepeti Fonları</option>\n              <option value=\"Hisse Senedi Fonları\">Hisse Senedi Fonları</option>\n              <option value=\"Karma ve Değişken Fonlar\">Karma ve Değişken Fonlar</option>\n              <option value=\"Katılım Fonları\">Katılım Fonları</option>\n              <option value=\"Kıymetli Madenler Fonları\">Kıymetli Madenler Fonları</option>\n              <option value=\"Para Piyasası Fonları\">Para Piyasası Fonları</option>\n            </select>\n\n\n\n\n\n          </div>\n        </div>\n      </div>\n      <div class=\" card-body\">\n        <div class=\"table-responsive\">  \n        <table class=\"table\">\n          <thead>\n            <tr>\n              <th>Kod</th>\n              <th>Ad</th>\n              <th>2017-2018</th>\n              <th>2018-2019 </th>\n              <th>2019-2020</th>\n              <th>Son 1 Ay</th>\n\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let item of fondetay\">\n              <td>{{item.fon_kod}}</td>\n              <td> <div style=\"max-height: 1.1em; overflow:hidden;\"  title=\"{{item.fon_ad}}\">                 \n                    <a  [routerLink]=\"['/detay/'+item.fon_kod]\">{{item.fon_ad}}</a>\n                    </div>\n              </td>\n              <td>%{{item._2017}}</td>           \n              <td>%{{item._2018}}</td>\n              <td>%{{item._2019}}</td>\n              <td>%{{item.aylik_artis}}</td>\n            </tr>\n          </tbody>\n\n        </table>\n      </div>\n      </div>\n    </div>\n  </div>\n\n  <style>\n    @media only screen and (min-width: 500px) {\n  .table-responsive {\n    overflow-x: hidden;\n    overflow-y: hidden;\n  }\n}\n  </style>\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div style=\"margin-left:-15px;\">\n    <div class=\" card\">\n      <div class=\" card-header\">\n        <h4 class=\" title text-center\"> FON PERFORMANSLARI</h4>\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-6 col-12\">\n            <form autocomplete=\"off\" class=\" form-inline\">\n              <div class=\"form-group no-border\">\n                <input (keyup)=\"Search()\" name=\"search\" [(ngModel)]=\"searchtext\" type=\"text\" class=\"form-control\"\n                  placeholder=\"Arama\">\n              </div>\n              <button type=\"submit\" class=\"btn btn-link btn-icon btn-round\">\n                <i class=\"tim-icons icon-zoom-split\"> </i>\n              </button>\n            </form>\n          </div>\n\n          <div class=\"col-md-3 col-sm-6 col-12\">\n            <select (change)=\"getirByCategory($event)\" style=\"margin-top: 5px; border:none; background-color: #242c45;\"\n              class=\"form-control\">\n              <option value=\"\">Tüm Yatırım Fonları</option>\n              <option *ngIf=\"isLoggedIn\" value=\"Favori Fonlarım\">Favori Fonlarım</option>\n              <option value=\"Borçlanma Araçları Fonları\">Borçlanma Araçları Fonları</option>\n              <option value=\"Fon Sepeti Fonları\">Fon Sepeti Fonları</option>\n              <option value=\"Hisse Senedi Fonları\">Hisse Senedi Fonları</option>\n              <option value=\"Karma ve Değişken Fonlar\">Karma ve Değişken Fonlar</option>\n              <option value=\"Katılım Fonları\">Katılım Fonları</option>\n              <option value=\"Kıymetli Madenler Fonları\">Kıymetli Madenler Fonları</option>\n              <option value=\"Para Piyasası Fonları\">Para Piyasası Fonları</option>\n            </select>\n\n\n\n\n\n          </div>\n        </div>\n      </div>\n      <div class=\" card-body\">\n        <div class=\"table-responsive\">\n          <table class=\"table\">           \n            <thead>\n              <tr>\n                <th style=\"margin-left: -1px; position: absolute; background-color: #27293d; user-select: none;\">Kod</th>\n                <th style=\"padding-left:56px; user-select: none;\">Ad</th>\n                <th style=\"min-width: 81px; cursor:pointer; user-select: none;\" (click)=\"siralamaYap('2017')\">2017-2018<i class=\"tim-icons icon-minimal-down font-sixe\" [ngClass]=\"{'red-turn-2 icon-minimal-up':kucukten_2017===true, 'red-turn':buyukten_2017===true}\"></i> </th>\n                <th style=\"min-width: 83px; cursor:pointer; user-select: none;\" (click)=\"siralamaYap('2018')\">2018-2019<i class=\"tim-icons icon-minimal-down font-sixe\" [ngClass]=\"{'red-turn-2 icon-minimal-up':kucukten_2018===true, 'red-turn':buyukten_2018===true}\"></i> </th>\n                <th style=\"min-width: 85px; cursor:pointer; user-select: none;\" (click)=\"siralamaYap('2019')\">2019-2020<i class=\"tim-icons icon-minimal-down font-sixe\" [ngClass]=\"{'red-turn-2 icon-minimal-up':kucukten_2019===true, 'red-turn':buyukten_2019===true}\"></i></th>\n                <th style=\"min-width: 75px; cursor:pointer; user-select: none;\" (click)=\"siralamaYap('son1ay')\">Son 1 Ay<i class=\"tim-icons icon-minimal-down font-sixe\" [ngClass]=\"{'red-turn-2 icon-minimal-up':kucukten_son1ay===true, 'red-turn':buyukten_son1ay===true}\"></i></th>\n                <th style=\"min-width: 79px; cursor:pointer; user-select: none;\" (click)=\"siralamaYap('sapma')\" title=\"Standart Sapma\">S. Sapma<i class=\"tim-icons icon-minimal-down font-sixe\" [ngClass]=\"{'red-turn-2 icon-minimal-up':kucukten_sapma===true, 'red-turn':buyukten_sapma===true}\"></i></th>\n                <th style=\"min-width: 75px; cursor:pointer; user-select: none;\" (click)=\"siralamaYap('sharpe')\" title=\"Sharpe Rasyosu\">Sharpe<i class=\"tim-icons icon-minimal-down font-sixe\" [ngClass]=\"{'red-turn-2 icon-minimal-up':kucukten_sharpe===true, 'red-turn':buyukten_sharpe===true}\"></i></th>\n\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let item of fondetay\">\n                <td style=\"position: absolute; margin-left: -1px; background-color: #27293d; min-width: 50px;  padding-right: 0px;\n                padding-left: 0px; padding-top: 15px;\">\n                  <i *ngIf=\"isFav(item.fon_kod) && isLoggedIn\" (click)=\"favIslem(item.fon_kod)\" class=\"tim-icons icon-heart-2\"\n                    style=\"color:#ec250d; cursor:pointer;\"></i>\n                  <i *ngIf=\"!isFav(item.fon_kod) && isLoggedIn\" (click)=\"favIslem(item.fon_kod)\" class=\"tim-icons icon-heart-2\"\n                    style=\" cursor:pointer;\"></i>\n\n                  {{item.fon_kod}}\n                </td>\n                <td>\n                  <div style=\"padding-left:50px; min-width: 250px;max-height: 1.1em; overflow:hidden;\" title=\"{{item.fon_ad}}\">\n                    <a [routerLink]=\"['/detay/'+item.fon_kod]\">{{item.fon_ad}}</a>\n                  </div>\n                </td>\n                <td>%{{item._2017}}</td>\n                <td>%{{item._2018}}</td>\n                <td>%{{item._2019}}</td>\n                <td>%{{item.aylik_artis}}</td>\n                <td>{{item.standart_sapma}}</td>\n                <td>{{item.sharpe_ratio}}</td>\n              </tr>\n            </tbody>\n\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <style>\n    @media only screen and (min-width: 500px) {\n      .table-responsive {\n        overflow-x: hidden;\n        overflow-y: hidden;\n      }\n    }\n\n    .red-turn{\n      color: #ec250d;\n    }\n    .red-turn-2{\n      color: #ec250d;\n    }\n\n    .font-sixe {\n      font-size: 9px;     \n    }\n    \n  </style>\n\n\n</div>\n\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/kayit/kayit.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/kayit/kayit.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div class=\" row\">\n    <div class=\"col-md-3\"></div>\n    <div class=\"col-md-6\" style=\"padding-left: 0px;\">\n      <div class=\"card\">\n        <div class=\"card-header text-center\">\n          <h3>Kayıt Ol</h3>\n        </div>\n        <div class=\"card-body\">\n\n          <form autocomplete=\"off\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n              <label for=\"username\">E-Posta</label>\n              <input  [(ngModel)]=\"user.username\" type=\"email\" name=\"username\" id=\"username\" style=\"border: 0.2px solid #2b3553;\" class=\"form-control\" \n                placeholder=\"E-postanızı giriniz\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"adsoyad\">Ad Soyad</label>\n              <input [(ngModel)]=\"user.adsoyad\" type=\"text\" name=\"adsoyad\" id=\"adsoyad\" style=\"border: 0.2px solid #2b3553;\" class=\"form-control\" \n                placeholder=\"Ad soyad giriniz\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"sifre\">Şifre</label>\n              <input [(ngModel)]=\"user.pass\" type=\"password\" name=\"sifre\" id=\"sifre\" style=\"border: 0.2px solid #2b3553;\" class=\"form-control\"  placeholder=\"Şifre giriniz\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"sifre2\">Şifre Onay</label>\n              <input [(ngModel)]=\"user.pass2\"  type=\"password\" name=\"sifre2\" id=\"sifre2\" style=\"border: 0.2px solid #2b3553;\" class=\"form-control\" \n                placeholder=\"Şifrenizi tekrar giriniz\">\n            </div>\n\n            <button style=\"padding:10px 20px; margin:10px; float:left; font-size: 12px;\" type=\"submit\"\n              class=\"btn btn-default\">Kayıt Ol</button>\n              <div style=\" color:black;\" class=\"text-center\" [hidden]=\"!hata_goster\">{{hata_mesaji}}</div>\n              <div style=\" color:#07B319;\" class=\"text-center\" [hidden]=\"!kayit_basarili\">{{hata_mesaji}}</div>\n\n          </form>\n\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-3\"></div>\n  </div>\n\n\n\n\n\n</div>");
 
 /***/ }),
 
@@ -75360,7 +75412,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n<div class=\"row\" style=\"text-align: center;\">\n  <div class=\"card\">\n    <div class=\"card-header text-center\">\n      <h3>Yapım aşamasında...</h3><br>\n      <div>\n        <img src=\"./assets/img/construction.png\" />\n      </div>\n    </div>\n  </div>\n</div>\n\n\n <!-- <div class=\" row\">\n    <div class=\" col-lg-8 col-md-12\">\n      <div class=\" card\">\n        <div class=\" card-header\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <form class=\"form-inline ml-auto\">\n\n                <div class=\"form-group\">\n                  <p>Portfoy Değeri&nbsp;&nbsp;</p>\n                  <input style=\"border-style:none\" type=\"text\" class=\"form-control\" placeholder=\"100,000\">\n                  \n                </div>\n\n              </form>\n            </div>\n            <div class=\"col-md-6\">\n              <form class=\"form-inline ml-auto\">\n\n                <div class=\"form-group\">\n                  <p>Adı&nbsp;&nbsp;</p>\n                  <input style=\"border-style:none\" type=\"text\" class=\"form-control\" placeholder=\"benim portfoyum\">\n                  \n                </div>\n\n              </form>\n            </div>\n\n          </div>\n        </div>\n        <div class=\" card-body\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>Kod</th>\n                <th>Ad</th>\n                <th>Yüzdelik</th>\n                <th>Değer</th>\n              </tr>\n            </thead>\n            <tbody>\n\n              <tr>\n                <td><a href=\"#\">AES</a></td>\n                <td>AK PORTFÖY PETROL YABANCI BYF FON SEPETİ FONU</td>\n                <td><input style=\"border-style:none\" type=\"text\" class=\"form-control\" placeholder=\"%10\"></td>\n                <td><input style=\"border-style:none\"  type=\"text\" class=\"form-control\" placeholder=\"10000\"></td>\n              </tr>\n              <tr>\n                <td><a href=\"#\">TKF</a></td>\n                <td>TACİRLER PORTFÖY HİSSE SENEDİ FONU (HİSSE SENEDİ YOĞUN FON)</td>\n                <td><input style=\"border-style:none\" type=\"text\" class=\"form-control\" placeholder=\"%4\"></td>\n                <td><input style=\"border-style:none\"  type=\"text\" class=\"form-control\" placeholder=\"4000\"></td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n    <div class=\" col-lg-4 col-md-12\">\n\n     </div>\n  </div>\n\n  <div class=\" card\">\n    <div class=\" card-header\">\n     \n    </div>\n    <div class=\" card-body \">\n      <div class=\"row\">\n        Fon Özelinde\n        <table class=\"table\">\n          <thead>\n            <tr>\n              <th>Fon Kodu</th>\n              <th>Ağırlık</th>\n              <th>Alıs Maliyeti</th>              \n              <th>Birim Fiyatı</th>\n              <th>Kar/Zarar(%)</th>\n              <th>Kar/zarar(TL)</th>\n              <th>Bugünkü Değer</th>\n            </tr>\n          </thead>\n          <tbody>\n\n            <tr >             \n              <td>TKF</td>\n              <td>%10</td>\n              <td>0.633</td>\n              <td>0.672</td>              \n              <td><i class=\"tim-icons icon-minimal-up text-success\">%2.40 </i></td>\n              <td>+2000 TL</td>\n              <td>12,000 TL</td>\n\n            </tr>\n            <tr >             \n              <td>AES</td>\n              <td>%12</td>\n              <td>0.533</td>\n              <td>0.572</td>              \n              <td><i class=\"tim-icons icon-minimal-down text-danger\">%1.40 </i></td>\n              <td>+1305 TL</td>\n              <td>13,205 TL</td>\n\n            </tr>\n          \n          </tbody>\n          \n        </table>\n      \n      </div>\n      \n      Fon Genelinde<br>\n      <div class=\"row\">\n       \n        <div class=\" col-md-2\">\n\n          <h5>Güncel Değer</h5>\n          <ul class=\" list-inline\">\n            <li class=\" list-inline-item\">105,200 TL</li>\n          </ul>\n        </div>\n        <div class=\" col-md-2\">\n          <h5>Günlük Getiri</h5>\n          <ul class=\" list-inline\">\n            <li class=\" list-inline-item\"><i class=\"tim-icons icon-minimal-up text-success\">%2.30</i></li>\n          </ul>\n        </div>\n        <div class=\" col-md-2\">\n          <h5>Kar/Zarar</h5>\n          <ul class=\" list-inline\">\n            <li class=\" list-inline-item\">+5,200 TL</li>\n          </ul>\n        </div>\n        <div class=\" col-md-2\">\n          \n        </div>\n\n        <div class=\" col-md-2\">\n        \n        </div>\n        <div class=\" col-md-2\">\n         \n        </div>\n\n      </div>\n\n      <div class=\"row\">\n        <div style=\"padding-left: 0px !important;\" class=\" col-6\">\n          <div class=\"card\">\n            <div class=\"card-body\">\n              <div class=\" row\">\n                \n                  <div class=\" card card-chart\">\n                    <div class=\" card-header text-center\">\n                     Fon Performansı\n                    </div>                   \n                   \n                      <div class=\" chart-area\"><canvas id=\"chartBig1\"> </canvas></div>\n                  </div>\n                </div>\n              </div>              \n            </div>\n          </div>\n    \n          <div style=\"padding-left: 0px !important; padding-right: 0px !important;\" class=\" col-6\">\n            <div class=\"card\">\n              <div class=\"card-body\">\n                <div class=\" row\">\n                  \n                  <div class=\" card card-chart\">\n                    <div class=\" card-header text-center\">\n                      Portfoy Dağılımı\n                    </div>\n                    <div class=\" card-body\">\n                      <div class=\" chart-area\"><canvas id=\"CountryChart\"> </canvas></div>\n                    </div>\n                  </div>\n                  </div>\n                </div>\n                \n              </div>\n            </div>\n      </div>\n    </div>\n  </div>  -->\n\n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"PUBLISHED\" class=\" content\">\n  \n\n\n  <div class=\" row\" *ngIf=\"portfoyCreateGoster\">\n    <div class=\" col-lg-12 col-md-12\">\n      <div class=\" card\">\n        <div class=\" card-header text-center\">\n          <h4>PORTFÖY OLUŞTUR</h4>\n          <div class=\"row\">\n\n            <div class=\"col-md-6\">\n              <form class=\"form-inline ml-auto\">\n\n                <div class=\"form-group\">\n                  <p>Portföy Adı:&nbsp;&nbsp;</p>\n                  <input [(ngModel)]=\"portfoy.adi\" name=\"portfoyadi\" style=\"border-style:none\" type=\"text\"\n                    class=\"form-control\" placeholder=\"benim portfoyum\">\n\n                </div>\n\n              </form>\n            </div>\n\n            <div class=\"col-md-6\">\n\n              <button (click)=\"favorilerdenAktar()\" title=\"Favorilerden Aktar\" class=\"btn btn-fab btn-icon btn-round\"><i class=\"tim-icons icon-heart-2\"\n                  style=\"color:#ec250d;\"></i>\n              </button>\n\n            </div>\n\n          </div>\n        </div>\n        <div class=\" card-body\">\n          <form *ngIf=\"portfonlar.length > 0\" autocomplete=\"off\">\n            <table class=\"table\">\n              <thead>\n                <tr>\n                  <th>Fon</th>\n                  <th>Alış Fiyatı</th>\n                  <th>Adet</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr  *ngFor=\"let item of portfonlar; let i = index\">\n                  <td style=\"    padding: 0px 0px !important;\" >{{item.fon_kod}}&nbsp;-&nbsp;{{item.fon_ad}}</td>\n                  <td style=\"    padding: 0px 0px !important;\"><input [(ngModel)]=\"portfonlar[i].alis_maliyeti\" name=\"alismaliyeti\" style=\"border-style:none\"\n                      type=\"text\" class=\"form-control\" placeholder=\"0.0081\"></td>\n                  <td style=\"    padding: 0px 0px !important;\"><input [(ngModel)]=\"portfonlar[i].adet\" name=\"adet\" style=\"border-style:none\" type=\"text\"\n                      class=\"form-control\" placeholder=\"12500\"></td>\n                  <td style=\"    padding: 0px 0px !important;\">\n                    <button (click)=\"portfoydenCikar(item)\" class=\"btn btn-link btn-icon\">\n                      <i class=\"tim-icons icon-simple-delete\"></i>\n                    </button>\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </form>\n\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>Fon</th>\n              </tr>\n            </thead>\n            <tbody>\n\n              <tr>\n                <td><input (keyup)=\"Search()\" [(ngModel)]=\"searchtext\" style=\"border-style:none\" type=\"text\"\n                    class=\"form-control\" placeholder=\"Fon ismi giriniz\"></td>\n              </tr>\n\n            </tbody>\n          </table>\n\n          <table *ngIf=\"isSearched && fonlar.length != 0\" class=\"table\">\n            <thead>\n              <tr>\n                <th>Fon Adı</th>\n              </tr>\n            </thead>\n            <tbody>\n\n              <tr *ngFor=\"let item of fonlar\">\n                <td style=\"    padding: 0px 0px !important;\">\n                  <button (click)=\"portfoyeEkle(item.kodu, item.adi)\" class=\"btn btn-fab btn-icon btn-link\">\n                    <i class=\"tim-icons icon-simple-add\"></i>\n                  </button>\n                  &nbsp;{{item.kodu}}&nbsp;-&nbsp;{{item.adi}}\n                </td>\n              </tr>\n\n            </tbody>\n          </table>\n\n        </div>\n\n        <div class=\"text-left\">\n          <button style=\"padding:10px 20px; margin:10px; font-size: 12px;\" (click)=\"onSubmit()\" type=\"submit\"\n            class=\"btn btn-default\">Kaydet</button>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <div *ngIf=\"portfoyListGoster\">\n\n    <div class=\"card card-nav-tabs card-plain\" style=\"margin-bottom:0px !important;\">\n      <div class=\"card-header card-header-danger\">\n        <div class=\"nav-tabs-navigation\">\n          <div class=\"nav-tabs-wrapper\">\n            <ul class=\"nav nav-tabs\">\n     \n              <li *ngFor=\"let item of portfoyler\" class=\"nav-item\">\n                <a class=\"nav-link active\" (click)=\"portfoyGecisYap(item.adi)\" *ngIf=\"item.adi == portfoy_.adi\"\n                  style=\"cursor:pointer; \">{{item.adi}}</a>\n                <a class=\"nav-link\" (click)=\"portfoyGecisYap(item.adi)\" *ngIf=\"item.adi != portfoy_.adi\"\n                  style=\"cursor:pointer; \">{{item.adi}}</a>\n              </li>\n              <li class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"PortfoyEkleGoster()\" style=\"cursor:pointer; \" [ngStyle]=\"portfoyCreateGoster && {'color': '#ec250d'}\">\n                   <i *ngIf=\"!portfoyCreateGoster\" class=\"tim-icons icon-simple-add\"></i>\n                   <i *ngIf=\"portfoyCreateGoster\" class=\"tim-icons icon-simple-remove\"></i>\n                  </a>              \n              </li>    \n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\" card\">\n      <div class=\" card-header\">\n        <div class=\"row\">\n          <div class=\"col-md-11 text-center\">\n        <h4>{{portfoy_.adi}}</h4>\n      </div>\n      <div class=\"col-md-1\">\n         <!-- <i class=\"tim-icons icon-settings-gear-63\"\n            style=\"color:#ec250d;\"></i>  -->\n            <select (change)=\"Portfoyislem($event, portfoy_.adi)\" style=\" border:none; background-color: #242c45;\" class=\"form-control\">\n              <option value=\"\"></option>\n              <option value=\"Edit\">Düzenle</option>\n              <option value=\"Delete\">Sil</option>\n        \n            </select>\n          </div>\n      </div>\n\n      </div>\n      <div class=\" card-body \">\n        <div class=\"row\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>Fon Kodu</th>\n                <th>Alıs Maliyeti</th>\n                <th>Birim Fiyatı</th>\n                <th>Günlük Getiri</th>\n                <th>Toplam Getiri</th>\n                <th>Toplam Değer</th>\n              </tr>\n            </thead>\n            <tbody>\n\n              <tr *ngFor=\"let pfon of portfoy_.fonlar\">\n                <td><a [routerLink]=\"['/detay/'+pfon.fon_kod]\">{{pfon.fon_kod}}</a></td>\n                <!-- <td>{{pfon.agirlik === 100 ? 100 : ((pfon.agirlik).toString()).substring(0,(pfon.agirlik).toString().indexOf(\".\") + 3)}}</td> -->\n                <td>{{pfon.alis_maliyeti}}</td>\n                <td>{{pfon.birim_fiyati}}</td>\n                <td>{{((pfon.gunluk_getiri_tl).toString()).substring(0,(pfon.gunluk_getiri_tl).toString().indexOf(\".\") + 3)}} TL \n                  <i class=\"tim-icons icon-minimal-up\" *ngIf=\"isPos(pfon.gunluk_getiri_yuzde)\" style=\"color:#07B319;\">%{{pfon.gunluk_getiri_yuzde}} </i>\n                  <i class=\"tim-icons icon-minimal-down\" *ngIf=\"!isPos(pfon.gunluk_getiri_yuzde)\" style=\"color:#ec250d;\">%{{pfon.gunluk_getiri_yuzde}} </i>\n                </td>\n                \n\n                <td>{{((pfon.toplam_getiri_tl).toString()).substring(0,(pfon.toplam_getiri_tl).toString().indexOf(\".\") + 3)}} TL \n                  <i class=\"tim-icons icon-minimal-up\" *ngIf=\"isPos(pfon.toplam_getiri_yuzde)\"  style=\"color:#07B319;\" >%{{((pfon.toplam_getiri_yuzde).toString()).substring(0,(pfon.toplam_getiri_yuzde).toString().indexOf(\".\") + 3)}} </i>\n                  <i class=\"tim-icons icon-minimal-down\" *ngIf=\"!isPos(pfon.toplam_getiri_yuzde)\"  style=\"color:#ec250d;\" >%{{((pfon.toplam_getiri_yuzde).toString()).substring(0,(pfon.toplam_getiri_yuzde).toString().indexOf(\".\") + 3)}} </i>\n                </td>\n                <td>{{((pfon.degeri).toString()).substring(0,(pfon.degeri).toString().indexOf(\".\") + 3)}} TL</td>\n              </tr>\n\n\n            </tbody>\n\n          </table>\n\n        </div>\n\n        <br>\n\n\n        <div class=\"row\">\n          <div style=\"padding-left: 0px !important;\" class=\" col-6\">\n            <div class=\"card\">\n              <div class=\"card-body\">\n                <div class=\" row\">\n\n                  <div class=\" card card-chart\">\n                    <div class=\" card-header text-center\">\n                      Portföy Performansı\n                    </div>\n                  </div>\n                  <div class=\" card-body\">\n                    <div style=\"height: 250px;\">\n                      <canvas baseChart [data]=\"lineChartData\" [labels]=\"lineChartLabels\" [chartType]=\"lineChartType\"\n                        [colors]=\"lineChartColor\" [options]=\"linechartOptions\"></canvas>\n                    </div>\n                  </div>\n\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div style=\"padding-left: 0px !important; padding-right: 0px !important;\" class=\" col-6\">\n            <div class=\"card\">\n              <div class=\"card-body\">\n                <div class=\" row\">\n\n                  <div class=\" card card-chart\">\n                    <div class=\" card-header text-center\">\n                      <div class=\" btn-group btn-group-toggle\" data-toggle=\"buttons\">\n                        <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm btn-danger btn-simple\"\n                          (click)=\"clicked1=false;clicked=true;clicked2=false; changePieChartContent(portfoy_.adi);\"\n                          [ngClass]=\"{'active':clicked===true}\">\n                          <input class=\" d-none\" name=\"options\" type=\"radio\" />\n                          <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                            Varlık Dağılımı\n                          </span>\n                          <span class=\" d-block d-sm-none\">\n                            <i class=\" tim-icons\"> Varlık</i>\n                          </span>\n                        </label>\n                        <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm  btn-danger btn-simple\"\n                          (click)=\"clicked1=true;clicked=false;clicked2=false; changePieChartContent(portfoy_.adi);\"\n                          [ngClass]=\"{'active':clicked1===true}\">\n                          <input checked=\"checked\" name=\"options\" type=\"radio\" />\n\n                          <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                            Fon Dağılımı\n                          </span>\n                          <span class=\" d-block d-sm-none\">\n                            <i class=\" tim-icons\">Fon </i>\n                          </span>\n                        </label>\n\n                        <label style=\"border-color: #ec250d !important;\" class=\" btn btn-sm  btn-danger btn-simple\"\n                        (click)=\"clicked1=false;clicked=false;clicked2=true; changePieChartContent(portfoy_.adi);\"\n                        [ngClass]=\"{'active':clicked2===true}\">\n                        <input checked=\"checked\" name=\"options\" type=\"radio\" />\n\n                        <span class=\" d-none d-sm-block d-md-block d-lg-block d-xl-block\">\n                          Kategori Dağılımı\n                        </span>\n                        <span class=\" d-block d-sm-none\">\n                          <i class=\" tim-icons\">Kategori </i>\n                        </span>\n                      </label>\n\n                      </div>\n                    </div>\n                    <div class=\" card-body\">\n                      <div style=\"height: 295px;\">\n                        <canvas baseChart [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\n                          [colors]=\"pieChartColors\" [options]=\"chartOptions\"></canvas>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n\n            </div>\n          </div>\n        </div>\n\n        <div class=\"row\">\n\n          <div class=\" col-md-2\">\n\n            <h5>Portföy Toplam Değer</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{((portfoy_.portfoy_degeri).toString()).substring(0,(portfoy_.portfoy_degeri).toString().indexOf(\".\") + 3)}} TL</li>\n            </ul>\n          </div>\n\n          <div class=\" col-md-2\">\n            <h5>Portföy Günlük Getiri</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{((portfoy_.gunluk_getiri_tl).toString()).substring(0,(portfoy_.gunluk_getiri_tl).toString().indexOf(\".\") + 3)}} TL \n                <i class=\"tim-icons icon-minimal-up\" *ngIf=\"isPos(portfoy_.gunluk_getiri_yuzde)\"  style=\"color:#07B319;\" >%{{((portfoy_.gunluk_getiri_yuzde).toString()).substring(0,(portfoy_.gunluk_getiri_yuzde).toString().indexOf(\".\") + 3)}} </i>\n                <i class=\"tim-icons icon-minimal-down\" *ngIf=\"!isPos(portfoy_.gunluk_getiri_yuzde)\"  style=\"color:#ec250d;\" >%{{((portfoy_.gunluk_getiri_yuzde).toString()).substring(0,(portfoy_.gunluk_getiri_yuzde).toString().indexOf(\".\") + 3)}} </i>\n\n              </li>\n            </ul>\n          </div>\n\n          <div class=\" col-md-2\">\n\n          </div>\n\n          <div class=\" col-md-2\">\n            <h5>Portföy Toplam Getiri</h5>\n            <ul class=\" list-inline\">\n              <li class=\" list-inline-item\">{{((portfoy_.toplam_getiri_tl).toString()).substring(0,(portfoy_.toplam_getiri_tl).toString().indexOf(\".\") + 3)}} TL \n                <i class=\"tim-icons icon-minimal-up\" *ngIf=\"isPos(portfoy_.gunluk_getiri_yuzde)\"  style=\"color:#07B319;\" >%{{((portfoy_.toplam_getiri_yuzde).toString()).substring(0,(portfoy_.toplam_getiri_yuzde).toString().indexOf(\".\") + 3)}} </i>\n                <i class=\"tim-icons icon-minimal-down\" *ngIf=\"!isPos(portfoy_.gunluk_getiri_yuzde)\"  style=\"color:#ec250d;\" >%{{((portfoy_.toplam_getiri_yuzde).toString()).substring(0,(portfoy_.toplam_getiri_yuzde).toString().indexOf(\".\") + 3)}} </i>\n\n              </li>\n            </ul>\n          </div>\n\n          <div class=\" col-md-2\">\n\n          </div>\n\n          <div class=\" col-md-2\">\n\n          </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n\n</div>\n\n\n<div *ngIf=\"PUBLISHED\" class=\" content\">\n  <div class=\"row\">\n    <div class=\" col-lg-8 col-md-12\">\n      <div class=\" card\">\n\n\n        <div class=\" card-body\">\n          <h3>Bu sayfayı görüntüleyebilmek için lütfen <a style=\"color:green;\" href [routerLink]=\"['/giris']\">Giriş\n              Yapınız.</a></h3>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"content\">\n<div class=\"row\" style=\"text-align: center;\">\n  <div class=\"card\">\n    <div class=\"card-header text-center\">\n      <h3>Yapım aşamasında...</h3><br>\n      <div>\n        <img src=\"./assets/img/construction.png\" />\n      </div>\n    </div>\n  </div>\n</div> \n</div> ");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/profile/profile.component.html":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/profile/profile.component.html ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\" content\">\n\n\n  <div class=\" row\">\n    <div class=\" col-lg-8 col-md-12\" style=\"padding-left: 0px;\">\n      <div class=\" card\">\n        <div class=\" card-header text-center\">\n            \n            <h3 >Profil Sayfası</h3>\n          </div>\n        <div class=\" card-body\">\n          <table class=\"table\">   \n                   \n            <tbody>\n              <tr>\n                <td>Ad Soyad: </td>\n                <td>{{user.adsoyad}}</td>\n              </tr>\n              <tr>\n                <td>Email: </td>\n                <td>{{user.username}}</td>\n              </tr>\n              <tr>\n                <td> </td>\n                <td><a (click)=\"formGoster()\" style=\"cursor:pointer; \">Şifre Değiştir</a></td>                \n              </tr>\n                          \n            </tbody>\n          </table>\n\n        </div>\n      </div>\n    </div>\n    <div class=\" col-lg-4 col-md-12\">\n      \n    \n  </div>\n  </div>\n\n  <div *ngIf=\"sifredegisform\" class=\" row\">\n    <div class=\"col-md-8\" style=\"padding-left: 0px;\">\n      <div class=\"card\">\n        <div class=\"card-header text-center\">\n          <h3>Şifre Değiştir</h3>\n          \n        </div>\n        <div class=\"card-body\">\n\n          <form *ngIf=\"isLoggedIn\" autocomplete=\"off\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n              <label for=\"username\">Eski Şifre</label>\n              <input  [(ngModel)]=\"user.pass\" type=\"password\" name=\"username\" id=\"username\" class=\"form-control\" \n                placeholder=\"Eski şifrenizi giriniz\">\n            </div>\n            \n            <div class=\"form-group\">\n              <label for=\"sifre\">Yeni Şifre</label>\n              <input [(ngModel)]=\"user.pass2\" type=\"password\" name=\"sifre\" id=\"sifre\" class=\"form-control\"  placeholder=\"Yeni şifrenizi giriniz\">\n            </div>\n           \n\n            <button style=\"padding:10px 20px; margin:10px; float:left; font-size: 12px;\" type=\"submit\"\n              class=\"btn btn-default\">Güncelle</button>\n            \n              <div style=\" color:black;\" class=\"text-left\" [hidden]=\"!hata_goster\">{{hata_mesaji}}</div>\n              <div style=\" color:#07B319;\" class=\"text-center\" [hidden]=\"!kayit_basarili\">{{hata_mesaji}}</div>\n\n          </form>\n          \n          \n        </div>\n      </div>\n    </div>\n  </div>\n\n\n \n\n\n\n</div>");
 
 /***/ }),
 
@@ -75432,6 +75497,165 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./src/app/components/eniyiler/eniyiler.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/components/eniyiler/eniyiler.component.ts ***!
+  \***********************************************************/
+/*! exports provided: EniyilerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EniyilerComponent", function() { return EniyilerComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/fon.service */ "./src/app/services/fon.service.ts");
+
+
+
+var EniyilerComponent = /** @class */ (function () {
+    function EniyilerComponent(fonService) {
+        this.fonService = fonService;
+        this.eniyiFonList = new Array();
+        this.clicked_day = false;
+        this.clicked_week = false;
+        this.clicked_month = false;
+        this.clicked_sixmonths = false;
+        this.clicked_year = false;
+    }
+    EniyilerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.fonService.getEnIyilerFonList('day').subscribe(function (data) {
+            _this.eniyiFonList = data;
+            _this.clicked_day = true;
+        });
+    };
+    EniyilerComponent.prototype.isPos = function (sayi) {
+        if (sayi < 0)
+            return false;
+        else
+            return true;
+    };
+    EniyilerComponent.prototype.ParametreDegis = function (tip) {
+        var _this = this;
+        if (tip === 'day') {
+            this.fonService.getEnIyilerFonList('day').subscribe(function (data) {
+                _this.eniyiFonList = data;
+            });
+            this.clicked_day = true;
+            this.clicked_week = false;
+            this.clicked_month = false;
+            this.clicked_sixmonths = false;
+            this.clicked_year = false;
+        }
+        if (tip === 'week') {
+            this.fonService.getEnIyilerFonList('week').subscribe(function (data) {
+                _this.eniyiFonList = data;
+            });
+            this.clicked_day = false;
+            this.clicked_week = true;
+            this.clicked_month = false;
+            this.clicked_sixmonths = false;
+            this.clicked_year = false;
+        }
+        if (tip === 'month') {
+            this.fonService.getEnIyilerFonList('month').subscribe(function (data) {
+                _this.eniyiFonList = data;
+            });
+            this.clicked_day = false;
+            this.clicked_week = false;
+            this.clicked_month = true;
+            this.clicked_sixmonths = false;
+            this.clicked_year = false;
+        }
+        if (tip === 'sixmonths') {
+            this.fonService.getEnIyilerFonList('sixmonths').subscribe(function (data) {
+                _this.eniyiFonList = data;
+            });
+            this.clicked_day = false;
+            this.clicked_week = false;
+            this.clicked_month = false;
+            this.clicked_sixmonths = true;
+            this.clicked_year = false;
+        }
+        if (tip === 'year') {
+            this.fonService.getEnIyilerFonList('year').subscribe(function (data) {
+                _this.eniyiFonList = data;
+            });
+            this.clicked_day = false;
+            this.clicked_week = false;
+            this.clicked_month = false;
+            this.clicked_sixmonths = false;
+            this.clicked_year = true;
+        }
+    };
+    EniyilerComponent.ctorParameters = function () { return [
+        { type: src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"] }
+    ]; };
+    EniyilerComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "eniyiler",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./eniyiler.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/eniyiler/eniyiler.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"]])
+    ], EniyilerComponent);
+    return EniyilerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/performans/performans.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/components/performans/performans.component.ts ***!
+  \***************************************************************/
+/*! exports provided: PerformansComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PerformansComponent", function() { return PerformansComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/fon.service */ "./src/app/services/fon.service.ts");
+
+
+
+var PerformansComponent = /** @class */ (function () {
+    function PerformansComponent(fonService) {
+        this.fonService = fonService;
+        this.categoryartis = new Array();
+    }
+    PerformansComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var data2 = this.fonService.getCategoryArtisList().subscribe(function (data) {
+            _this.categoryartis = data;
+        });
+    };
+    PerformansComponent.prototype.isPos = function (sayi) {
+        if (sayi < 0)
+            return false;
+        else
+            return true;
+    };
+    PerformansComponent.ctorParameters = function () { return [
+        { type: src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"] }
+    ]; };
+    PerformansComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "kategori-performans",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./performans.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/performans/performans.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"]])
+    ], PerformansComponent);
+    return PerformansComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/layouts/admin-layout/admin-layout.module.ts":
 /*!*************************************************************!*\
   !*** ./src/app/layouts/admin-layout/admin-layout.module.ts ***!
@@ -75457,6 +75681,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/ng-bootstrap.js");
 /* harmony import */ var src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/pages/karsilastir/karsilastir.component */ "./src/app/pages/karsilastir/karsilastir.component.ts");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/__ivy_ngcc__/fesm5/ng2-charts.js");
+/* harmony import */ var src_app_pages_kayit_kayit_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! src/app/pages/kayit/kayit.component */ "./src/app/pages/kayit/kayit.component.ts");
+/* harmony import */ var src_app_pages_giris_giris_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! src/app/pages/giris/giris.component */ "./src/app/pages/giris/giris.component.ts");
+/* harmony import */ var src_app_pages_profile_profile_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! src/app/pages/profile/profile.component */ "./src/app/pages/profile/profile.component.ts");
+/* harmony import */ var src_app_pages_favori_favori_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! src/app/pages/favori/favori.component */ "./src/app/pages/favori/favori.component.ts");
+/* harmony import */ var src_app_components_performans_performans_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! src/app/components/performans/performans.component */ "./src/app/components/performans/performans.component.ts");
+/* harmony import */ var src_app_components_eniyiler_eniyiler_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! src/app/components/eniyiler/eniyiler.component */ "./src/app/components/eniyiler/eniyiler.component.ts");
+
+
+
+
+
+
 
 
 
@@ -75491,7 +75727,13 @@ var AdminLayoutModule = /** @class */ (function () {
                 _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_7__["DashboardComponent"],
                 _pages_detail_detail_component__WEBPACK_IMPORTED_MODULE_8__["DetailComponent"],
                 _pages_portfoy_portfoy_component__WEBPACK_IMPORTED_MODULE_9__["PortfoyComponent"],
-                src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_13__["KarsilastirComponent"]
+                src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_13__["KarsilastirComponent"],
+                src_app_pages_kayit_kayit_component__WEBPACK_IMPORTED_MODULE_15__["KayitComponent"],
+                src_app_pages_giris_giris_component__WEBPACK_IMPORTED_MODULE_16__["GirisComponent"],
+                src_app_pages_profile_profile_component__WEBPACK_IMPORTED_MODULE_17__["ProfileComponent"],
+                src_app_pages_favori_favori_component__WEBPACK_IMPORTED_MODULE_18__["FavoriComponent"],
+                src_app_components_performans_performans_component__WEBPACK_IMPORTED_MODULE_19__["PerformansComponent"],
+                src_app_components_eniyiler_eniyiler_component__WEBPACK_IMPORTED_MODULE_20__["EniyilerComponent"]
             ]
         })
     ], AdminLayoutModule);
@@ -75516,8 +75758,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../pages/dashboard/dashboard.component */ "./src/app/pages/dashboard/dashboard.component.ts");
 /* harmony import */ var _pages_detail_detail_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../pages/detail/detail.component */ "./src/app/pages/detail/detail.component.ts");
 /* harmony import */ var src_app_pages_portfoy_portfoy_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/pages/portfoy/portfoy.component */ "./src/app/pages/portfoy/portfoy.component.ts");
-/* harmony import */ var src_app_pages_adminpage_admin_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/pages/adminpage/admin.component */ "./src/app/pages/adminpage/admin.component.ts");
-/* harmony import */ var src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/pages/karsilastir/karsilastir.component */ "./src/app/pages/karsilastir/karsilastir.component.ts");
+/* harmony import */ var src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/pages/karsilastir/karsilastir.component */ "./src/app/pages/karsilastir/karsilastir.component.ts");
+/* harmony import */ var src_app_pages_kayit_kayit_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/pages/kayit/kayit.component */ "./src/app/pages/kayit/kayit.component.ts");
+/* harmony import */ var src_app_pages_giris_giris_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/pages/giris/giris.component */ "./src/app/pages/giris/giris.component.ts");
+/* harmony import */ var src_app_pages_profile_profile_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/pages/profile/profile.component */ "./src/app/pages/profile/profile.component.ts");
+/* harmony import */ var src_app_pages_favori_favori_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/pages/favori/favori.component */ "./src/app/pages/favori/favori.component.ts");
+
+
+
 
 
 
@@ -75528,8 +75776,12 @@ var AdminLayoutRoutes = [
     { path: "anasayfa", component: _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_1__["DashboardComponent"] },
     { path: "detay/:kod", component: _pages_detail_detail_component__WEBPACK_IMPORTED_MODULE_2__["DetailComponent"] },
     { path: "portfoy", component: src_app_pages_portfoy_portfoy_component__WEBPACK_IMPORTED_MODULE_3__["PortfoyComponent"] },
-    { path: "admin", component: src_app_pages_adminpage_admin_component__WEBPACK_IMPORTED_MODULE_4__["AdminComponent"] },
-    { path: "karsilastir", component: src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_5__["KarsilastirComponent"] },
+    //{ path: "admin", component: AdminComponent },
+    { path: "karsilastir", component: src_app_pages_karsilastir_karsilastir_component__WEBPACK_IMPORTED_MODULE_4__["KarsilastirComponent"] },
+    { path: "kayit", component: src_app_pages_kayit_kayit_component__WEBPACK_IMPORTED_MODULE_5__["KayitComponent"] },
+    { path: "giris", component: src_app_pages_giris_giris_component__WEBPACK_IMPORTED_MODULE_6__["GirisComponent"] },
+    { path: "profil", component: src_app_pages_profile_profile_component__WEBPACK_IMPORTED_MODULE_7__["ProfileComponent"] },
+    { path: "favoriler", component: src_app_pages_favori_favori_component__WEBPACK_IMPORTED_MODULE_8__["FavoriComponent"] },
 ];
 
 
@@ -75579,53 +75831,44 @@ var FonDetay = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/adminpage/admin.component.ts":
-/*!****************************************************!*\
-  !*** ./src/app/pages/adminpage/admin.component.ts ***!
-  \****************************************************/
-/*! exports provided: AdminComponent */
+/***/ "./src/app/models/portfon.ts":
+/*!***********************************!*\
+  !*** ./src/app/models/portfon.ts ***!
+  \***********************************/
+/*! exports provided: Portfon */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminComponent", function() { return AdminComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Portfon", function() { return Portfon; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 
-
-var AdminComponent = /** @class */ (function () {
-    function AdminComponent() {
-        this.path = '/detay/AES';
-        this.funds = [
-            { kod: 'AES', ad: 'AK PORTFÖY PETROL YABANCI BYF FON SEPETİ FONU', fiyat: '0.0062', oran: '%2.37' },
-            { kod: 'YAY', ad: 'YAPI KREDİ PORTFÖY YABANCI TEKNOLOJİ SEKTÖRÜ HİSSE SENEDİ FONU', fiyat: '95,614935', oran: '%2.57' },
-            { kod: 'AFT', ad: 'AK PORTFÖY YENİ TEKNOLOJİLER YABANCI HİSSE SENEDİ FONU', fiyat: '0,054894', oran: '%1.68' },
-            { kod: 'TKF', ad: 'TKF - TACİRLER PORTFÖY HİSSE SENEDİ FONU (HİSSE SENEDİ YOĞUN FON)', fiyat: '0,04894', oran: '%4.2' },
-            { kod: 'AES', ad: 'AK PORTFÖY PETROL YABANCI BYF FON SEPETİ FONU', fiyat: '0.0062', oran: '%2.37' },
-            { kod: 'YAY', ad: 'YAPI KREDİ PORTFÖY YABANCI TEKNOLOJİ SEKTÖRÜ HİSSE SENEDİ FONU', fiyat: '95,614935', oran: '%2.57' },
-            { kod: 'AFT', ad: 'AK PORTFÖY YENİ TEKNOLOJİLER YABANCI HİSSE SENEDİ FONU', fiyat: '0,054894', oran: '%1.68' },
-            { kod: 'TKF', ad: 'TKF - TACİRLER PORTFÖY HİSSE SENEDİ FONU (HİSSE SENEDİ YOĞUN FON)', fiyat: '0,04894', oran: '%4.2' },
-            { kod: 'AES', ad: 'AK PORTFÖY PETROL YABANCI BYF FON SEPETİ FONU', fiyat: '0.0062', oran: '%2.37' }
-        ];
-        this.favoriler = [];
+var Portfon = /** @class */ (function () {
+    function Portfon() {
     }
-    AdminComponent.prototype.ngOnInit = function () {
-    };
-    AdminComponent.prototype.favEkle = function (fonkod) {
-        this.favoriler.push(fonkod);
-    };
-    AdminComponent.prototype.isFav = function (fonkod) {
-        if (this.favoriler.length != 0)
-            return this.favoriler.includes(fonkod) === true ? "color: green" : "";
-    };
-    AdminComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: "admin-page",
-            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./admin.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/adminpage/admin.component.html")).default
-        }),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [])
-    ], AdminComponent);
-    return AdminComponent;
+    return Portfon;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/portfoy.ts":
+/*!***********************************!*\
+  !*** ./src/app/models/portfoy.ts ***!
+  \***********************************/
+/*! exports provided: Portfoy */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Portfoy", function() { return Portfoy; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+var Portfoy = /** @class */ (function () {
+    function Portfoy() {
+    }
+    return Portfoy;
 }());
 
 
@@ -75647,39 +75890,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/fon.service */ "./src/app/services/fon.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+
+
+
+
 
 
 
 
 
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(fonService, router, titleService) {
+    function DashboardComponent(fonService, activatedroute, router, location, titleService, tokenStorageService) {
         this.fonService = fonService;
+        this.activatedroute = activatedroute;
         this.router = router;
+        this.location = location;
         this.titleService = titleService;
+        this.tokenStorageService = tokenStorageService;
         this.path = '/detay/AES';
         this.fonlar = new Array();
-        this.categoryartis = new Array();
-        this.categoryartis2 = new Array();
-        this.favoriler = [];
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_6__["User"]();
+        this.isLoggedIn = false;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.titleService.setTitle("Fon Canavarı - Anasayfa");
+        this.titleService.setTitle("Fon Canavarı - TEST");
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        this.activatedroute.queryParams.subscribe(function (params) {
+            if (params['login']) {
+                _this.location.replaceState("/anasayfa");
+                window.location.reload();
+            }
+        });
         var data = this.fonService.getFonList(0).subscribe(function (data) {
             _this.fonlar = data.content;
         });
-        var data2 = this.fonService.getCategoryArtisList().subscribe(function (data) {
-            _this.categoryartis = data;
-            // console.log(this.categoryartis[0][2]);
-        });
-    };
-    DashboardComponent.prototype.favEkle = function (fonkod) {
-        this.favoriler.push(fonkod);
-    };
-    DashboardComponent.prototype.isFav = function (fonkod) {
-        if (this.favoriler.length != 0)
-            return this.favoriler.includes(fonkod) === true ? "color: green" : "";
     };
     DashboardComponent.prototype.Search = function () {
         var _this = this;
@@ -75703,7 +75951,6 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.getirByCategory = function (event) {
         var _this = this;
         this.category = event.target.value;
-        console.log(this.category);
         if (this.category == '' || this.category == null) {
             var data3 = this.fonService.getFonList(0).subscribe(function (data) {
                 _this.fonlar = data.content;
@@ -75717,8 +75964,11 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.ctorParameters = function () { return [
         { type: src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"] }
+        { type: _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"] },
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"] },
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"] }
     ]; };
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -75729,7 +75979,7 @@ var DashboardComponent = /** @class */ (function () {
             selector: "app-dashboard",
             template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./dashboard.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/dashboard/dashboard.component.html")).default
         }),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"]])
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_2__["fonService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"], src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -75760,6 +76010,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chartjs_plugin_piechart_outlabels__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_piechart_outlabels__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+
+
+
 
 
 
@@ -75771,16 +76027,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DetailComponent = /** @class */ (function () {
-    function DetailComponent(fonService, fonDetayService, route, titleService) {
+    function DetailComponent(fonService, fonDetayService, route, titleService, tokenStorageService, userService) {
         this.fonService = fonService;
         this.fonDetayService = fonDetayService;
         this.route = route;
         this.titleService = titleService;
+        this.tokenStorageService = tokenStorageService;
+        this.userService = userService;
+        this.isLoggedIn = false;
+        this.isFav = false;
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_10__["User"]();
         // public clicked: boolean = true; //haftalikti bu
         this.clicked = true;
         this.clicked1 = false;
         this.clicked_basildi = false;
         this.clicked1_basildi = false;
+        this.week_clicked = false;
+        this.six_clicked = false;
+        this.threem_clicked = false;
+        this.threey_clicked = false;
         this.pieChartLabels = ['C', 'S', 'F', 'I', 'S', 'F', 'I', 'S', 'F', 'O'];
         this.pieChartData = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
         this.pieChartType = 'pie';
@@ -75812,6 +76077,1039 @@ var DetailComponent = /** @class */ (function () {
                         var value = dataset.data[tooltipItem.index];
                         var label = data.labels[tooltipItem.index];
                         return label + ": %" + value;
+                    }
+                }
+            },
+            elements: {
+                arc: {
+                    borderWidth: 0
+                }
+            },
+            layout: {
+                padding: {
+                    top: 60,
+                    bottom: 40,
+                    left: 20,
+                    right: 20
+                },
+            }
+        };
+        this.pieChartColors = [
+            {
+                backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(255,0,0,0.5)', 'rgba(0,0,255,0.3)', 'rgba(102, 0, 204,0.3)', 'rgba(153, 102, 51,0.3)', 'rgba(255, 255, 0,0.3)',
+                    'rgba(0,255,0,0.6)', 'rgba(255,0,0,0.3)', 'rgba(0,0,255,0.6)', 'rgba(102, 0, 204,0.6)', 'rgba(153, 102, 51,0.6)', 'rgba(255, 255, 0,0.6)'],
+            },
+        ];
+        this.lineChartLabels = [];
+        this.lineChartData = [];
+        this.lineChartType = 'line';
+        this.linechartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            bezierCurve: false,
+            plugins: {
+                legend: false,
+            },
+            scales: {
+                xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false,
+                        },
+                        ticks: {
+                            fontColor: "#ffffff",
+                            userCallback: function (item, index) {
+                                if (!(index % 5))
+                                    return item;
+                            }
+                        },
+                    }],
+                yAxes: [{
+                        scaleLabel: {
+                            display: false,
+                            labelString: 'Fiyat',
+                            fontColor: "#ffffff",
+                            fontSize: 10,
+                            fontFamily: 'Poppins',
+                        },
+                        display: true,
+                        ticks: {
+                            beginAtZero: false,
+                            fontColor: "#ffffff",
+                        },
+                        gridLines: {
+                            color: "#1e1e2f",
+                        }
+                    }],
+            },
+            elements: {
+                point: {
+                    radius: 0
+                },
+                line: {
+                    fill: false,
+                    borderColor: '#ec250d',
+                    borderWidth: 2,
+                    tension: 0 // smoothlugu kaldırır
+                }
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                enabled: true,
+                displayColors: false,
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return "Fiyat: " + tooltipItem.yLabel;
+                    }
+                }
+            },
+        };
+        this.lineChartColor = [{ backgroundColor: '#ec250d' }];
+    }
+    DetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        chart_js__WEBPACK_IMPORTED_MODULE_9__["Chart"].plugins.register(chartjs_plugin_piechart_outlabels__WEBPACK_IMPORTED_MODULE_8___default.a);
+        this.titleService.setTitle("Fon Canavarı - Fon Detayı");
+        this.fondetay = new src_app_models_fondetay__WEBPACK_IMPORTED_MODULE_4__["FonDetay"](); // bu zorunlu bro yukarıda tanımladıklarını new lemeden kullanaman
+        this.fon = new src_app_models_fon__WEBPACK_IMPORTED_MODULE_3__["Fon"]();
+        this.sub = this.route.params.subscribe(function (params) {
+            var dat = _this.fonService.getFon(params['kod']).subscribe(function (data) {
+                _this.fon = data;
+            });
+            var dat2 = _this.fonDetayService.getFonDetay(params['kod']).subscribe(function (data) {
+                _this.fondetay = data;
+            });
+            var dat3 = _this.fonDetayService.getPieChartData(params['kod']).subscribe(function (data) {
+                _this.data_pie = data;
+                _this.pieChartData = [];
+                _this.pieChartLabels = [];
+                for (var _i = 0, _a = _this.data_pie; _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    _this.pieChartLabels.push(item.name);
+                    _this.pieChartData.push(item.y);
+                }
+            });
+            var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'month').subscribe(function (data) {
+                _this.data_line = data;
+                _this.lineChartData = [];
+                _this.lineChartLabels = [];
+                for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    _this.lineChartLabels.push(item.date);
+                    _this.lineChartData.push(item.value);
+                }
+            });
+            _this.isLoggedIn = !!_this.tokenStorageService.getToken();
+            if (_this.isLoggedIn) {
+                var user = _this.tokenStorageService.getUser();
+                for (var _i = 0, _a = user.favori_fonlar; _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    if (item.kodu === params['kod'])
+                        _this.isFav = true;
+                }
+                _this.user = user;
+            }
+        });
+    }; //oninit
+    DetailComponent.prototype.favIslem = function () {
+        var _this = this;
+        var user = this.tokenStorageService.getUser();
+        if (this.isFav) {
+            var dat2 = this.userService.favorilerdenCikar(this.fon.kodu, user.username).subscribe(function (data) {
+                user.favori_fonlar = data;
+                _this.tokenStorageService.saveUser(user);
+                _this.isFav = false;
+            });
+        }
+        else {
+            var dat2 = this.userService.favorilereEkle(this.fon.kodu, user.username).subscribe(function (data) {
+                user.favori_fonlar = data;
+                _this.tokenStorageService.saveUser(user);
+                _this.isFav = true;
+            });
+        }
+    };
+    DetailComponent.prototype.herre = function () {
+        var _this = this;
+        if (this.clicked) {
+            this.sub = this.route.params.subscribe(function (params) {
+                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'month').subscribe(function (data) {
+                    _this.data_line = data;
+                    _this.lineChartData = [];
+                    _this.lineChartLabels = [];
+                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.lineChartLabels.push(item.date);
+                        _this.lineChartData.push(item.value);
+                    }
+                });
+            });
+        }
+        if (this.clicked1) {
+            this.sub = this.route.params.subscribe(function (params) {
+                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'year').subscribe(function (data) {
+                    _this.data_line = data;
+                    _this.lineChartData = [];
+                    _this.lineChartLabels = [];
+                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.lineChartLabels.push(item.date);
+                        _this.lineChartData.push(item.value);
+                    }
+                });
+            });
+        }
+        if (this.week_clicked) {
+            this.sub = this.route.params.subscribe(function (params) {
+                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'week').subscribe(function (data) {
+                    _this.data_line = data;
+                    _this.lineChartData = [];
+                    _this.lineChartLabels = [];
+                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.lineChartLabels.push(item.date);
+                        _this.lineChartData.push(item.value);
+                    }
+                });
+            });
+        }
+        if (this.six_clicked) {
+            this.sub = this.route.params.subscribe(function (params) {
+                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'sixmonths').subscribe(function (data) {
+                    _this.data_line = data;
+                    _this.lineChartData = [];
+                    _this.lineChartLabels = [];
+                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.lineChartLabels.push(item.date);
+                        _this.lineChartData.push(item.value);
+                    }
+                });
+            });
+        }
+        if (this.threem_clicked) {
+            this.sub = this.route.params.subscribe(function (params) {
+                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'threemonths').subscribe(function (data) {
+                    _this.data_line = data;
+                    _this.lineChartData = [];
+                    _this.lineChartLabels = [];
+                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.lineChartLabels.push(item.date);
+                        _this.lineChartData.push(item.value);
+                    }
+                });
+            });
+        }
+        if (this.threey_clicked) {
+            this.sub = this.route.params.subscribe(function (params) {
+                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'threeyears').subscribe(function (data) {
+                    _this.data_line = data;
+                    _this.lineChartData = [];
+                    _this.lineChartLabels = [];
+                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.lineChartLabels.push(item.date);
+                        _this.lineChartData.push(item.value);
+                    }
+                });
+            });
+        }
+    }; //herre
+    DetailComponent.prototype.transform = function (value) {
+        if (value == undefined) {
+            return '';
+        }
+        var n = parseInt(value);
+        var rx = /(\d+)(\d{3})/;
+        return String(n).replace(/^\d+/, function (w) {
+            var res = w;
+            while (rx.test(res)) {
+                res = res.replace(rx, '$1.$2');
+            }
+            return res;
+        });
+    };
+    DetailComponent.prototype.isPos = function (sayi) {
+        if (sayi < 0)
+            return false;
+        else
+            return true;
+    };
+    DetailComponent.ctorParameters = function () { return [
+        { type: src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_5__["fonService"] },
+        { type: src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_6__["fonDetayService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["Title"] },
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_11__["TokenStorageService"] },
+        { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_12__["userService"] }
+    ]; };
+    DetailComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "detail-selector",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./detail.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/detail/detail.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_5__["fonService"], src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_6__["fonDetayService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["Title"], src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_11__["TokenStorageService"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_12__["userService"]])
+    ], DetailComponent);
+    return DetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/favori/favori.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/pages/favori/favori.component.ts ***!
+  \**************************************************/
+/*! exports provided: FavoriComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FavoriComponent", function() { return FavoriComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+
+
+
+
+
+
+var FavoriComponent = /** @class */ (function () {
+    function FavoriComponent(tokenStorageService, userService, titleService) {
+        this.tokenStorageService = tokenStorageService;
+        this.userService = userService;
+        this.titleService = titleService;
+        this.isLoggedIn = false;
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_3__["User"]();
+        this.fonlar = new Array();
+        this.message = '';
+    }
+    FavoriComponent.prototype.ngOnInit = function () {
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        this.titleService.setTitle("Fon Canavarı - Favorilerim");
+        if (this.isLoggedIn) {
+            var user = this.tokenStorageService.getUser();
+            this.fonlar = user.favori_fonlar;
+            this.user = user;
+        }
+    };
+    FavoriComponent.prototype.favCikar = function (fon_kod) {
+        var _this = this;
+        if (this.isLoggedIn) {
+            var user_1 = this.tokenStorageService.getUser();
+            var dat2 = this.userService.favorilerdenCikar(fon_kod, user_1.username).subscribe(function (data) {
+                user_1.favori_fonlar = data;
+                _this.fonlar = data;
+                _this.tokenStorageService.saveUser(user_1);
+            });
+        }
+    };
+    FavoriComponent.prototype.isPos = function (sayi) {
+        if (sayi < 0)
+            return false;
+        else
+            return true;
+    };
+    FavoriComponent.ctorParameters = function () { return [
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"] },
+        { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["userService"] },
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["Title"] }
+    ]; };
+    FavoriComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "favori-page",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./favori.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/favori/favori.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["userService"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["Title"]])
+    ], FavoriComponent);
+    return FavoriComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/giris/giris.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/pages/giris/giris.component.ts ***!
+  \************************************************/
+/*! exports provided: GirisComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GirisComponent", function() { return GirisComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+
+
+
+
+
+
+
+var GirisComponent = /** @class */ (function () {
+    function GirisComponent(authService, tokenStorage, titleService, router) {
+        this.authService = authService;
+        this.tokenStorage = tokenStorage;
+        this.titleService = titleService;
+        this.router = router;
+        this.hata_mesaji = "0";
+        this.hata_goster = false;
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_2__["User"]();
+        this.isLoggedIn = false;
+        this.roles = [];
+    }
+    GirisComponent.prototype.ngOnInit = function () {
+        this.titleService.setTitle("Fon Canavarı - Giriş Yap");
+        if (this.tokenStorage.getToken()) {
+            this.isLoggedIn = true;
+            this.roles = this.tokenStorage.getUser().roles;
+        }
+    };
+    GirisComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.hata_goster = false;
+        if (this.user.pass == null || this.user.username == null) {
+            this.hata_goster = true;
+            this.hata_mesaji = 'Lütfen alanları doldurun!';
+            return;
+        }
+        this.authService.login(this.user).subscribe(function (data) {
+            _this.tokenStorage.saveToken(data.accessToken);
+            _this.tokenStorage.saveUser(data);
+            _this.isLoggedIn = true;
+            _this.roles = _this.tokenStorage.getUser().roles;
+            //this.reloadPage();
+            _this.router.navigateByUrl('/anasayfa?login=true');
+        }, function (err) {
+            _this.hata_goster = true;
+            _this.hata_mesaji = err.error.message;
+        });
+    };
+    GirisComponent.prototype.reloadPage = function () {
+        window.location.reload();
+    };
+    GirisComponent.prototype.checkTexts = function () {
+        var email = this.user.username;
+        var adsoyad = this.user.adsoyad;
+        var pass = this.user.pass;
+        var pass2 = this.user.pass2;
+        if (email == '' || adsoyad == '' || pass == '' || pass2 == '') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    GirisComponent.ctorParameters = function () { return [
+        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["authService"] },
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_4__["TokenStorageService"] },
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["Title"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    ]; };
+    GirisComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "giris-page",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./giris.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/giris/giris.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["authService"], src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_4__["TokenStorageService"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["Title"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+    ], GirisComponent);
+    return GirisComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/karsilastir/karsilastir.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/pages/karsilastir/karsilastir.component.ts ***!
+  \************************************************************/
+/*! exports provided: KarsilastirComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KarsilastirComponent", function() { return KarsilastirComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/fondetay.service */ "./src/app/services/fondetay.service.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+
+
+
+
+
+
+
+
+
+var KarsilastirComponent = /** @class */ (function () {
+    function KarsilastirComponent(fonDetayService, router, route, titleService, tokenStorageService, userService) {
+        this.fonDetayService = fonDetayService;
+        this.router = router;
+        this.route = route;
+        this.titleService = titleService;
+        this.tokenStorageService = tokenStorageService;
+        this.userService = userService;
+        this.fondetay = new Array();
+        this.category = '';
+        this.isLoggedIn = false;
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_7__["User"]();
+        this.kucukten_2017 = false;
+        this.buyukten_2017 = false;
+        this.buyukten_2018 = false;
+        this.kucukten_2018 = false;
+        this.kucukten_2019 = false;
+        this.buyukten_2019 = false;
+        this.kucukten_son1ay = false;
+        this.buyukten_son1ay = false;
+        this.kucukten_sapma = false;
+        this.buyukten_sapma = false;
+        this.kucukten_sharpe = false;
+        this.buyukten_sharpe = false;
+        this.DESC = 'desc';
+        this.ASC = 'asc';
+    }
+    KarsilastirComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        this.user = this.tokenStorageService.getUser();
+        this.titleService.setTitle("Fon Canavarı - Fonlar Alemi");
+        // this.sub = this.route.params.subscribe(params => {
+        //   let dat = this.fonDetayService.getFonDetayListByCategory(params['cat']).subscribe(data => {
+        //     this.fondetay = data.content
+        //   });
+        this.fonDetayService.getFonDetayList().subscribe(function (data) {
+            _this.fondetay = data;
+        });
+    };
+    KarsilastirComponent.prototype.isFav = function (fon_kod) {
+        if (this.isLoggedIn) {
+            var user = this.tokenStorageService.getUser();
+            for (var _i = 0, _a = user.favori_fonlar; _i < _a.length; _i++) {
+                var item = _a[_i];
+                if (item.kodu === fon_kod)
+                    return true;
+            }
+            return false;
+        }
+    };
+    KarsilastirComponent.prototype.favIslem = function (fon_kod) {
+        var _this = this;
+        var user = this.tokenStorageService.getUser();
+        if (this.isFav(fon_kod)) {
+            this.userService.favorilerdenCikar(fon_kod, user.username).subscribe(function (data) {
+                user.favori_fonlar = data;
+                _this.tokenStorageService.saveUser(user);
+            });
+        }
+        else {
+            this.userService.favorilereEkle(fon_kod, user.username).subscribe(function (data) {
+                user.favori_fonlar = data;
+                _this.tokenStorageService.saveUser(user);
+            });
+        }
+    };
+    KarsilastirComponent.prototype.getirByCategory = function (event) {
+        var _this = this;
+        this.sifirlaExcept('');
+        this.category = event.target.value;
+        if (this.category == '' || this.category == null) {
+            this.fonDetayService.getFonDetayList().subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+        else if (this.category == 'Favori Fonlarım') {
+            this.fonDetayService.getFavoriListByCategory(this.user.username).subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+        else {
+            this.fonDetayService.getFonDetayListByCategory(this.category).subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+    };
+    KarsilastirComponent.prototype.Search = function () {
+        var _this = this;
+        this.sifirlaExcept('');
+        if (this.searchtext == '' || this.searchtext == null) {
+            this.fonDetayService.getFonDetayList().subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+        else {
+            this.fonDetayService.getFonDetayListforSearch(this.searchtext).subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+    };
+    // ilk buyukten sıralanır sonra kucukten sonra normale doner
+    KarsilastirComponent.prototype.siralamaYap = function (column) {
+        var _this = this;
+        this.user = this.tokenStorageService.getUser();
+        if (this.user == null) {
+            this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_7__["User"]();
+            this.user.username = '';
+        }
+        if (column === '2017') {
+            this.sifirlaExcept('2017');
+            if (this.kucukten_2017 === true) {
+                this.regularFonlariGetir();
+                this.kucukten_2017 = false;
+                return;
+            }
+            if (this.buyukten_2017 === true) {
+                this.fonDetayService.getSortedList(column, this.ASC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_2017 = false;
+                this.kucukten_2017 = true;
+            }
+            if (this.kucukten_2017 === false && this.buyukten_2017 === false) {
+                this.fonDetayService.getSortedList(column, this.DESC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_2017 = true;
+            }
+        }
+        if (column === '2018') {
+            this.sifirlaExcept('2018');
+            if (this.kucukten_2018 === true) {
+                this.regularFonlariGetir();
+                this.kucukten_2018 = false;
+                return;
+            }
+            if (this.buyukten_2018 === true) {
+                this.fonDetayService.getSortedList(column, this.ASC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_2018 = false;
+                this.kucukten_2018 = true;
+            }
+            if (this.kucukten_2018 === false && this.buyukten_2018 === false) {
+                this.fonDetayService.getSortedList(column, this.DESC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_2018 = true;
+            }
+        }
+        if (column === '2019') {
+            this.sifirlaExcept('2019');
+            if (this.kucukten_2019 === true) {
+                this.regularFonlariGetir();
+                this.kucukten_2019 = false;
+                return;
+            }
+            if (this.buyukten_2019 === true) {
+                this.fonDetayService.getSortedList(column, this.ASC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_2019 = false;
+                this.kucukten_2019 = true;
+            }
+            if (this.kucukten_2019 === false && this.buyukten_2019 === false) {
+                this.fonDetayService.getSortedList(column, this.DESC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_2019 = true;
+            }
+        }
+        if (column === 'son1ay') {
+            this.sifirlaExcept('son1ay');
+            if (this.kucukten_son1ay === true) {
+                this.regularFonlariGetir();
+                this.kucukten_son1ay = false;
+                return;
+            }
+            if (this.buyukten_son1ay === true) {
+                this.fonDetayService.getSortedList(column, this.ASC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_son1ay = false;
+                this.kucukten_son1ay = true;
+            }
+            if (this.kucukten_son1ay === false && this.buyukten_son1ay === false) {
+                this.fonDetayService.getSortedList(column, this.DESC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_son1ay = true;
+            }
+        }
+        if (column === 'sapma') {
+            this.sifirlaExcept('sapma');
+            if (this.kucukten_sapma === true) {
+                this.regularFonlariGetir();
+                this.kucukten_sapma = false;
+                return;
+            }
+            if (this.buyukten_sapma === true) {
+                this.fonDetayService.getSortedList(column, this.ASC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_sapma = false;
+                this.kucukten_sapma = true;
+            }
+            if (this.kucukten_sapma === false && this.buyukten_sapma === false) {
+                this.fonDetayService.getSortedList(column, this.DESC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_sapma = true;
+            }
+        }
+        if (column === 'sharpe') {
+            this.sifirlaExcept('sharpe');
+            if (this.kucukten_sharpe === true) {
+                this.regularFonlariGetir();
+                this.kucukten_sharpe = false;
+                return;
+            }
+            if (this.buyukten_sharpe === true) {
+                this.fonDetayService.getSortedList(column, this.ASC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_sharpe = false;
+                this.kucukten_sharpe = true;
+            }
+            if (this.kucukten_sharpe === false && this.buyukten_sharpe === false) {
+                this.fonDetayService.getSortedList(column, this.DESC, this.category, this.user.username).subscribe(function (data) {
+                    _this.fondetay = data;
+                });
+                this.buyukten_sharpe = true;
+            }
+        }
+    };
+    KarsilastirComponent.prototype.regularFonlariGetir = function () {
+        var _this = this;
+        if (this.category === 'Favori Fonlarım') {
+            this.fonDetayService.getFavoriListByCategory(this.user.username).subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+        else {
+            this.fonDetayService.getFonDetayList().subscribe(function (data) {
+                _this.fondetay = data;
+            });
+        }
+    };
+    KarsilastirComponent.prototype.sifirlaExcept = function (item) {
+        if (item === '2017') {
+            this.buyukten_2018 = false;
+            this.kucukten_2018 = false;
+            this.kucukten_2019 = false;
+            this.buyukten_2019 = false;
+            this.kucukten_son1ay = false;
+            this.buyukten_son1ay = false;
+            this.kucukten_sapma = false;
+            this.buyukten_sapma = false;
+            this.kucukten_sharpe = false;
+            this.buyukten_sharpe = false;
+        }
+        else if (item === '2018') {
+            this.buyukten_2017 = false;
+            this.kucukten_2017 = false;
+            this.kucukten_2019 = false;
+            this.buyukten_2019 = false;
+            this.kucukten_son1ay = false;
+            this.buyukten_son1ay = false;
+            this.kucukten_sapma = false;
+            this.buyukten_sapma = false;
+            this.kucukten_sharpe = false;
+            this.buyukten_sharpe = false;
+        }
+        else if (item === '2019') {
+            this.buyukten_2018 = false;
+            this.kucukten_2018 = false;
+            this.kucukten_2017 = false;
+            this.buyukten_2017 = false;
+            this.kucukten_son1ay = false;
+            this.buyukten_son1ay = false;
+            this.kucukten_sapma = false;
+            this.buyukten_sapma = false;
+            this.kucukten_sharpe = false;
+            this.buyukten_sharpe = false;
+        }
+        else if (item === 'son1ay') {
+            this.buyukten_2018 = false;
+            this.kucukten_2018 = false;
+            this.kucukten_2017 = false;
+            this.buyukten_2017 = false;
+            this.kucukten_2019 = false;
+            this.buyukten_2019 = false;
+            this.kucukten_sapma = false;
+            this.buyukten_sapma = false;
+            this.kucukten_sharpe = false;
+            this.buyukten_sharpe = false;
+        }
+        else if (item === 'sapma') {
+            this.buyukten_2018 = false;
+            this.kucukten_2018 = false;
+            this.kucukten_2017 = false;
+            this.buyukten_2017 = false;
+            this.kucukten_2019 = false;
+            this.buyukten_2019 = false;
+            this.kucukten_son1ay = false;
+            this.buyukten_son1ay = false;
+            this.kucukten_sharpe = false;
+            this.buyukten_sharpe = false;
+        }
+        else if (item === 'sharpe') {
+            this.buyukten_2018 = false;
+            this.kucukten_2018 = false;
+            this.kucukten_2017 = false;
+            this.buyukten_2017 = false;
+            this.kucukten_2019 = false;
+            this.buyukten_2019 = false;
+            this.kucukten_son1ay = false;
+            this.buyukten_son1ay = false;
+            this.kucukten_sapma = false;
+            this.buyukten_sapma = false;
+        }
+        else {
+            this.buyukten_sharpe = false;
+            this.kucukten_sharpe = false;
+            this.buyukten_2018 = false;
+            this.kucukten_2018 = false;
+            this.kucukten_2017 = false;
+            this.buyukten_2017 = false;
+            this.kucukten_2019 = false;
+            this.buyukten_2019 = false;
+            this.kucukten_son1ay = false;
+            this.buyukten_son1ay = false;
+            this.kucukten_sapma = false;
+            this.buyukten_sapma = false;
+        }
+    };
+    KarsilastirComponent.ctorParameters = function () { return [
+        { type: src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"] },
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_5__["TokenStorageService"] },
+        { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_6__["userService"] }
+    ]; };
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+    ], KarsilastirComponent.prototype, "searchtext", void 0);
+    KarsilastirComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "app-karsilastir",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./karsilastir.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/karsilastir/karsilastir.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"], src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_5__["TokenStorageService"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_6__["userService"]])
+    ], KarsilastirComponent);
+    return KarsilastirComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/kayit/kayit.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/pages/kayit/kayit.component.ts ***!
+  \************************************************/
+/*! exports provided: KayitComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KayitComponent", function() { return KayitComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+
+
+
+
+
+
+
+var KayitComponent = /** @class */ (function () {
+    function KayitComponent(authService, router, titleService, userService) {
+        this.authService = authService;
+        this.router = router;
+        this.titleService = titleService;
+        this.userService = userService;
+        this.hata_mesaji = "0";
+        this.hata_goster = false;
+        this.kayit_basarili = false;
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_2__["User"]();
+    }
+    KayitComponent.prototype.ngOnInit = function () {
+        this.titleService.setTitle("Fon Canavarı - Kayıt Ol");
+    };
+    KayitComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.hata_goster = false;
+        if (this.user.pass == null || this.user.username == null || this.user.pass2 == null || this.user.adsoyad == null) {
+            this.hata_goster = true;
+            this.hata_mesaji = 'Lütfen alanları doldurun!';
+            return;
+        }
+        if (!this.user.username.includes('@')) {
+            this.hata_goster = true;
+            this.hata_mesaji = 'E-postanızı giriniz';
+            return;
+        }
+        if (this.user.pass2 != this.user.pass) {
+            this.hata_goster = true;
+            this.hata_mesaji = 'Şifreler eşleşmiyor!';
+            return;
+        }
+        if (this.user.pass.length < 6 || this.user.adsoyad.length < 3 || this.user.username.length < 5) {
+            this.hata_goster = true;
+            this.hata_mesaji = 'Yeterli uzunlukta giriniz!';
+            return;
+        }
+        this.authService.register(this.user).subscribe(function (data) {
+            _this.kayit_basarili = true;
+            _this.hata_mesaji = data.message;
+            setTimeout(function () {
+                _this.router.navigateByUrl('/giris');
+            }, 1000);
+        }, function (err) {
+            _this.hata_goster = true;
+            _this.hata_mesaji = err.error.message;
+        });
+    };
+    KayitComponent.prototype.checkTexts = function () {
+        var username = this.user.username;
+        var adsoyad = this.user.adsoyad;
+        var pass = this.user.pass;
+        var pass2 = this.user.pass2;
+        if (username == '' || adsoyad == '' || pass == '' || pass2 == '') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    KayitComponent.ctorParameters = function () { return [
+        { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["authService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["Title"] },
+        { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["userService"] }
+    ]; };
+    KayitComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "kayit-page",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./kayit.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/kayit/kayit.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["authService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["Title"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["userService"]])
+    ], KayitComponent);
+    return KayitComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/portfoy/portfoy.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/pages/portfoy/portfoy.component.ts ***!
+  \****************************************************/
+/*! exports provided: PortfoyComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortfoyComponent", function() { return PortfoyComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
+/* harmony import */ var src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/fondetay.service */ "./src/app/services/fondetay.service.ts");
+/* harmony import */ var src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/fon.service */ "./src/app/services/fon.service.ts");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+/* harmony import */ var src_app_services_portfoy_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/portfoy.service */ "./src/app/services/portfoy.service.ts");
+/* harmony import */ var src_app_models_portfon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/models/portfon */ "./src/app/models/portfon.ts");
+/* harmony import */ var src_app_models_portfoy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/models/portfoy */ "./src/app/models/portfoy.ts");
+
+
+
+
+
+
+
+
+
+var PortfoyComponent = /** @class */ (function () {
+    function PortfoyComponent(titleService, fonDetayService, fonService, tokenStorageService, portfoyService) {
+        this.titleService = titleService;
+        this.fonDetayService = fonDetayService;
+        this.fonService = fonService;
+        this.tokenStorageService = tokenStorageService;
+        this.portfoyService = portfoyService;
+        this.fonlar = new Array();
+        this.portfonlar = new Array();
+        this.portfoyler = new Array();
+        this.portfoy = new src_app_models_portfoy__WEBPACK_IMPORTED_MODULE_8__["Portfoy"]();
+        this.portfoy_ = new src_app_models_portfoy__WEBPACK_IMPORTED_MODULE_8__["Portfoy"]();
+        this.isSearched = false;
+        this.isLoggedIn = false;
+        this.clicked = true;
+        this.clicked1 = false;
+        this.clicked2 = false;
+        this.clicked_basildi = false;
+        this.clicked1_basildi = false;
+        this.clicked2_basildi = false;
+        this.PUBLISHED = false;
+        this.portfoyCreateGoster = true;
+        this.portfoyListGoster = true;
+        this.pieChartLabels = ['C', 'S', 'F', 'I', 'S', 'F', 'I', 'S', 'F', 'O'];
+        this.pieChartData = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+        this.pieChartType = 'pie';
+        this.chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: false,
+                outlabels: {
+                    display: true,
+                    text: '%l',
+                    color: 'white',
+                    stretch: 15,
+                    lineWidth: 2,
+                    backgroundColor: '',
+                    padding: 0,
+                    font: {
+                        resizable: true,
+                        minSize: 10,
+                        maxSize: 11
+                    }
+                }
+            },
+            tooltips: {
+                displayColors: false,
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        var dataset = data.datasets[tooltipItem.datasetIndex];
+                        var value = dataset.data[tooltipItem.index];
+                        var label = data.labels[tooltipItem.index];
+                        return label + ": %" + value.toString().substring(0, value.toString().indexOf(".") + 3);
                     }
                 }
             },
@@ -75883,7 +77181,8 @@ var DetailComponent = /** @class */ (function () {
                 line: {
                     fill: false,
                     borderColor: '#ec250d',
-                    borderWidth: 2
+                    borderWidth: 2,
+                    tension: 0
                 }
             },
             tooltips: {
@@ -75899,395 +77198,342 @@ var DetailComponent = /** @class */ (function () {
             },
         };
         this.lineChartColor = [{ backgroundColor: '#ec250d' }];
+        this.titleService.setTitle("Fon Canavarı - Çok yakında");
     }
-    DetailComponent.prototype.ngOnInit = function () {
+    PortfoyComponent.prototype.ngOnInit = function () {
         var _this = this;
-        chart_js__WEBPACK_IMPORTED_MODULE_9__["Chart"].plugins.register(chartjs_plugin_piechart_outlabels__WEBPACK_IMPORTED_MODULE_8___default.a);
-        this.titleService.setTitle("Fon Canavarı - Fon Detayı");
-        this.fondetay = new src_app_models_fondetay__WEBPACK_IMPORTED_MODULE_4__["FonDetay"](); // bu zorunlu bro yukarıda tanımladıklarını new lemeden kullanaman
-        this.fon = new src_app_models_fon__WEBPACK_IMPORTED_MODULE_3__["Fon"]();
-        this.sub = this.route.params.subscribe(function (params) {
-            var dat = _this.fonService.getFon(params['kod']).subscribe(function (data) {
-                _this.fon = data;
-            });
-            var dat2 = _this.fonDetayService.getFonDetay(params['kod']).subscribe(function (data) {
-                _this.fondetay = data;
-            });
-            var dat3 = _this.fonDetayService.getPieChartData(params['kod']).subscribe(function (data) {
-                _this.data_pie = data;
-                _this.pieChartData = [];
-                _this.pieChartLabels = [];
-                for (var _i = 0, _a = _this.data_pie; _i < _a.length; _i++) {
-                    var item = _a[_i];
-                    _this.pieChartLabels.push(item.name);
-                    _this.pieChartData.push(item.y);
-                }
-            });
-            var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'month').subscribe(function (data) {
-                _this.data_line = data;
-                _this.lineChartData = [];
-                _this.lineChartLabels = [];
-                for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
-                    var item = _a[_i];
-                    _this.lineChartLabels.push(item.date);
-                    _this.lineChartData.push(item.value);
-                }
-            });
-        });
-    }; //oninit
-    DetailComponent.prototype.herre = function () {
-        var _this = this;
-        if (this.clicked && !this.clicked_basildi) {
-            this.clicked_basildi = true;
-            this.clicked1_basildi = false;
-            this.sub = this.route.params.subscribe(function (params) {
-                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'month').subscribe(function (data) {
-                    _this.data_line = data;
-                    _this.lineChartData = [];
-                    _this.lineChartLabels = [];
-                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
-                        var item = _a[_i];
-                        _this.lineChartLabels.push(item.date);
-                        _this.lineChartData.push(item.value);
-                    }
-                });
-            });
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        if (this.isLoggedIn) {
+            var user = this.tokenStorageService.getUser();
+            this.portfoyler = user.portfoyler;
+            if (user.portfoyler.length > 0) {
+                this.portfoyCreateGoster = false;
+                this.portfoy_ = user.portfoyler[0];
+                this.clicked = true;
+                this.clicked_basildi = false;
+                this.changePieChartContent(this.portfoy_.adi);
+            }
+            else {
+                this.portfoyListGoster = false;
+            }
         }
-        if (this.clicked1 && !this.clicked1_basildi) {
-            this.clicked1_basildi = true;
-            this.clicked_basildi = false;
-            this.sub = this.route.params.subscribe(function (params) {
-                var dat4 = _this.fonDetayService.getLineChartData(params['kod'], 'year').subscribe(function (data) {
-                    _this.data_line = data;
-                    _this.lineChartData = [];
-                    _this.lineChartLabels = [];
-                    for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
-                        var item = _a[_i];
-                        _this.lineChartLabels.push(item.date);
-                        _this.lineChartData.push(item.value);
-                    }
-                });
-            });
-        }
-    };
-    DetailComponent.ctorParameters = function () { return [
-        { type: src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_5__["fonService"] },
-        { type: src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_6__["fonDetayService"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["Title"] }
-    ]; };
-    DetailComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: "detail-selector",
-            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./detail.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/detail/detail.component.html")).default
-        }),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_5__["fonService"], src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_6__["fonDetayService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__["Title"]])
-    ], DetailComponent);
-    return DetailComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/pages/karsilastir/karsilastir.component.ts":
-/*!************************************************************!*\
-  !*** ./src/app/pages/karsilastir/karsilastir.component.ts ***!
-  \************************************************************/
-/*! exports provided: KarsilastirComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KarsilastirComponent", function() { return KarsilastirComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm5/router.js");
-/* harmony import */ var src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/fondetay.service */ "./src/app/services/fondetay.service.ts");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
-
-
-
-
-
-
-var KarsilastirComponent = /** @class */ (function () {
-    function KarsilastirComponent(fonDetayService, router, route, titleService) {
-        this.fonDetayService = fonDetayService;
-        this.router = router;
-        this.route = route;
-        this.titleService = titleService;
-        this.fondetay = new Array();
-    }
-    // TODO eklersin bi routing dashboarddan buraya
-    KarsilastirComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.titleService.setTitle("Fon Canavarı - Fonlar Alemi");
-        // this.sub = this.route.params.subscribe(params => {
-        //   let dat = this.fonDetayService.getFonDetayListByCategory(params['cat']).subscribe(data => {
-        //     this.fondetay = data.content
-        //   });
-        var data = this.fonDetayService.getFonDetayList().subscribe(function (data) {
-            _this.fondetay = data.content;
+        var dat4 = this.fonDetayService.getLineChartData('AES', 'month').subscribe(function (data) {
+            _this.data_line = data;
+            _this.lineChartData = [];
+            _this.lineChartLabels = [];
+            for (var _i = 0, _a = _this.data_line; _i < _a.length; _i++) {
+                var item = _a[_i];
+                _this.lineChartLabels.push(item.date);
+                _this.lineChartData.push(item.value);
+            }
         });
     };
-    KarsilastirComponent.prototype.getirByCategory = function (event) {
-        var _this = this;
-        this.category = event.target.value;
-        if (this.category == '' || this.category == null) {
-            var data = this.fonDetayService.getFonDetayList().subscribe(function (data) {
-                _this.fondetay = data.content;
-            });
-        }
-        else {
-            var data = this.fonDetayService.getFonDetayListByCategory(this.category).subscribe(function (data) {
-                _this.fondetay = data;
-            });
-        }
-    };
-    KarsilastirComponent.prototype.Search = function () {
+    PortfoyComponent.prototype.Search = function () {
         var _this = this;
         if (this.searchtext == '' || this.searchtext == null) {
-            var data = this.fonDetayService.getFonDetayList().subscribe(function (data) {
-                _this.fondetay = data.content;
-            });
+            this.isSearched = false;
         }
         else {
-            var data = this.fonDetayService.getFonDetayListforSearch(this.searchtext).subscribe(function (data) {
-                _this.fondetay = data;
+            var data = this.fonService.getFonListforSearch(this.searchtext).subscribe(function (data) {
+                _this.fonlar = data;
+                _this.isSearched = true;
             });
         }
     };
-    KarsilastirComponent.ctorParameters = function () { return [
+    PortfoyComponent.prototype.PortfoyEkleGoster = function () {
+        if (this.portfoyCreateGoster === false) {
+            this.portfoyCreateGoster = true;
+        }
+        else {
+            this.portfonlar = [];
+            this.portfoy = new src_app_models_portfoy__WEBPACK_IMPORTED_MODULE_8__["Portfoy"]();
+            this.portfoyCreateGoster = false;
+        }
+    };
+    PortfoyComponent.prototype.favorilerdenAktar = function () {
+        var user = this.tokenStorageService.getUser();
+        var portfon = new src_app_models_portfon__WEBPACK_IMPORTED_MODULE_7__["Portfon"]();
+        var _loop_1 = function (item) {
+            var portfon_1 = new src_app_models_portfon__WEBPACK_IMPORTED_MODULE_7__["Portfon"]();
+            portfon_1.fon_ad = item.adi;
+            portfon_1.fon_kod = item.kodu;
+            if (!this_1.portfonlar.some(function (item) { return item.fon_kod === portfon_1.fon_kod; }))
+                this_1.portfonlar.push(portfon_1);
+        };
+        var this_1 = this;
+        for (var _i = 0, _a = user.favori_fonlar; _i < _a.length; _i++) {
+            var item = _a[_i];
+            _loop_1(item);
+        }
+    };
+    PortfoyComponent.prototype.portfoyeEkle = function (fon_kod, fon_ad) {
+        if (this.portfonlar.some(function (item) { return item.fon_kod === fon_kod; })) {
+            alert('var zaten kanka');
+            return;
+        }
+        var portfon = new src_app_models_portfon__WEBPACK_IMPORTED_MODULE_7__["Portfon"]();
+        portfon.fon_ad = fon_ad;
+        portfon.fon_kod = fon_kod;
+        this.portfonlar.push(portfon);
+    };
+    PortfoyComponent.prototype.portfoydenCikar = function (fon) {
+        this.portfonlar.splice(this.portfonlar.indexOf(fon), 1);
+    };
+    PortfoyComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.portfoy.fonlar = this.portfonlar;
+        var user = this.tokenStorageService.getUser();
+        var data1 = this.portfoyService.portfoyOlustur(this.portfoy, user.username).subscribe(function (data) {
+            user.portfoyler = data;
+            _this.tokenStorageService.saveUser(user);
+            window.location.reload();
+        }, function (err) {
+            console.log(err.error.message);
+        });
+    };
+    PortfoyComponent.prototype.portfoyGecisYap = function (portfoy_adi) {
+        var user = this.tokenStorageService.getUser();
+        for (var _i = 0, _a = user.portfoyler; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.adi == portfoy_adi) {
+                this.portfoy_ = item;
+                this.clicked1_basildi = true;
+                this.clicked1 = false;
+                this.clicked = true;
+                this.clicked_basildi = false;
+                this.changePieChartContent(item.adi);
+            }
+        }
+    };
+    PortfoyComponent.prototype.portfoyDegeriHesapla = function () {
+        for (var _i = 0, _a = this.portfonlar; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.adet != undefined || item.alis_maliyeti != undefined)
+                this.portfoy.portfoy_degeri += item.adet * item.alis_maliyeti;
+        }
+    };
+    PortfoyComponent.prototype.isPos = function (sayi) {
+        if (sayi < 0)
+            return false;
+        else
+            return true;
+    };
+    PortfoyComponent.prototype.Portfoyislem = function (event, pname) {
+        var _this = this;
+        var islem = event.target.value;
+        var user = this.tokenStorageService.getUser();
+        if (islem != '' || islem != null) {
+            if (islem == 'Edit') {
+                console.log('edi');
+            }
+            if (islem == 'Delete') {
+                var data3 = this.portfoyService.deletePortfoy(user.username, pname).subscribe(function (data) {
+                    user.portfoyler = data;
+                    _this.tokenStorageService.saveUser(user);
+                    if (_this.portfoyler.length > 0)
+                        _this.portfoy_ = _this.portfoyler[0];
+                    window.location.reload();
+                });
+            }
+        }
+    };
+    PortfoyComponent.prototype.changePieChartContent = function (pname) {
+        var _this = this;
+        if (this.isLoggedIn) {
+            var user = this.tokenStorageService.getUser();
+            if (this.clicked && !this.clicked_basildi) {
+                this.clicked_basildi = true;
+                this.clicked1_basildi = false;
+                this.clicked2_basildi = false;
+                var dat4 = this.portfoyService.getVarlikDagilimiForPie(user.username, pname).subscribe(function (data) {
+                    _this.data_pie = data;
+                    _this.pieChartLabels = [];
+                    _this.pieChartData = [];
+                    for (var _i = 0, _a = _this.data_pie; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.pieChartLabels.push(item.name);
+                        _this.pieChartData.push(item.y);
+                    }
+                });
+            }
+            if (this.clicked1 && !this.clicked1_basildi) {
+                this.clicked1_basildi = true;
+                this.clicked_basildi = false;
+                this.clicked2_basildi = false;
+                var dat4 = this.portfoyService.getPortfoyDagilimiForPie(user.username, pname).subscribe(function (data) {
+                    _this.data_pie = data;
+                    _this.pieChartLabels = [];
+                    _this.pieChartData = [];
+                    for (var _i = 0, _a = _this.data_pie; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.pieChartLabels.push(item.name);
+                        _this.pieChartData.push(item.y);
+                    }
+                });
+            }
+            if (this.clicked2 && !this.clicked2_basildi) {
+                this.clicked2_basildi = true;
+                this.clicked_basildi = false;
+                this.clicked1_basildi = false;
+                var dat4 = this.portfoyService.getKategoriDagilimiForPie(user.username, pname).subscribe(function (data) {
+                    _this.data_pie = data;
+                    _this.pieChartLabels = [];
+                    _this.pieChartData = [];
+                    for (var _i = 0, _a = _this.data_pie; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        _this.pieChartLabels.push(item.name);
+                        _this.pieChartData.push(item.y);
+                    }
+                });
+            }
+        }
+    }; // changePieChartContent
+    PortfoyComponent.ctorParameters = function () { return [
+        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["Title"] },
         { type: src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"] }
+        { type: src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_4__["fonService"] },
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_5__["TokenStorageService"] },
+        { type: src_app_services_portfoy_service__WEBPACK_IMPORTED_MODULE_6__["portfoyService"] }
     ]; };
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
-    ], KarsilastirComponent.prototype, "searchtext", void 0);
-    KarsilastirComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: "app-karsilastir",
-            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./karsilastir.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/karsilastir/karsilastir.component.html")).default
-        }),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["Title"]])
-    ], KarsilastirComponent);
-    return KarsilastirComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/pages/portfoy/portfoy.component.ts":
-/*!****************************************************!*\
-  !*** ./src/app/pages/portfoy/portfoy.component.ts ***!
-  \****************************************************/
-/*! exports provided: PortfoyComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortfoyComponent", function() { return PortfoyComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
-/* harmony import */ var src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/fondetay.service */ "./src/app/services/fondetay.service.ts");
-
-
-
-
-var PortfoyComponent = /** @class */ (function () {
-    function PortfoyComponent(titleService, fondetayservice) {
-        this.titleService = titleService;
-        this.fondetayservice = fondetayservice;
-        this.clicked = true;
-        this.clicked1 = false;
-        this.clicked2 = false;
-        this.data_pie = [{ name: "HErre", y: 98 }, { name: "muco", y: 1 }];
-        this.chartOptions = {};
-        this.titleService.setTitle("Fon Canavarı - Çok yakında");
-    }
-    PortfoyComponent.prototype.ngOnInit = function () {
-    };
-    PortfoyComponent.prototype.update = function () {
-        this.data_pie = [{ name: "HErre", y: 70 }, { name: "muco", y: 20 }, { name: "dashda", y: 10 }];
-    };
-    // ngOnInit() {
-    //   var gradientChartOptionsConfigurationWithTooltipRed: any = {
-    //     maintainAspectRatio: false,
-    //     legend: {
-    //       display: false
-    //     },
-    //     tooltips: {
-    //       backgroundColor: '#f5f5f5',
-    //       titleFontColor: '#333',
-    //       bodyFontColor: '#666',
-    //       bodySpacing: 4,
-    //       xPadding: 12,
-    //       mode: "nearest",
-    //       intersect: 0,
-    //       position: "nearest"
-    //     },
-    //     responsive: true,
-    //     scales: {
-    //       yAxes: [{
-    //         barPercentage: 1.6,
-    //         gridLines: {
-    //           drawBorder: false,
-    //           color: 'rgba(29,140,248,0.0)',
-    //           zeroLineColor: "transparent",
-    //         },
-    //         ticks: {
-    //           suggestedMin: 60,
-    //           suggestedMax: 125,
-    //           padding: 20,
-    //           fontColor: "#9a9a9a"
-    //         }
-    //       }],
-    //       xAxes: [{
-    //         barPercentage: 1.6,
-    //         gridLines: {
-    //           drawBorder: false,
-    //           color: 'rgba(233,32,16,0.1)',
-    //           zeroLineColor: "transparent",
-    //         },
-    //         ticks: {
-    //           padding: 20,
-    //           fontColor: "#9a9a9a"
-    //         }
-    //       }]
-    //     }
-    //   };
-    //   var gradientBarChartConfiguration: any = {
-    //     maintainAspectRatio: false,
-    //     legend: {
-    //       display: false
-    //     },
-    //     tooltips: {
-    //       backgroundColor: '#f5f5f5',
-    //       titleFontColor: '#333',
-    //       bodyFontColor: '#666',
-    //       bodySpacing: 4,
-    //       xPadding: 12,
-    //       mode: "nearest",
-    //       intersect: 0,
-    //       position: "nearest"
-    //     },
-    //     responsive: true,
-    //     scales: {
-    //       yAxes: [{
-    //         gridLines: {
-    //           drawBorder: false,
-    //           color: 'rgba(29,140,248,0.1)',
-    //           zeroLineColor: "transparent",
-    //         },
-    //         ticks: {
-    //           suggestedMin: 60,
-    //           suggestedMax: 120,
-    //           padding: 20,
-    //           fontColor: "#9e9e9e"
-    //         }
-    //       }],
-    //       xAxes: [{
-    //         gridLines: {
-    //           drawBorder: false,
-    //           color: 'rgba(29,140,248,0.1)',
-    //           zeroLineColor: "transparent",
-    //         },
-    //         ticks: {
-    //           padding: 20,
-    //           fontColor: "#9e9e9e"
-    //         }
-    //       }]
-    //     }
-    //   };
-    //   var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC', 'HERRE'];
-    //   this.datasets = [
-    //     [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 140, 350],
-    //     [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120],
-    //     [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130]
-    //   ];
-    //   this.data = this.datasets[0];
-    //   this.canvas = document.getElementById("chartBig1");
-    //   this.ctx = this.canvas.getContext("2d");
-    //   var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
-    //   gradientStroke.addColorStop(1, 'rgba(233,32,16,0.2)');
-    //   gradientStroke.addColorStop(0.4, 'rgba(233,32,16,0.0)');
-    //   gradientStroke.addColorStop(0, 'rgba(233,32,16,0)'); //red colors
-    //   var config = {
-    //     type: 'line',
-    //     data: {
-    //       labels: chart_labels,
-    //       datasets: [{
-    //         label: "My First dataset",
-    //         fill: true,
-    //         backgroundColor: gradientStroke,
-    //         borderColor: '#ec250d',
-    //         borderWidth: 2,
-    //         borderDash: [],
-    //         borderDashOffset: 0.0,
-    //         pointBackgroundColor: '#ec250d',
-    //         pointBorderColor: 'rgba(255,255,255,0)',
-    //         pointHoverBackgroundColor: '#ec250d',
-    //         pointBorderWidth: 20,
-    //         pointHoverRadius: 4,
-    //         pointHoverBorderWidth: 15,
-    //         pointRadius: 4,
-    //         data: this.data,
-    //       }]
-    //     },
-    //     options: gradientBarChartConfiguration
-    //   };
-    //   this.myChartData = new Chart(this.ctx, config);
-    //   this.canvas = document.getElementById("CountryChart");
-    //   this.ctx  = this.canvas.getContext("2d");
-    //   var gradientStroke = this.ctx.createLinearGradient(0, 230, 0, 50);
-    //   gradientStroke.addColorStop(1, 'rgba(233,32,16,0.2)');
-    //   gradientStroke.addColorStop(0.4, 'rgba(233,32,16,0.0)');
-    //   gradientStroke.addColorStop(0, 'rgba(233,32,16,0)'); //red colors
-    //   var myChart = new Chart(this.ctx, {
-    //     type: 'bar',
-    //     responsive: true,
-    //     legend: {
-    //       display: false
-    //     },
-    //     data: {
-    //       labels: ['AES', 'TKF'],
-    //       datasets: [{
-    //         label: "%",
-    //         fill: true,
-    //         backgroundColor: gradientStroke,
-    //         hoverBackgroundColor: gradientStroke,
-    //         borderColor: '#ec250d',
-    //         borderWidth: 2,
-    //         borderDash: [],
-    //         borderDashOffset: 0.0,
-    //         data: [45,55],
-    //       }]
-    //     },
-    //     options: gradientBarChartConfiguration
-    //   });
-    // }
-    PortfoyComponent.prototype.updateOptions = function () {
-        this.myChartData.data.datasets[0].data = this.data;
-        this.myChartData.update();
-    };
-    PortfoyComponent.ctorParameters = function () { return [
-        { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["Title"] },
-        { type: src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"] }
-    ]; };
+    ], PortfoyComponent.prototype, "searchtext", void 0);
     PortfoyComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "app-portfoy",
             template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./portfoy.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/portfoy/portfoy.component.html")).default
         }),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["Title"], src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"]])
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["Title"], src_app_services_fondetay_service__WEBPACK_IMPORTED_MODULE_3__["fonDetayService"], src_app_services_fon_service__WEBPACK_IMPORTED_MODULE_4__["fonService"], src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_5__["TokenStorageService"], src_app_services_portfoy_service__WEBPACK_IMPORTED_MODULE_6__["portfoyService"]])
     ], PortfoyComponent);
     return PortfoyComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/profile/profile.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/pages/profile/profile.component.ts ***!
+  \****************************************************/
+/*! exports provided: ProfileComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/token-storage.service */ "./src/app/services/token-storage.service.ts");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+
+
+
+
+
+var ProfileComponent = /** @class */ (function () {
+    function ProfileComponent(tokenStorageService, userService) {
+        this.tokenStorageService = tokenStorageService;
+        this.userService = userService;
+        this.isLoggedIn = false;
+        this.sifredegisform = false;
+        this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_3__["User"]();
+        this.hata_goster = false;
+        this.kayit_basarili = false;
+        this.hata_mesaji = '';
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+        this.isLoggedIn = !!this.tokenStorageService.getToken();
+        if (this.isLoggedIn) {
+            this.user = this.tokenStorageService.getUser();
+        }
+    };
+    ProfileComponent.prototype.formGoster = function () {
+        this.sifredegisform = true;
+    };
+    ProfileComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.hata_goster = false;
+        if (this.isLoggedIn) {
+            this.userService.sifredegistir(this.user).subscribe(function (data) {
+                _this.kayit_basarili = true;
+                _this.hata_mesaji = data.message;
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1000);
+            }, function (err) {
+                _this.hata_goster = true;
+                _this.hata_mesaji = err.error.message;
+            });
+        }
+    };
+    ProfileComponent.ctorParameters = function () { return [
+        { type: src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"] },
+        { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["userService"] }
+    ]; };
+    ProfileComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "profile-page",
+            template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./profile.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/profile/profile.component.html")).default
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [src_app_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["userService"]])
+    ], ProfileComponent);
+    return ProfileComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/auth.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/auth.service.ts ***!
+  \******************************************/
+/*! exports provided: authService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authService", function() { return authService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/http.js");
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' })
+};
+var authService = /** @class */ (function () {
+    function authService(http) {
+        this.http = http;
+        this.baseUrl = 'http://foncanav-test.eu-central-1.elasticbeanstalk.com/user';
+    }
+    authService.prototype.login = function (user) {
+        return this.http.post(this.baseUrl + '/signin', {
+            username: user.username,
+            password: user.pass
+        }, httpOptions);
+    };
+    authService.prototype.register = function (user) {
+        return this.http.post(this.baseUrl + '/signup', {
+            username: user.username,
+            adsoyad: user.adsoyad,
+            password: user.pass
+        }, httpOptions);
+    };
+    authService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    authService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], authService);
+    return authService;
 }());
 
 
@@ -76313,16 +77559,16 @@ __webpack_require__.r(__webpack_exports__);
 var fonService = /** @class */ (function () {
     function fonService(http) {
         this.http = http;
-        this.baseUrl = 'http://foncanavari.com/fon';
+        this.baseUrl = 'http://foncanav-test.eu-central-1.elasticbeanstalk.com/fon';
     }
     fonService.prototype.getFonList = function (page) {
         return this.http.get(this.baseUrl + '?p=' + page);
     };
     fonService.prototype.getFonListforSearch = function (search) {
-        return this.http.get('http://foncanavari.com/detay?s=' + search);
+        return this.http.get('http://foncanav-test.eu-central-1.elasticbeanstalk.com/detay?s=' + search);
     };
     fonService.prototype.getCategoryArtisList = function () {
-        return this.http.get('http://foncanavari.com/cat');
+        return this.http.get('http://foncanav-test.eu-central-1.elasticbeanstalk.com/cat');
     };
     fonService.prototype.getFonListByCategory = function (category) {
         return this.http.get(this.baseUrl + '/category?c=' + category);
@@ -76330,8 +77576,14 @@ var fonService = /** @class */ (function () {
     fonService.prototype.getFon = function (kod) {
         return this.http.get(this.baseUrl + '/' + kod);
     };
-    fonService.prototype.createFon = function (Fon) {
-        return this.http.post(this.baseUrl, Fon);
+    fonService.prototype.getEnIyilerFonList = function (tip) {
+        return this.http.get(this.baseUrl + '/eniyi?tip=' + tip);
+    };
+    fonService.prototype.getIp = function () {
+        return this.http.get('https://jsonip.com/');
+    };
+    fonService.prototype.updateIp = function (ip) {
+        return this.http.get(this.baseUrl + '/yenile?sip=' + ip);
     };
     fonService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
@@ -76368,7 +77620,7 @@ __webpack_require__.r(__webpack_exports__);
 var fonDetayService = /** @class */ (function () {
     function fonDetayService(http) {
         this.http = http;
-        this.baseUrl = 'http://foncanavari.com/detay';
+        this.baseUrl = 'http://foncanav-test.eu-central-1.elasticbeanstalk.com/detay';
     }
     fonDetayService.prototype.getFonDetay = function (kod) {
         return this.http.get(this.baseUrl + '/' + kod);
@@ -76382,11 +77634,17 @@ var fonDetayService = /** @class */ (function () {
     fonDetayService.prototype.getFonDetayListByCategory = function (category) {
         return this.http.get(this.baseUrl + '/category?c=' + category);
     };
+    fonDetayService.prototype.getFavoriListByCategory = function (username) {
+        return this.http.get(this.baseUrl + '/fav?u=' + username);
+    };
     fonDetayService.prototype.getPieChartData = function (kod) {
         return this.http.get(this.baseUrl + '/pie?pie=' + kod);
     };
     fonDetayService.prototype.getLineChartData = function (kod, date) {
         return this.http.get(this.baseUrl + '/line?kod=' + kod + '&date=' + date);
+    };
+    fonDetayService.prototype.getSortedList = function (column, orderby, category, username) {
+        return this.http.get(this.baseUrl + '/sort?col=' + column + '&order=' + orderby + '&cat=' + category + '&us=' + username);
     };
     fonDetayService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
@@ -76398,6 +77656,64 @@ var fonDetayService = /** @class */ (function () {
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], fonDetayService);
     return fonDetayService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/portfoy.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/services/portfoy.service.ts ***!
+  \*********************************************/
+/*! exports provided: portfoyService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "portfoyService", function() { return portfoyService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/http.js");
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' })
+};
+var portfoyService = /** @class */ (function () {
+    function portfoyService(http) {
+        this.http = http;
+        this.baseUrl = 'http://foncanav-test.eu-central-1.elasticbeanstalk.com/portfoy';
+    }
+    portfoyService.prototype.portfoyOlustur = function (portfoy, username) {
+        return this.http.post(this.baseUrl + '?u=' + username, portfoy);
+    };
+    portfoyService.prototype.portfoyGuncelle = function (portfoy, username) {
+        return this.http.put(this.baseUrl + '?u=' + username, portfoy);
+    };
+    portfoyService.prototype.getVarlikDagilimiForPie = function (un, pname) {
+        return this.http.get(this.baseUrl + '/varlik?pie=' + un + '&pname=' + pname);
+    };
+    portfoyService.prototype.getPortfoyDagilimiForPie = function (un, pname) {
+        return this.http.get(this.baseUrl + '/portfoy?pie=' + un + '&pname=' + pname);
+    };
+    portfoyService.prototype.getKategoriDagilimiForPie = function (un, pname) {
+        return this.http.get(this.baseUrl + '/kategori?pie=' + un + '&pname=' + pname);
+    };
+    portfoyService.prototype.deletePortfoy = function (un, pname) {
+        return this.http.delete(this.baseUrl + '?un=' + un + '&pname=' + pname);
+    };
+    portfoyService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    portfoyService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], portfoyService);
+    return portfoyService;
 }());
 
 

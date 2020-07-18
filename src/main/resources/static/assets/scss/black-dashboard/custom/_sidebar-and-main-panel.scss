@@ -19,7 +19,7 @@
 .sidebar,
 .off-canvas-sidebar{
     @include linear-gradient($primary-states, $primary);
-    height: calc(100vh - 300px);
+    height: calc(100vh - 270px);
     width: 230px;
     position: fixed;
     top: 0;
