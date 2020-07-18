@@ -48,6 +48,7 @@ public class PortfoyController {
             portfoy_degeri += (Double.valueOf(fon.getFiyat()) * p.getAdet());
         }
         portfoy.setPortfoy_degeri(portfoy_degeri);
+
         for (PortFon p : portfonlar) {
             fon = fonRepository.findByKodu(p.getFon_kod());
             p.setGunluk_getiri_yuzde(Double.valueOf(fon.getGunluk_artis()));
@@ -228,31 +229,31 @@ public class PortfoyController {
             yab_hisse_senedi += (Double.valueOf(fondetay.getYab_hisse_senedi()) * (p.getAgirlik())) / 100;
             yab_menkul_kiymet += (Double.valueOf(fondetay.getYab_menkul_kiymet()) * (p.getAgirlik())) / 100;
         }
-        if (yab_hisse_senedi != 0D) pie_list.add(new PieChart("Yabancı Hisse Senedi", yab_hisse_senedi));
-        if (hisse_senedi != 0D) pie_list.add(new PieChart("Hisse Senedi", hisse_senedi));
-        if (devlet_tahvili != 0D) pie_list.add(new PieChart("Devlet Tahvili", devlet_tahvili));
-        if (banka_bonosu != 0D) pie_list.add(new PieChart("Banka Bonosu", banka_bonosu));
-        if (eurobond != 0D) pie_list.add(new PieChart("Eurobond", eurobond));
-        if (kiymetli_maden != 0D) pie_list.add(new PieChart("Kıymetli Maden", kiymetli_maden));
-        if (diger != 0D) pie_list.add(new PieChart("Diğer", diger));
-        if (doviz_odemeli_bono != 0D) pie_list.add(new PieChart("Döviz Ödemeli Bono", doviz_odemeli_bono));
-        if (doviz_odemeli_tahvil != 0D) pie_list.add(new PieChart("Döviz Ödemeli Tahvil", doviz_odemeli_tahvil));
-        if (finansman_bonosu != 0D) pie_list.add(new PieChart("Finansman Bonosu", finansman_bonosu));
-        if (fon_katilma_belgesi != 0D) pie_list.add(new PieChart("Fon Katılma Belgesi", fon_katilma_belgesi));
-        if (gayrimenkul_sertifikasi != 0D) pie_list.add(new PieChart("Gayrimenkul Sertifikası", gayrimenkul_sertifikasi));
-        if (hazine_bonosu != 0D) pie_list.add(new PieChart("Hazine Bonosu", hazine_bonosu));
-        if (kamu_dis_borclanma_araci != 0D) pie_list.add(new PieChart("Kamu Dış Borçlanma Aracı", kamu_dis_borclanma_araci));
-        if (kamu_kira_sertifikası != 0D) pie_list.add(new PieChart("Kamu Kira Sertifikası", kamu_kira_sertifikası));
-        if (katilim_hesabi != 0d) pie_list.add(new PieChart("Katılım Hesabı", katilim_hesabi));
-        if (ozel_kira_sertifikasi != 0D) pie_list.add(new PieChart("Özel Sektör Kira Sertifikası", ozel_kira_sertifikasi));
-        if (ozel_sektor_tahvil != 0D) pie_list.add(new PieChart("Özel Sektör Tahvili", ozel_sektor_tahvil));
-        if (ters_repo != 0D) pie_list.add(new PieChart("Ters Repo", ters_repo));
-        if (tpp != 0D) pie_list.add(new PieChart("TPP", tpp));
-        if (turev_araci != 0D) pie_list.add(new PieChart("Türev Aracı", turev_araci));
-        if (varlik_menkul_kiymet != 0D) pie_list.add(new PieChart("Varlığa Dayalı Menkul Kıymet", varlik_menkul_kiymet));
-        if (vadeli_mevduat != 0D) pie_list.add(new PieChart("Vadeli Mevduat", vadeli_mevduat));
-        if (yab_borclanma_araci != 0D) pie_list.add(new PieChart("Yabancı Borçlanma Aracı", yab_borclanma_araci));
-        if (yab_menkul_kiymet != 0D) pie_list.add(new PieChart("Yabanci Menkul Kıymet", yab_menkul_kiymet));
+        if (yab_hisse_senedi != 0D && yab_hisse_senedi > 0.099) pie_list.add(new PieChart("Yabancı Hisse Senedi", yab_hisse_senedi));
+        if (hisse_senedi != 0D && hisse_senedi > 0.099) pie_list.add(new PieChart("Hisse Senedi", hisse_senedi));
+        if (devlet_tahvili != 0D && devlet_tahvili > 0.099) pie_list.add(new PieChart("Devlet Tahvili", devlet_tahvili));
+        if (banka_bonosu != 0D && banka_bonosu > 0.099) pie_list.add(new PieChart("Banka Bonosu", banka_bonosu));
+        if (eurobond != 0D && eurobond > 0.099) pie_list.add(new PieChart("Eurobond", eurobond));
+        if (kiymetli_maden != 0D && kiymetli_maden > 0.099) pie_list.add(new PieChart("Kıymetli Maden", kiymetli_maden));
+        if (diger != 0D && diger > 0.099) pie_list.add(new PieChart("Diğer", diger));
+        if (doviz_odemeli_bono != 0D && doviz_odemeli_bono > 0.099) pie_list.add(new PieChart("Döviz Ödemeli Bono", doviz_odemeli_bono));
+        if (doviz_odemeli_tahvil != 0D && doviz_odemeli_tahvil > 0.099) pie_list.add(new PieChart("Döviz Ödemeli Tahvil", doviz_odemeli_tahvil));
+        if (finansman_bonosu != 0D && finansman_bonosu > 0.099) pie_list.add(new PieChart("Finansman Bonosu", finansman_bonosu));
+        if (fon_katilma_belgesi != 0D && fon_katilma_belgesi > 0.099) pie_list.add(new PieChart("Fon Katılma Belgesi", fon_katilma_belgesi));
+        if (gayrimenkul_sertifikasi != 0D && gayrimenkul_sertifikasi > 0.099) pie_list.add(new PieChart("Gayrimenkul Sertifikası", gayrimenkul_sertifikasi));
+        if (hazine_bonosu != 0D && hazine_bonosu > 0.099) pie_list.add(new PieChart("Hazine Bonosu", hazine_bonosu));
+        if (kamu_dis_borclanma_araci != 0D && kamu_dis_borclanma_araci > 0.099) pie_list.add(new PieChart("Kamu Dış Borçlanma Aracı", kamu_dis_borclanma_araci));
+        if (varlik_menkul_kiymet != 0D && varlik_menkul_kiymet > 0.099) pie_list.add(new PieChart("Varlığa Dayalı Menkul Kıymet", varlik_menkul_kiymet));
+        if (kamu_kira_sertifikası != 0D && kamu_kira_sertifikası > 0.099) pie_list.add(new PieChart("Kamu Kira Sertifikası", kamu_kira_sertifikası));
+        if (tpp != 0D && tpp > 0.099) pie_list.add(new PieChart("TPP", tpp));
+        if (katilim_hesabi != 0d && katilim_hesabi > 0.099) pie_list.add(new PieChart("Katılım Hesabı", katilim_hesabi));
+        if (ozel_sektor_tahvil != 0D && ozel_sektor_tahvil > 0.099) pie_list.add(new PieChart("Özel Sektör Tahvili", ozel_sektor_tahvil));
+        if (ters_repo != 0D && ters_repo > 0.099) pie_list.add(new PieChart("Ters Repo", ters_repo));
+        if (ozel_kira_sertifikasi != 0D && ozel_kira_sertifikasi > 0.099) pie_list.add(new PieChart("Özel Sektör Kira Sertifikası", ozel_kira_sertifikasi));
+        if (turev_araci != 0D && turev_araci > 0.099) pie_list.add(new PieChart("Türev Aracı", turev_araci));
+        if (vadeli_mevduat != 0D && vadeli_mevduat > 0.099) pie_list.add(new PieChart("Vadeli Mevduat", vadeli_mevduat));
+        if (yab_borclanma_araci != 0D && yab_borclanma_araci > 0.099) pie_list.add(new PieChart("Yabancı Borçlanma Aracı", yab_borclanma_araci));
+        if (yab_menkul_kiymet != 0D && yab_menkul_kiymet > 0.099) pie_list.add(new PieChart("Yabanci Menkul Kıymet", yab_menkul_kiymet));
 
 
         return pie_list;

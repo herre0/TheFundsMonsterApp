@@ -91,24 +91,69 @@ public class FonDetayServis {
 
             fonRepository.save(fon);
             fonDetayRepository.save(fonDetay);
-            //portfoyHesapla(fon);
+            portfoyHesapla(fon.getKodu());
             System.out.println(i + ". " + fon.getKodu() + " guncellendi !!");
         }
     }
 
-    public void portfoyHesapla(Fon fon) {
-        fon = fonRepository.findByKodu("TCD");
+    public void portfoyHesapla(String fon_kod) {
+        Fon fon = fonRepository.findByKodu(fon_kod);
 
-        List<PortFon> portfonlar = portfonRepository.findAllByFonkod(fon.getKodu());
+        List<PortFon> portfonlar = portfonRepository.findAllByFonkod(fon_kod);
         Portfoy portfoy = new Portfoy();
+        Double portfoy_degeri;
+        Double gunluk_tl, gunluk_yuzde, toplam_tl, toplam_yuzde, deger;
+        Fon fon_gecici;
+        Fon fon_gecici2;
         for (PortFon p : portfonlar) {
             portfoy = portfoyRepository.findPortfoyByPortfonId(p.getId());
+            portfoy_degeri = 0D;
+            for (PortFon port : portfoy.getFonlar()) {
+                fon_gecici = fonRepository.findByKodu(port.getFon_kod());
 
+                if (fon_gecici.getKodu().equals(fon.getKodu()))
+                    portfoy_degeri += (Double.valueOf(fon.getFiyat()) * port.getAdet());
+                else
+                    portfoy_degeri += (Double.valueOf(fon_gecici.getFiyat()) * port.getAdet());
+            }
+            portfoy.setPortfoy_degeri(portfoy_degeri);
+
+            for (PortFon portfon : portfoy.getFonlar()) {
+                fon_gecici2 = fonRepository.findByKodu(portfon.getFon_kod());
+                if (fon_gecici2.getKodu().equals(fon.getKodu()))
+                    portfon.setAgirlik(((portfon.getAdet() * Double.valueOf(fon.getFiyat())) / portfoy.getPortfoy_degeri()));
+                else
+                    portfon.setAgirlik(((portfon.getAdet() * Double.valueOf(fon_gecici2.getFiyat())) / portfoy.getPortfoy_degeri()));
+            }
 
             p.setBirim_fiyati(Double.valueOf(fon.getFiyat()));
             p.setDegeri(Double.valueOf(fon.getFiyat()) * p.getAdet());
             p.setGunluk_getiri_yuzde(Double.valueOf(fon.getGunluk_artis()));
+            p.setGunluk_getiri_tl(p.getDegeri() - ((((100 - Double.valueOf(fon.getGunluk_artis())) * Double.valueOf(fon.getFiyat())) / 100) * p.getAdet()));
+            p.setToplam_getiri_tl(p.getDegeri() - (p.getAdet() * p.getAlis_maliyeti()));
+            p.setToplam_getiri_yuzde((Double.valueOf(p.getToplam_getiri_tl()) / p.getDegeri()) * 100);
+
+            portfoy.setFonlar(portfonlar);
+
+            gunluk_tl = 0D; gunluk_yuzde = 0D; toplam_tl = 0D; toplam_yuzde = 0D; deger = 0D;
+            for (PortFon pic : portfoy.getFonlar()) {
+                gunluk_tl += pic.getGunluk_getiri_tl();
+                gunluk_yuzde += (pic.getGunluk_getiri_yuzde() * pic.getAgirlik());
+                toplam_tl += pic.getToplam_getiri_tl();
+                toplam_yuzde += pic.getToplam_getiri_yuzde() * pic.getAgirlik();
+                deger += pic.getDegeri();
+            }
+            portfoy.setGunluk_getiri_tl(gunluk_tl);
+            portfoy.setGunluk_getiri_yuzde(gunluk_yuzde / 100);
+            portfoy.setToplam_getiri_tl(toplam_tl);
+            portfoy.setToplam_getiri_yuzde(toplam_yuzde / 100);
+            portfoy.setPortfoy_degeri(deger);
+
+            portfonRepository.save(p);
+            portfoyRepository.save(portfoy);
         }
+
+
     }
 
     // gecmisten bir  gun ile simdiki zaman arası fiyat farkını dondurur.
