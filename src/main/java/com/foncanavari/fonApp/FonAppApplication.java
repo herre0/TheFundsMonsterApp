@@ -19,46 +19,47 @@ import java.util.concurrent.TimeUnit;
 @SpringBootApplication
 public class FonAppApplication {
 
+    static FonDetayServis  fonDetayServis;
     public static void main(String[] args) throws ParseException {
         ApplicationContext applicationContext = SpringApplication.run(FonAppApplication.class, args);
-        FonDetayServis fonDetayServis = applicationContext.getBean(FonDetayServis.class);
+        fonDetayServis = applicationContext.getBean(FonDetayServis.class);
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         System.setProperty("tomcat.util.http.parser.HttpParser.requestTargetAllow","{}");
 
-       //fonDetayServis.iceriSapmaveSharpeAktar();
+        //fonDetayServis.iceriYeniEklenenFonlarıAktar();
 
-        final ScheduledFuture<?> taskHandle1 = scheduler.scheduleAtFixedRate(
-                new Runnable() {
-                    public void run() {
-                        try {
-                            if (fonDetayServis.kacaklariYakala()) {
-                                System.out.println("iceri aktariliyor .. 1");
-                                fonDetayServis.iceriAktar();
-                            }
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }, 30, 30, TimeUnit.HOURS);
-
-        final ScheduledFuture<?> taskHandle2 = scheduler.scheduleAtFixedRate(
-                new Runnable() {
-                    public void run() {
-                        try {
-                            if (fonDetayServis.kacaklariYakala()) {
-                                System.out.println("iceri aktariliyor .. 2");
-                                fonDetayServis.iceriAktar();
-                            }
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }, 30, 30, TimeUnit.HOURS);
+//        final ScheduledFuture<?> taskHandle1 = scheduler.scheduleAtFixedRate(
+//                new Runnable() {
+//                    public void run() {
+//                        try {
+//                            if (fonDetayServis.kacaklariYakala()) {
+//                                System.out.println("iceri aktariliyor .. 1");
+//                                fonDetayServis.iceriAktar();
+//                            }
+//                        } catch (Exception ex) {
+//                            ex.printStackTrace();
+//                        }
+//                    }
+//                }, 15, 15, TimeUnit.MINUTES);
 
 
 
     }
 
+    public void iceriAktarForServisCall(String fon_kod) throws ParseException {
+        fonDetayServis.iceriAktarSingleFon(fon_kod);
+    }
 
+    public void iceriAktarForServisCallAdmin() throws ParseException {
+        fonDetayServis.iceriAktar();
+    }
+
+    public void portfoyHesaplattir(String fon_kod) {
+        fonDetayServis.portfoyHesapla(fon_kod);
+    }
+
+    public void iceriSharpeAktar() throws ParseException{
+        fonDetayServis.iceriSapmaveSharpeAktar();
+    }
 
 }

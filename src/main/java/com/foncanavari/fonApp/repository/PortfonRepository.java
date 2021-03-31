@@ -27,4 +27,15 @@ public interface PortfonRepository extends JpaRepository<PortFon, Integer> {
 
     @Query(value = "select * from portfon where fon_kod = ?1", nativeQuery = true)
     List<PortFon> findAllByFonkod(String kod);
+
+    @Query(value = "select * from portfon where id = ?1", nativeQuery = true)
+    List<PortFon> findAllByID(int id);
+
+    @Query(value = "select * from portfon where degeri is null or agirlik is null or alis_maliyeti is null or gunluk_getiri_tl is null or adet is null or toplam_getiri_tl is null", nativeQuery = true)
+    List<PortFon> getNullListNotUpdated();
+
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query(value = "delete from portfoy_fonlar where fonlar_id=?1",nativeQuery = true)
+    void  deletePortfonbyFonId(int id);
 }

@@ -133,7 +133,7 @@
 }
 
 .notification {
-  background: $danger;
+  background: #ec250d;;
 	color: $white;
 	border-radius: $border-radius-xl;
 	height: 6px;
@@ -143,8 +143,7 @@
 	font-size: 12px;
 	font-weight: 800;
   top: 10px;
-  right: 10px;
-	border: 1px solid $danger;
+	border: 1px solid #ec250d;;
 }
 
 .navbar-nav li{

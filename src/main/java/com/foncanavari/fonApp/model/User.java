@@ -1,5 +1,6 @@
 package com.foncanavari.fonApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,8 @@ public class User {
     @Column(name = "username", unique = true)
     String username;
     String pass;
+    @JsonIgnore
+    String pass2;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
@@ -34,8 +37,8 @@ public class User {
     List<Portfoy> portfoyler = null;
     int portfoy_sayisi = 0; // todo 2-3 portfoy hakki
 
-    String y_tarih; // todo bu tarz daha detay bilgiler eklenmeli
-    String son_giris; // todo son giris tarihi yapsanaa
+    String y_tarih; 
+    String son_giris;
     int giris_sayisi=0;
 
     public User(String username, String adsoyad, String pass){

@@ -1,14 +1,10 @@
 package com.foncanavari.fonApp.repository;
 
-import com.foncanavari.fonApp.controller.FonController;
-import com.foncanavari.fonApp.model.Category;
 import com.foncanavari.fonApp.model.Fon;
-import com.foncanavari.fonApp.model.FonDetay;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

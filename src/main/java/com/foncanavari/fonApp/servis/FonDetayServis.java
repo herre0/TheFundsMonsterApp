@@ -3,16 +3,13 @@ package com.foncanavari.fonApp.servis;
 import com.foncanavari.fonApp.model.*;
 import com.foncanavari.fonApp.repository.*;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
-import javax.sound.sampled.Line;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.DateFormat;
@@ -33,6 +30,8 @@ public class FonDetayServis {
     PortfoyRepository portfoyRepository;
     @Autowired
     PortfonRepository portfonRepository;
+    @Autowired
+    PortfoyPerformansRepository portfoyPerformansRepository;
 
 
     public Boolean kacaklariYakala() {
@@ -42,65 +41,59 @@ public class FonDetayServis {
             if (!fonDetayRepository.getUpdatedDate(fonds.get(i).getFon_kod()).equals(tarihHesapla("day", 0)))
                 herre++;
 
-            if (herre > 1)
+            if (herre > 0)
                 return true;
         }
         return false;
     }
 
     public void iceriAktar() throws ParseException {
-        List<FonDetay> fondetaylar = fonDetayRepository.findAll();
-        List<Fon> fonlar = fonRepository.findAll();
-        RestTemplate rest = new RestTemplate();
-        String bugun, fonkod, url, json;
-        for (int i = 0; i < fonlar.size(); i++) {
-            fonkod = fonlar.get(i).getKodu();
+                List<FonDetay> fondetaylar = fonDetayRepository.findAll();
+                List<Fon> fonlar = fonRepository.findAll();
+                RestTemplate rest = new RestTemplate();
+                String bugun, fonkod, url, json;
+                for (int i = 0; i < fonlar.size(); i++) {
+                    fonkod = fonlar.get(i).getKodu();
 
-            if (fonDetayRepository.getUpdatedDate(fonkod).equals(tarihHesapla("day", 0))) {
-                continue;
-            }
-            bugun = tarihHesapla("day", 0);
-            url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + bugun + "/" + bugun;
-            json = rest.getForObject(url, String.class);
-            if (json == null)
-                continue;
-            /*count = 0;
-            while (true) { gunluk veri bossa gec ugrasma zaten gunluk ?
-                count++;
-                if (json == null) {
-                    bugun = birgunGeri(bugun);
+                    if (fonDetayRepository.getUpdatedDate(fonkod).equals(tarihHesapla("day", 0))) {
+                        continue;
+                    }
+                    bugun = tarihHesapla("day", -2);
                     url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + bugun + "/" + bugun;
-                    json = rest.getForObject(url, String.class);
-                }
-                if (json != null)
-                    break;
-                if (count > 3)
-                    break;
-            }
-            if (count > 3) continue;*/
-            json = json.replace("[", "");
-            json = json.replace("]", "");
-            Double fiyat = new JsonParser().parse(json).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
-            if (fiyat == 0D)
-                continue;
-            JsonObject json_obje = new JsonParser().parse(json).getAsJsonObject();
-            FonDetay fonDetay = atamaYap(json_obje);
-            Fon fon = fonRepository.findByKodu(fonDetay.getFon_kod());
-            fon.setFiyat(fonDetay.getBirim_deger());
-            fon.setGunluk_artis(fonDetay.getGunluk_artis());
 
-            fonRepository.save(fon);
-            fonDetayRepository.save(fonDetay);
-            portfoyHesapla(fon.getKodu());
-            System.out.println(i + ". " + fon.getKodu() + " guncellendi !!");
-        }
+                    json = rest.getForObject(url, String.class);
+                    if (json == null || json.contains("html"))
+                        continue;
+
+
+                    json = json.replace("[", "");
+                    json = json.replace("]", "");
+                    Double fiyat = new JsonParser().parse(json).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
+                    if (fiyat == 0D)
+                        continue;
+                    JsonObject json_obje = new JsonParser().parse(json).getAsJsonObject();
+                    FonDetay fonDetay = null;
+                    try {
+                        fonDetay = atamaYap(json_obje);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Fon fon = fonRepository.findByKodu(fonDetay.getFon_kod());
+                    fon.setFiyat(fonDetay.getBirim_deger());
+                    fon.setGunluk_artis(fonDetay.getGunluk_artis());
+
+                    fonRepository.save(fon);
+                    fonDetayRepository.save(fonDetay);
+                    portfoyHesapla(fon.getKodu());
+                    System.out.println(i + ". " + fon.getKodu() + " guncellendi !!");
+                }
     }
 
     public void portfoyHesapla(String fon_kod) {
         Fon fon = fonRepository.findByKodu(fon_kod);
 
         List<PortFon> portfonlar = portfonRepository.findAllByFonkod(fon_kod);
-        Portfoy portfoy = new Portfoy();
+        Portfoy portfoy;
         Double portfoy_degeri;
         Double gunluk_tl, gunluk_yuzde, toplam_tl, toplam_yuzde, deger;
         Fon fon_gecici;
@@ -108,22 +101,25 @@ public class FonDetayServis {
         for (PortFon p : portfonlar) {
             portfoy = portfoyRepository.findPortfoyByPortfonId(p.getId());
             portfoy_degeri = 0D;
+            if (portfoy == null)
+                continue;
+
             for (PortFon port : portfoy.getFonlar()) {
                 fon_gecici = fonRepository.findByKodu(port.getFon_kod());
 
                 if (fon_gecici.getKodu().equals(fon.getKodu()))
                     portfoy_degeri += (Double.valueOf(fon.getFiyat()) * port.getAdet());
                 else
-                    portfoy_degeri += (Double.valueOf(fon_gecici.getFiyat()) * port.getAdet());
+                    portfoy_degeri += (port.getDegeri());
             }
             portfoy.setPortfoy_degeri(portfoy_degeri);
 
             for (PortFon portfon : portfoy.getFonlar()) {
                 fon_gecici2 = fonRepository.findByKodu(portfon.getFon_kod());
                 if (fon_gecici2.getKodu().equals(fon.getKodu()))
-                    portfon.setAgirlik(((portfon.getAdet() * Double.valueOf(fon.getFiyat())) / portfoy.getPortfoy_degeri()));
+                    portfon.setAgirlik(((portfon.getAdet() * Double.valueOf(fon.getFiyat())) / portfoy.getPortfoy_degeri()) * 100);
                 else
-                    portfon.setAgirlik(((portfon.getAdet() * Double.valueOf(fon_gecici2.getFiyat())) / portfoy.getPortfoy_degeri()));
+                    portfon.setAgirlik(((portfon.getAdet() * Double.valueOf(fon_gecici2.getFiyat())) / portfoy.getPortfoy_degeri()) * 100);
             }
 
             p.setBirim_fiyati(Double.valueOf(fon.getFiyat()));
@@ -131,11 +127,16 @@ public class FonDetayServis {
             p.setGunluk_getiri_yuzde(Double.valueOf(fon.getGunluk_artis()));
             p.setGunluk_getiri_tl(p.getDegeri() - ((((100 - Double.valueOf(fon.getGunluk_artis())) * Double.valueOf(fon.getFiyat())) / 100) * p.getAdet()));
             p.setToplam_getiri_tl(p.getDegeri() - (p.getAdet() * p.getAlis_maliyeti()));
-            p.setToplam_getiri_yuzde((Double.valueOf(p.getToplam_getiri_tl()) / p.getDegeri()) * 100);
+            p.setToplam_getiri_yuzde(((Double.valueOf(p.getBirim_fiyati()) - p.getAlis_maliyeti()) / p.getAlis_maliyeti()) * 100);
 
-            portfoy.setFonlar(portfonlar);
+            portfonRepository.save(p);
+            portfoy = portfoyRepository.findPortfoyByPortfonId(p.getId());//burda set edildiginden tekrardan deger hesaplaniyor assagida
 
-            gunluk_tl = 0D; gunluk_yuzde = 0D; toplam_tl = 0D; toplam_yuzde = 0D; deger = 0D;
+            gunluk_tl = 0D;
+            gunluk_yuzde = 0D;
+            toplam_tl = 0D;
+            toplam_yuzde = 0D;
+            deger = 0D;
             for (PortFon pic : portfoy.getFonlar()) {
                 gunluk_tl += pic.getGunluk_getiri_tl();
                 gunluk_yuzde += (pic.getGunluk_getiri_yuzde() * pic.getAgirlik());
@@ -149,8 +150,16 @@ public class FonDetayServis {
             portfoy.setToplam_getiri_yuzde(toplam_yuzde / 100);
             portfoy.setPortfoy_degeri(deger);
 
-            portfonRepository.save(p);
-            portfoyRepository.save(portfoy);
+            PortfoyPerformans portfoyPerformans = portfoyPerformansRepository.getOneByTarihAndId(tarihHesapla("day", 0), portfoy.getId());
+            if (portfoyPerformans == null) {
+                portfoyPerformans = new PortfoyPerformans();
+                portfoyPerformans.setTarih(tarihHesapla("day", 0));
+                portfoyPerformans.setPortfoy_id(portfoy.getId());
+            }
+            portfoyPerformans.setPortfoy_degeri(String.valueOf(portfoy.getPortfoy_degeri()).substring(0, String.valueOf(portfoy.getPortfoy_degeri()).indexOf(".") + 3));
+
+            portfoyPerformansRepository.save(portfoyPerformans);
+            portfoyRepository.updatePortfoy(portfoy.getPortfoy_degeri(), portfoy.getGunluk_getiri_tl(), portfoy.getGunluk_getiri_yuzde(), portfoy.getToplam_getiri_tl(), portfoy.getToplam_getiri_yuzde(), portfoy.getId());
         }
 
 
@@ -220,6 +229,16 @@ public class FonDetayServis {
         return dateFormat.format(calendar.getTime());
     }
 
+    public static boolean returnGunFarki(String date) throws ParseException {
+        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        Date bugun = new SimpleDateFormat("yyyy-MM-dd").parse(tarihHesapla("day", -35));
+
+
+
+        return date1.before(bugun);
+
+    }
+
     public static String tarihHesapla(String dateTip, int index) {
         DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date();
@@ -249,8 +268,17 @@ public class FonDetayServis {
         return dateformat.format(cal.getTime());
     }
 
+    public static String tarihHesaplaTR() {
+        DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+        Date currentDate = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentDate);
+
+        return dateformat.format(cal.getTime());
+    }
+
     public FonDetay atamaYap(JsonObject json) throws ParseException {
-        FonDetay fon = fonDetayRepository.getByKod(json.get("FonKodu").getAsString());
+        FonDetay fon = fonDetayRepository.getByKod(json.get("FonKodu").getAsString()) == null ? new FonDetay(json.get("FonKodu").getAsString(), json.get("FonUnvani").getAsString()) : fonDetayRepository.getByKod(json.get("FonKodu").getAsString());
         fon.setToplam_deger(json.get("ToplamDeger").getAsString());
         fon.setBirim_deger(json.get("BirimPayDegeri").getAsString());
         fon.setPay_sayisi(json.get("DolasimdakiPaySayisi").getAsString());
@@ -290,8 +318,9 @@ public class FonDetayServis {
         String alti_aylik_artis = fiyatArtisHesapla("", tarihHesapla("month", -6), fon.getFon_kod());
         String yillik_artis = fiyatArtisHesapla("", tarihHesapla("year", -1), fon.getFon_kod());
         String uc_yillik_artis = fiyatArtisHesapla("", tarihHesapla("year", -3), fon.getFon_kod());
-        String _2020_artis = fiyatArtisHesapla("", "2020-01-01", fon.getFon_kod());
-        if (!gunluk_artis.equals("0.00")) fon.setGunluk_artis(gunluk_artis);
+        String _2020_artis = fiyatArtisHesapla("2020-12-31", "2020-01-01", fon.getFon_kod());
+        String _2021_artis = fiyatArtisHesapla("", "2021-01-01", fon.getFon_kod());
+        fon.setGunluk_artis(gunluk_artis);
         if (!haftalik_artis.equals("0.00")) fon.setHaftalik_artis(haftalik_artis);
         if (!aylik_artis.equals("0.00")) fon.setAylik_artis(aylik_artis);
         if (!uc_aylik_artis.equals("0.00")) fon.setUc_aylik_artis(uc_aylik_artis);
@@ -305,6 +334,7 @@ public class FonDetayServis {
         if (StringUtils.isEmpty(fon.get_2019()))
             fon.set_2019(fiyatArtisHesapla("2019-12-31", "2019-01-01", fon.getFon_kod()));
         if (!_2020_artis.equals("0.00")) fon.set_2020(_2020_artis);
+        if (!_2021_artis.equals("0.00")) fon.set_2021(_2021_artis);
 
 
         return fon;
@@ -397,7 +427,45 @@ public class FonDetayServis {
             pie_list.add(new PieChart("Yabancı Borçlanma Aracı", Double.valueOf(fondetay.getYab_borclanma_araci())));
         if (!fondetay.getYab_menkul_kiymet().equals("0.00"))
             pie_list.add(new PieChart("Yabanci Menkul Kıymet", Double.valueOf(fondetay.getYab_menkul_kiymet())));
+
         return pie_list;
+    }
+
+    public void iceriAktarSingleFon(String fonkod) throws ParseException {
+
+                RestTemplate rest = new RestTemplate();
+                String bugun, url, json;
+
+                if (fonDetayRepository.getUpdatedDate(fonkod).equals(tarihHesapla("day", 0))) {
+                    return;
+                }
+                bugun = tarihHesapla("day", 0);
+                url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/" + fonkod + "/1/" + bugun + "/" + bugun;
+
+                json = rest.getForObject(url, String.class);
+                if (json == null)
+                    return;
+
+                json = json.replace("[", "");
+                json = json.replace("]", "");
+                Double fiyat = new JsonParser().parse(json).getAsJsonObject().get("BirimPayDegeri").getAsDouble();
+                if (fiyat == 0D)
+                    return;
+                JsonObject json_obje = new JsonParser().parse(json).getAsJsonObject();
+                FonDetay fonDetay = new FonDetay();
+                try {
+                    fonDetay = atamaYap(json_obje);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Fon fon = fonRepository.findByKodu(fonDetay.getFon_kod());
+                fon.setFiyat(fonDetay.getBirim_deger());
+                fon.setGunluk_artis(fonDetay.getGunluk_artis());
+
+                fonRepository.save(fon);
+                fonDetayRepository.save(fonDetay);
+                portfoyHesapla(fon.getKodu());
+
     }
 
     public void iceriSapmaveSharpeAktar() throws ParseException {
@@ -410,12 +478,12 @@ public class FonDetayServis {
             farkinkareleri = 0D;
             List<Double> fiyatlar = new ArrayList<Double>();
             fonkod = fondetay.getFon_kod();
-            if (!fondetay.getSharpe_guncel())
+            if (!returnGunFarki(fondetay.getSharpe_tarih()))
                 continue;
 
             for (int i = 1; i < 47; i++) {
                 artis_yuzdesi = fiyatArtisHesapla(tarihHesapla("day", -((i) - 1)), tarihHesapla("day", -(i)), fonkod);
-                if (artis_yuzdesi != "0.00")
+                if (!artis_yuzdesi.equals("0.00") && !StringUtils.isEmpty(artis_yuzdesi))
                     fiyatlar.add(Double.valueOf(artis_yuzdesi));
 
                 if (fiyatlar.size() >= 30)
@@ -425,6 +493,8 @@ public class FonDetayServis {
             for (int i = 0; i < size; i++) {
                 toplam += fiyatlar.get(i);
             }
+            if (toplam == 0)
+                continue;
             ort = toplam / size;
             for (int i = 0; i < size; i++) {
                 farkinkareleri += Math.pow(fiyatlar.get(i) - ort, 2);
@@ -432,14 +502,64 @@ public class FonDetayServis {
             farkinkareleri = Double.valueOf((String.valueOf(farkinkareleri) + "000").substring(0, 6));
 
             s_sapma = String.valueOf(Math.sqrt(farkinkareleri / (size - 1)) + "00").substring(0, 4);
-            sharpe = String.valueOf((ort - 0.018) / Double.valueOf(s_sapma) + "00");
+            if (s_sapma.equals("0.00"))
+                sharpe = "0.00";
+            else
+                sharpe = String.valueOf((ort - 0.018) / Double.valueOf(s_sapma) + "00");
 
             fondetay.setStandart_sapma(s_sapma);
             fondetay.setSharpe_ratio(sharpe.substring(0, sharpe.indexOf(".") + 3));
-            fondetay.setSharpe_guncel(false);
+            fondetay.setSharpe_guncel(true);
+            fondetay.setSharpe_tarih(tarihHesapla("day", 0));
             fonDetayRepository.save(fondetay);
             System.out.println(fondetay.getFon_kod() + " guncellendi!!" + " s.sapma: " + s_sapma + " sharpe:" + fondetay.getSharpe_ratio());
         }
+    }
+
+    public void iceriYeniEklenenFonlarıAktar() throws ParseException {
+        RestTemplate rest = new RestTemplate();
+        List<FonDetay> fondetayList = new ArrayList();
+        List<String> fonisimList = new ArrayList();
+        List<Fon> list = new ArrayList();
+        String bugun = tarihHesapla("day", 0);
+
+        String url = "https://ws.spk.gov.tr/PortfolioValues/api/PortfoyDegerleri/1/" + bugun + "/" + bugun;
+        String url2 = "httpS://ws.spk.gov.tr/PortfolioValues/api/Funds/1";
+        String json = rest.getForObject(url, String.class);
+        String json2 = rest.getForObject(url2, String.class);
+
+        JsonArray veri = new JsonParser().parse(json).getAsJsonArray();
+        JsonArray veri2 = new JsonParser().parse(json2).getAsJsonArray();
+
+        for (int i = 0; i < veri2.size(); i++) {
+            if (veri2.get(i).getAsJsonObject().get("Tipi").getAsString().equals("F"))
+                fonisimList.add(veri2.get(i).getAsJsonObject().get("Kodu").getAsString());
+        }
+
+        String fon_kod, fon_turu, fon_ad;
+        for (int i = 0; i < veri.size(); i++) {
+            fon_kod = veri.get(i).getAsJsonObject().get("FonKodu").getAsString();
+            fon_turu = veri.get(i).getAsJsonObject().get("FonTuru").getAsString();
+            fon_ad = veri.get(i).getAsJsonObject().get("FonUnvani").getAsString();
+
+            if (!StringUtils.isEmpty(fonRepository.findByKodu(fon_kod)))
+                continue;
+            else {
+                if (fonisimList.contains(fon_kod) && !fon_ad.contains("KORUMA AMAÇLI") &&
+                        !fon_ad.contains("SERBEST FON") &
+                                !fon_ad.contains("SERBEST FONU") &&
+                        !fon_ad.contains("KUMBARA") &&
+                        !fon_ad.contains("ÖZEL FON") &&
+                        !fon_ad.contains("ÖZEL FONU") &&
+                        !fon_ad.contains("PARA PİYASASI")) {
+                    list.add(new Fon(fon_kod, fon_ad));
+                    //fondetayList.add(atamaYap(veri.get(i).getAsJsonObject()));
+                }
+            }
+
+        }
+
+        System.out.println(list);
     }
 
 //    MINE              FONBL

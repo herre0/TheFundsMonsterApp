@@ -5,25 +5,11 @@ import com.foncanavari.fonApp.repository.FonDetayRepository;
 import com.foncanavari.fonApp.repository.FonRepository;
 import com.foncanavari.fonApp.repository.UserRepository;
 import com.foncanavari.fonApp.servis.FonDetayServis;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -115,6 +101,10 @@ public class FonDetayController {
                 sortedDetayList = fonDetayRepository.getDescSortedListof2019TUM();
             else if (column.equals("2019") && order.equals("asc"))
                 sortedDetayList = fonDetayRepository.getAscSortedListof2019TUM();
+            else if (column.equals("2020") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2020TUM();
+            else if (column.equals("2020") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2020TUM();
             else if (column.equals("son1ay") && order.equals("desc"))
                 sortedDetayList = fonDetayRepository.getDescSortedListofAylikArtisTUM();
             else if (column.equals("son1ay") && order.equals("asc"))
@@ -127,6 +117,30 @@ public class FonDetayController {
                 sortedDetayList = fonDetayRepository.getDescSortedListofSharpeTUM();
             else if (column.equals("sharpe") && order.equals("asc"))
                 sortedDetayList = fonDetayRepository.getAscSortedListofSharpeTUM();
+            else if (column.equals("son1hafta") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofHaftaTUM();
+            else if (column.equals("son1hafta") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofHaftaTUM();
+            else if (column.equals("son3ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof3AyTUM();
+            else if (column.equals("son3ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof3AyTUM();
+            else if (column.equals("son6ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof6AyTUM();
+            else if (column.equals("son6ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof6AyTUM();
+            else if (column.equals("yilbasi") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofYilbasiTUM();
+            else if (column.equals("yilbasi") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofYilbasiTUM();
+            else if (column.equals("son1yil") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof1YilTUM();
+            else if (column.equals("son1yil") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof1YilTUM();
+            else if (column.equals("son3yil") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof3YilTUM();
+            else if (column.equals("son3yil") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof3YilTUM();
             else
                 sortedDetayList = fonDetayRepository.getAscSortedListofAylikArtisTUM();
         } else if (category.equals("Favori Fonlarım")) {
@@ -148,6 +162,10 @@ public class FonDetayController {
                 sortedDetayList = fonDetayRepository.getDescSortedListof2019FAV(fon_kodlar);
             else if (column.equals("2019") && order.equals("asc"))
                 sortedDetayList = fonDetayRepository.getAscSortedListof2019FAV(fon_kodlar);
+            else if (column.equals("2020") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2020FAV(fon_kodlar);
+            else if (column.equals("2020") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2020FAV(fon_kodlar);
             else if (column.equals("son1ay") && order.equals("desc"))
                 sortedDetayList = fonDetayRepository.getDescSortedListofAylikArtisFAV(fon_kodlar);
             else if (column.equals("son1ay") && order.equals("asc"))
@@ -160,6 +178,30 @@ public class FonDetayController {
                 sortedDetayList = fonDetayRepository.getDescSortedListofSharpeFAV(fon_kodlar);
             else if (column.equals("sharpe") && order.equals("asc"))
                 sortedDetayList = fonDetayRepository.getAscSortedListofSharpeFAV(fon_kodlar);
+            else if (column.equals("son1hafta") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofHaftaFAV(fon_kodlar);
+            else if (column.equals("son1hafta") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofHaftaFAV(fon_kodlar);
+            else if (column.equals("son3ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof3AyFAV(fon_kodlar);
+            else if (column.equals("son3ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof3AyFAV(fon_kodlar);
+            else if (column.equals("son6ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof6AyFAV(fon_kodlar);
+            else if (column.equals("son6ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof6AyFAV(fon_kodlar);
+            else if (column.equals("yilbasi") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofYilbasiFAV(fon_kodlar);
+            else if (column.equals("yilbasi") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofYilbasiFAV(fon_kodlar);
+            else if (column.equals("son1yil") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof1YilFAV(fon_kodlar);
+            else if (column.equals("son1yil") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof1YilFAV(fon_kodlar);
+            else if (column.equals("son3yil") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof3YilFAV(fon_kodlar);
+            else if (column.equals("son3yil") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof3YilFAV(fon_kodlar);
 
         } else {
             if (column.equals("2017") && order.equals("desc"))
@@ -174,6 +216,10 @@ public class FonDetayController {
                 sortedDetayList = fonDetayRepository.getDescSortedListof2019(category);
             else if (column.equals("2019") && order.equals("asc"))
                 sortedDetayList = fonDetayRepository.getAscSortedListof2019(category);
+            else if (column.equals("2020") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof2020(category);
+            else if (column.equals("2020") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof2020(category);
             else if (column.equals("son1ay") && order.equals("desc"))
                 sortedDetayList = fonDetayRepository.getDescSortedListofAylikArtis(category);
             else if (column.equals("son1ay") && order.equals("asc"))
@@ -186,10 +232,35 @@ public class FonDetayController {
                 sortedDetayList = fonDetayRepository.getDescSortedListofSharpe(category);
             else if (column.equals("sharpe") && order.equals("asc"))
                 sortedDetayList = fonDetayRepository.getAscSortedListofSharpe(category);
+            else if (column.equals("son1hafta") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofHafta(category);
+            else if (column.equals("son1hafta") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofHafta(category);
+            else if (column.equals("son3ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof3Ay(category);
+            else if (column.equals("son3ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof3Ay(category);
+            else if (column.equals("son6ay") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof6Ay(category);
+            else if (column.equals("son6ay") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof6Ay(category);
+            else if (column.equals("yilbasi") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListofYilbasi(category);
+            else if (column.equals("yilbasi") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListofYilbasi(category);
+            else if (column.equals("son1yil") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof1Yil(category);
+            else if (column.equals("son1yil") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof1Yil(category);
+            else if (column.equals("son3yil") && order.equals("desc"))
+                sortedDetayList = fonDetayRepository.getDescSortedListof3Yil(category);
+            else if (column.equals("son3yil") && order.equals("asc"))
+                sortedDetayList = fonDetayRepository.getAscSortedListof3Yil(category);
         }
 
 
         return sortedDetayList;
     }
+
 
 }

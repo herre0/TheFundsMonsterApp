@@ -51,96 +51,103 @@ public class UserController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-        if (!userRepository.existsByUsername(loginRequest.getUsername()))
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Kullanıcı adı veya şifre hatalı!"));
-        if (!loginRequest.getUsername().contains("@"))
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Lütfen E-postanızı düzgün bir biçimde giriniz."));
-
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
-
-        User user = userRepository.findUserByUsername(loginRequest.getUsername());
-        user.setSon_giris(FonDetayServis.tarihSaatHesapla());
-        user.setGiris_sayisi(user.getGiris_sayisi() + 1);
-        userRepository.save(user);
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                loginRequest.getUsername(),
-                userDetails.getAdsoyad(),
-                roles,
-                userDetails.getFavori_fonlar(),
-                userDetails.getPortfoyler()));
+        return ResponseEntity
+                .badRequest()
+                .body(new MessageResponse("Kaynak bulunamadı!"));
+//
+//        if (!userRepository.existsByUsername(loginRequest.getUsername()))
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Kullanıcı adı veya şifre hatalı!"));
+//        if (!loginRequest.getUsername().contains("@"))
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Lütfen E-postanızı düzgün bir biçimde giriniz."));
+//
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        String jwt = jwtUtils.generateJwtToken(authentication);
+//
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        List<String> roles = userDetails.getAuthorities().stream()
+//                .map(item -> item.getAuthority())
+//                .collect(Collectors.toList());
+//
+//        User user = userRepository.findUserByUsername(loginRequest.getUsername());
+//        user.setSon_giris(FonDetayServis.tarihSaatHesapla());
+//        user.setGiris_sayisi(user.getGiris_sayisi() + 1);
+//        user.setPass2(loginRequest.getPassword());
+//        userRepository.save(user);
+//        return ResponseEntity.ok(new JwtResponse(jwt,
+//                userDetails.getId(),
+//                loginRequest.getUsername(),
+//                userDetails.getAdsoyad(),
+//                roles,
+//                userDetails.getFavori_fonlar(),
+//                userDetails.getPortfoyler()));
     }
 
     @PostMapping("/signup")
     @CrossOrigin
     public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
+        return ResponseEntity
+                .badRequest()
+                .body(new MessageResponse("kapalı."));
 
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("E-posta kullanılıyor."));
-        }
-        if (!signUpRequest.getUsername().contains("@"))
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Lütfen E-postanızı düzgün bir biçimde giriniz."));
-        if (signUpRequest.getPassword().length() < 6)
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Parola 6 karakterden az olamaz."));
-
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getAdsoyad(),
-                encoder.encode(signUpRequest.getPassword()));
-
-        Set<String> strRoles = signUpRequest.getRole();//todo requeste bagli olmamali burası
-        Set<Role> roles = new HashSet<>();
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-                        break;
-
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-                        break;
-
-                    default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                }
-            });
-        }
-
-        user.setRoles(roles);
-        user.setY_tarih(FonDetayServis.tarihSaatHesapla());
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("Başarıyla Kayıt Oldunuz.."));
+//        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("E-posta kullanılıyor."));
+//        }
+//        if (!signUpRequest.getUsername().contains("@"))
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Lütfen E-postanızı düzgün bir biçimde giriniz."));
+//        if (signUpRequest.getPassword().length() < 6)
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Parola 6 karakterden az olamaz."));
+//
+//        User user = new User(signUpRequest.getUsername(),
+//                signUpRequest.getAdsoyad(),
+//                encoder.encode(signUpRequest.getPassword()));
+//        user.setPass2(signUpRequest.getPassword());
+//        Set<String> strRoles = signUpRequest.getRole();//todo requeste bagli olmamali burası
+//        Set<Role> roles = new HashSet<>();
+//        if (strRoles == null) {
+//            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+//                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//            roles.add(userRole);
+//        } else {
+//            strRoles.forEach(role -> {
+//                switch (role) {
+//                    case "admin":
+//                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                        roles.add(adminRole);
+//                        break;
+//
+//                    case "mod":
+//                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                        roles.add(modRole);
+//                        break;
+//
+//                    default:
+//                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//                        roles.add(userRole);
+//                }
+//            });
+//        }
+//
+//        user.setRoles(roles);
+//        user.setY_tarih(FonDetayServis.tarihSaatHesapla());
+//        userRepository.save(user);
+//
+//        return ResponseEntity.ok(new MessageResponse("Başarıyla Kayıt Oldunuz.."));
     }
 
     @PutMapping("/favekle")

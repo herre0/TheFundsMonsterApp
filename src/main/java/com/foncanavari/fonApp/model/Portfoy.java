@@ -16,7 +16,7 @@ public class Portfoy {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     String adi;
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
     List<PortFon> fonlar;
     int user_id;
     Double portfoy_degeri;

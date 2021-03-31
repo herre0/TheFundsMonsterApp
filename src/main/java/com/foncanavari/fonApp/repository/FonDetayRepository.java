@@ -2,6 +2,7 @@ package com.foncanavari.fonApp.repository;
 
 import com.foncanavari.fonApp.model.Fon;
 import com.foncanavari.fonApp.model.FonDetay;
+import com.foncanavari.fonApp.model.PortFon;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,14 @@ import java.util.List;
 @Repository
 public interface FonDetayRepository extends JpaRepository<FonDetay, Integer> {
 
-    @Query(value = "select count(*) from fondetay where fon_kod = ?1", nativeQuery = true)
-    int countByKod(String kod);
+    @Query(value = "select count(*) from fondetay where g_tarih = ?1", nativeQuery = true)
+    int getGuncellenenFonSayisi(String tarih);
+
+    @Query(value = "select * from fondetay where g_tarih <> ?1 limit 10", nativeQuery = true)
+    List<FonDetay> getFonListNotUpdated(String tarih);
+
+    @Query(value = "select count(*) from fondetay where CAST(?1 as date) - CAST(sharpe_tarih as date) > 35 limit 10", nativeQuery = true)
+    int getCountSharpeListNotUpdated(String tarih);
 
     @Query(value = "select * from fondetay where fon_kod = ?1", nativeQuery = true)
     FonDetay getByKod(String kod);
@@ -61,6 +68,12 @@ public interface FonDetayRepository extends JpaRepository<FonDetay, Integer> {
     @Query(value = "select * from fondetay where category = ?1 order by CAST(_2019 as float) asc", nativeQuery = true)
     List<FonDetay> getAscSortedListof2019(String category);
 
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(_2020 as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof2020(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(_2020 as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof2020(String category);
+
     @Query(value = "select * from fondetay where category = ?1 order by CAST(aylik_artis as float) desc", nativeQuery = true)
     List<FonDetay> getDescSortedListofAylikArtis(String category);
 
@@ -96,6 +109,12 @@ public interface FonDetayRepository extends JpaRepository<FonDetay, Integer> {
 
     @Query(value = "select * from fondetay order by CAST(_2019 as float) asc limit 20", nativeQuery = true)
     List<FonDetay> getAscSortedListof2019TUM();
+
+    @Query(value = "select * from fondetay order by CAST(_2020 as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListof2020TUM();
+
+    @Query(value = "select * from fondetay order by CAST(_2020 as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListof2020TUM();
 
     @Query(value = "select * from fondetay order by CAST(aylik_artis as float) desc limit 20", nativeQuery = true)
     List<FonDetay> getDescSortedListofAylikArtisTUM();
@@ -133,6 +152,12 @@ public interface FonDetayRepository extends JpaRepository<FonDetay, Integer> {
     @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(_2019 as float) asc", nativeQuery = true)
     List<FonDetay> getAscSortedListof2019FAV(List<String> fon_kodlar);
 
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(_2020 as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof2020FAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(_2020 as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof2020FAV(List<String> fon_kodlar);
+
     @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(aylik_artis as float) desc", nativeQuery = true)
     List<FonDetay> getDescSortedListofAylikArtisFAV(List<String> fon_kodlar);
 
@@ -156,4 +181,112 @@ public interface FonDetayRepository extends JpaRepository<FonDetay, Integer> {
 
     @Query(value = "select * from fondetay where length(sharpe_ratio) < 4", nativeQuery = true)
     List<FonDetay> herre();
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(haftalik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListofHafta(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(haftalik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListofHafta(String category);
+
+    @Query(value = "select * from fondetay order by CAST(haftalik_artis as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListofHaftaTUM();
+
+    @Query(value = "select * from fondetay order by CAST(haftalik_artis as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListofHaftaTUM();
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(haftalik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListofHaftaFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(haftalik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListofHaftaFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(uc_aylik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof3Ay(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(uc_aylik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof3Ay(String category);
+
+    @Query(value = "select * from fondetay order by CAST(uc_aylik_artis as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListof3AyTUM();
+
+    @Query(value = "select * from fondetay order by CAST(uc_aylik_artis as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListof3AyTUM();
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(uc_aylik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof3AyFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(uc_aylik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof3AyFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(alti_aylik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof6Ay(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(alti_aylik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof6Ay(String category);
+
+    @Query(value = "select * from fondetay order by CAST(alti_aylik_artis as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListof6AyTUM();
+
+    @Query(value = "select * from fondetay order by CAST(alti_aylik_artis as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListof6AyTUM();
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(alti_aylik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof6AyFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(alti_aylik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof6AyFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(_2021 as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListofYilbasi(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(_2021 as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListofYilbasi(String category);
+
+    @Query(value = "select * from fondetay order by CAST(_2021 as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListofYilbasiTUM();
+
+    @Query(value = "select * from fondetay order by CAST(_2021 as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListofYilbasiTUM();
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(_2021 as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListofYilbasiFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(_2021 as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListofYilbasiFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(yillik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof1Yil(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(yillik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof1Yil(String category);
+
+    @Query(value = "select * from fondetay order by CAST(yillik_artis as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListof1YilTUM();
+
+    @Query(value = "select * from fondetay order by CAST(yillik_artis as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListof1YilTUM();
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(yillik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof1YilFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(yillik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof1YilFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(uc_yillik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof3Yil(String category);
+
+    @Query(value = "select * from fondetay where category = ?1 order by CAST(uc_yillik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof3Yil(String category);
+
+    @Query(value = "select * from fondetay order by CAST(uc_yillik_artis as float) desc limit 20", nativeQuery = true)
+    List<FonDetay> getDescSortedListof3YilTUM();
+
+    @Query(value = "select * from fondetay order by CAST(uc_yillik_artis as float) asc limit 20", nativeQuery = true)
+    List<FonDetay> getAscSortedListof3YilTUM();
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(uc_yillik_artis as float) desc", nativeQuery = true)
+    List<FonDetay> getDescSortedListof3YilFAV(List<String> fon_kodlar);
+
+    @Query(value = "select * from fondetay where fon_kod in ?1 order by CAST(uc_yillik_artis as float) asc", nativeQuery = true)
+    List<FonDetay> getAscSortedListof3YilFAV(List<String> fon_kodlar);
 }

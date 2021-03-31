@@ -1,20 +1,22 @@
 package com.foncanavari.fonApp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Data
 @Entity
-@Table(name = "traffic")
+@Table(name = "life")
 @NoArgsConstructor
-public class Traffic {
+@AllArgsConstructor
+public class Life {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String tarih;
-    String ip_adress;
+    String tarih="";
     int giris_sayisi=0;
+
 }

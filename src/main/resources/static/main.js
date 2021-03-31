@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\" navbar navbar-expand-lg navbar-absolute navbar-transparent\">\n  <div class=\" container-fluid\">\n    <div class=\" navbar-wrapper\">\n      <div class=\" navbar-toggle d-inline\">\n        <button class=\" navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n          <span class=\" navbar-toggler-bar bar1\"> </span>\n          <span class=\" navbar-toggler-bar bar2\"> </span>\n          <span class=\" navbar-toggler-bar bar3\"> </span>\n        </button>\n      </div>\n    </div>\n   \n    <ul class=\"nav\" *ngIf=\"!isLoggedIn\">\n <!-- <li class=\"nav-item\">\n  <a [routerLink]=\"['/admin']\">admin</a>\n</li> -->\n \n\n <li class=\"nav-item\">\n  <a [routerLink]=\"['/giris']\">Giriş Yap</a>\n</li>\n\n    </ul>\n\n    <ul class=\"nav\" *ngIf=\"isLoggedIn\">\n      <li class=\"nav-item\">\n        <a href [routerLink]=\"['/profil']\">{{ username }}&nbsp;&nbsp;&nbsp;</a>\n      </li>\n      <li class=\"nav-item\">\n       <a href (click)=\"logout()\">Çıkış Yap</a>\n     </li>\n     \n         </ul>\n  </div>\n</nav>\n\n\n<ng-template #content let-modal>\n  <div class=\" modal-header\">\n    <input class=\" form-control\" id=\"inlineFormInputGroup\" placeholder=\"SEARCH\" type=\"text\" />\n\n    <button aria-label=\"Close\" class=\" close\" data-dismiss=\"modal\" type=\"button\" (click)=\"modal.dismiss('Cross click')\">\n      <i class=\" tim-icons icon-simple-remove\"> </i>\n    </button>\n  </div>\n\n</ng-template>\n\n\n\n      <!-- <li class=\"nav-item\">\n        <div class=\" fixed-plugin\">\n\n\n          <div class=\" show-dropdown\" ngbDropdown>\n            <a data-toggle=\"dropdown\" ngbDropdownToggle>             \n            <i style=\"cursor:pointer; color:gray; \" onmouseover=\"this.style.color='white'\"\n            onmouseout=\"this.style.color='gray'\" class=\"tim-icons icon-single-02\"> </i>\n        \n            </a>\n\n            <ul ngbDropdownMenu>\n              <div style=\"padding: 10px 20px 10px 20px; color: rgba(255, 255, 255, 0.7); \">\n                <form (ngSubmit)=\"girisYap()\">\n                  <div class=\"form-group\">\n                    <label for=\"exampleInputEmail1\">Email address</label>\n                    <input type=\"email\" name=\"email\" class=\"form-control\" required [(ngModel)]=\"user.email\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\"\n                      placeholder=\"Enter email\">\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Password</label>\n                    <input type=\"password\" name=\"pass\" class=\"form-control\" required [(ngModel)]=\"user.pass\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n                  </div>\n                  \n       <button style=\"padding:10px 20px; float:left; font-size: 12px;\" type=\"submit\" [hidden]=\"sifre_buton\" class=\"btn btn-default\">Giriş yap</button>\n                    <div style=\"color: #ec250d !important; text-align:right;\" ><a [routerLink]=\"['/kayit']\" style=\"font-size: 12px;\" class=\"btn btn-link text-danger\">Kayıt ol</a></div>\n                     <div class=\"text-danger text-center\" [hidden]=\"!hata_goster\">{{hata_mesaji}}</div>\n                </form>\n              </div>\n            </ul>\n          </div>\n        </div>\n\n\n      </li>  -->\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\" navbar navbar-expand-lg navbar-absolute navbar-transparent\">\n  <div class=\" container-fluid\">\n    <div class=\" navbar-wrapper\">\n      <div class=\" navbar-toggle d-inline\">\n        <button class=\" navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n          <span class=\" navbar-toggler-bar bar1\"> </span>\n          <span class=\" navbar-toggler-bar bar2\"> </span>\n          <span class=\" navbar-toggler-bar bar3\"> </span>\n        </button>\n      </div>\n    </div>\n   \n    <ul class=\"nav\" *ngIf=\"!isLoggedIn\">\n      <!-- <li class=\"nav-item\" *ngIf=\"mesajVar\">   \n        <i class=\"tim-icons icon-bell-55 herre\" (click)=\"mesajGoster()\"></i> &nbsp;&nbsp;      \n        <div class=\"notification\"></div>\n     </li>  -->\n\n <li class=\"nav-item\">\n  <a [routerLink]=\"['/giris']\">Giriş Yap</a>\n</li>\n    </ul>\n\n\n    <ul class=\"nav\" *ngIf=\"isLoggedIn\">     \n     \n\n      <li class=\"nav-item\" style=\"    max-width: 150px;\n      overflow: hidden;\n      max-height: 1.4em;\">\n        <a href [routerLink]=\"['/profil']\">{{ username }}&nbsp;&nbsp;&nbsp;</a>\n      </li>\n      <li class=\"nav-item\">\n       <a href (click)=\"logout()\">Çıkış Yap</a>\n     </li>\n     \n         </ul>\n  </div>\n</nav>\n\n\n<ng-template #content let-modal>\n  <div class=\" modal-header\">\n    <input class=\" form-control\" id=\"inlineFormInputGroup\" placeholder=\"SEARCH\" type=\"text\" />\n\n    <button aria-label=\"Close\" class=\" close\" data-dismiss=\"modal\" type=\"button\" (click)=\"modal.dismiss('Cross click')\">\n      <i class=\" tim-icons icon-simple-remove\"> </i>\n    </button>\n  </div>\n\n</ng-template>\n\n\n<style>\n  .herre:hover {\n    color: #ec250d;\n    cursor:pointer;\n  }\n</style>\n\n      <!-- <li class=\"nav-item\">\n        <div class=\" fixed-plugin\">\n\n\n          <div class=\" show-dropdown\" ngbDropdown>\n            <a data-toggle=\"dropdown\" ngbDropdownToggle>             \n            <i style=\"cursor:pointer; color:gray; \" onmouseover=\"this.style.color='white'\"\n            onmouseout=\"this.style.color='gray'\" class=\"tim-icons icon-single-02\"> </i>\n        \n            </a>\n\n            <ul ngbDropdownMenu>\n              <div style=\"padding: 10px 20px 10px 20px; color: rgba(255, 255, 255, 0.7); \">\n                <form (ngSubmit)=\"girisYap()\">\n                  <div class=\"form-group\">\n                    <label for=\"exampleInputEmail1\">Email address</label>\n                    <input type=\"email\" name=\"email\" class=\"form-control\" required [(ngModel)]=\"user.email\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\"\n                      placeholder=\"Enter email\">\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Password</label>\n                    <input type=\"password\" name=\"pass\" class=\"form-control\" required [(ngModel)]=\"user.pass\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n                  </div>\n                  \n       <button style=\"padding:10px 20px; float:left; font-size: 12px;\" type=\"submit\" [hidden]=\"sifre_buton\" class=\"btn btn-default\">Giriş yap</button>\n                    <div style=\"color: #ec250d !important; text-align:right;\" ><a [routerLink]=\"['/kayit']\" style=\"font-size: 12px;\" class=\"btn btn-link text-danger\">Kayıt ol</a></div>\n                     <div class=\"text-danger text-center\" [hidden]=\"!hata_goster\">{{hata_mesaji}}</div>\n                </form>\n              </div>\n            </ul>\n          </div>\n        </div>\n\n\n      </li>  -->\n");
 
 /***/ }),
 
@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"logo\">\n  <a [routerLink]=\"['/anasayfa']\" (click)=\"reload()\" class=\"simple-text logo-mini\">\n    <div class=\"logo-img\">\n      <img src=\"./assets/img/foncanavari.png\" />\n    </div>\n  </a>\n  <a [routerLink]=\"['/anasayfa']\" (click)=\"reload()\"  style=\"padding-top: 15px;\" href=\"\" class=\"simple-text logo-normal\">\n    FON CANAVARI TEST\n  </a>\n</div>\n<div class=\"sidebar-wrapper\">\n  <ul class=\"nav\">\n    <li\n      routerLinkActive=\"active\"\n      *ngFor=\"let menuItem of menuItems\"\n      class=\"{{ menuItem.class }} nav-item\"\n    >\n      <a [routerLink]=\"[menuItem.path]\">\n        <i class=\"tim-icons  {{ menuItem.icon }}\"></i>\n        <!-- <p *ngIf=\"menuItem.title == 'Favorilerim'\">{{ menuItem.title }}&nbsp;({{fav_sayisi}})</p> -->\n        <p>{{ menuItem.title }}</p>\n      </a>\n    </li>\n  </ul>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"logo\">\n  <a [routerLink]=\"['/anasayfa']\" (click)=\"reload()\" class=\"simple-text logo-mini\">\n    <div class=\"logo-img\">\n      <img src=\"./assets/img/foncanavari.png\" />\n    </div>\n  </a>\n  <a [routerLink]=\"['/anasayfa']\" (click)=\"reload()\"  style=\"padding-top: 15px;\" href=\"\" class=\"simple-text logo-normal\">\n    FON CANAVARI\n  </a>\n</div>\n<div class=\"sidebar-wrapper\">\n  <ul class=\"nav\">\n    <li\n      routerLinkActive=\"active\"\n      *ngFor=\"let menuItem of menuItems\"\n      class=\"{{ menuItem.class }} nav-item\"\n    >\n      <a [routerLink]=\"[menuItem.path]\">\n        <i class=\"tim-icons  {{ menuItem.icon }}\"></i>\n        <!-- <p *ngIf=\"menuItem.title == 'Favorilerim'\">{{ menuItem.title }}&nbsp;({{fav_sayisi}})</p> -->\n        <p>{{ menuItem.title }}</p>\n      </a>\n    </li>\n  </ul>\n</div>\n");
 
 /***/ }),
 
@@ -627,6 +627,7 @@ var NavbarComponent = /** @class */ (function () {
         this.user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_6__["User"]();
         this.isLoggedIn = false;
         this.showAdminBoard = false;
+        this.mesajVar = true;
         this.isCollapsed = true;
         this.updateColor = function () {
             var navbar = document.getElementsByClassName('navbar')[0];
@@ -968,25 +969,34 @@ __webpack_require__.r(__webpack_exports__);
 var TOKEN_KEY = 'auth-token';
 var USER_KEY = 'auth-user';
 var IP_ADRESS = 'ip';
+var USER = 'user';
 var TokenStorageService = /** @class */ (function () {
     function TokenStorageService() {
     }
     TokenStorageService.prototype.signOut = function () {
-        window.sessionStorage.clear();
+        window.localStorage.removeItem(USER_KEY);
+        window.localStorage.removeItem(TOKEN_KEY);
     };
     TokenStorageService.prototype.saveToken = function (token) {
-        window.sessionStorage.removeItem(TOKEN_KEY);
-        window.sessionStorage.setItem(TOKEN_KEY, token);
+        window.localStorage.removeItem(TOKEN_KEY);
+        window.localStorage.setItem(TOKEN_KEY, token);
     };
     TokenStorageService.prototype.getToken = function () {
-        return sessionStorage.getItem(TOKEN_KEY);
+        return localStorage.getItem(TOKEN_KEY);
     };
     TokenStorageService.prototype.saveUser = function (user) {
-        window.sessionStorage.removeItem(USER_KEY);
-        window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+        window.localStorage.removeItem(USER_KEY);
+        window.localStorage.setItem(USER_KEY, JSON.stringify(user));
     };
     TokenStorageService.prototype.getUser = function () {
-        return JSON.parse(sessionStorage.getItem(USER_KEY));
+        return JSON.parse(localStorage.getItem(USER_KEY));
+    };
+    TokenStorageService.prototype.saveKolon = function (kolon_adi, state) {
+        window.localStorage.removeItem(kolon_adi);
+        window.localStorage.setItem(kolon_adi, JSON.stringify(state));
+    };
+    TokenStorageService.prototype.getKolon = function (kolon_adi) {
+        return JSON.parse(localStorage.getItem(kolon_adi));
     };
     TokenStorageService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1014,6 +1024,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -1023,7 +1035,7 @@ var httpOptions = {
 var userService = /** @class */ (function () {
     function userService(http) {
         this.http = http;
-        this.baseUrl = 'http://foncanav-test.eu-central-1.elasticbeanstalk.com/user';
+        this.baseUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].url + '/user';
     }
     userService.prototype.favorilereEkle = function (kod, username) {
         return this.http.put(this.baseUrl + '/favekle?kod=' + kod, {
@@ -1040,6 +1052,9 @@ var userService = /** @class */ (function () {
             username: user.username,
             pass: user.pass,
         });
+    };
+    userService.prototype.getMesajBool = function () {
+        return this.http.get(this.baseUrl + '/mesajbool');
     };
     userService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
@@ -1070,6 +1085,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 var environment = {
+    url: 'http://foncanavari-env.eba-dnz4uph9.eu-central-1.elasticbeanstalk.com',
+    // url: 'http://localhost:8000',
     production: true
 };
 

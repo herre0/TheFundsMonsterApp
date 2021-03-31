@@ -22,7 +22,14 @@ public class Fon {
     String category;
     String gunluk_artis;
     String fiyat;
+
+    public Fon (String kodu, String adi) {
+        this.adi = adi;
+        this.kodu = kodu;
+    }
 }
+
+
 
 
 
